@@ -18,7 +18,7 @@ public class HomePageController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	@ResponseBody
 	public String homePage() {
-		return "welcome! J2Watch hahahahha again";
+		return "welcome! J2Watch 1 again";
 	}
 	
 	@Autowired
