@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+</head>
+<body>
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
+	<div id="form_addnd" class="content-formaddnhanvien">
+
+            
+        <div class="row">
+
+            <div class="form1">
+                <label class="labelnhanvien">Tên người dùng: </label>
+                <select class="cbo" name="user_id" id="">
+
+                        <option value=""></option>
+                        
+                </select>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Tên đăng nhập: </label>
+                <input name="user_name" class="form-control" type="text">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Mật khẩu: </label>
+                <input name="password" class="form-control" type="text">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Nhập lại mật khẩu: </label>
+                <input name="password2" class="form-control" type="text">
+            </div>
+
+            <div class="form1">
+                <button onclick="" class="add-nhanvien" type="submit" name="submitTK" title="Lưu" id=""><i class="icon1 ti-save"></i>Lưu thông tin</button>
+                <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>

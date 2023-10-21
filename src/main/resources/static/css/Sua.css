@@ -1,0 +1,309 @@
+/* NHÂN VIÊN */
+
+.modal, .modalTK, .modalDH, .modalSP, .modalNCC, .modalVC, .modalHD, .modalQuyen{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.modal.open{
+    display: flex;
+}
+.modalTK.open{
+    display: flex;
+}
+.modalDH.open{
+    display: flex;
+}
+.modalSP.open{
+    display: flex;
+}
+.modalNCC.open{
+    display: flex;
+}
+.modalVC.open{
+    display: flex;
+}
+.modalHD.open{
+    display: flex;
+}
+.modalQuyen.open{
+    display: flex;
+}
+
+
+
+.modal-bodyDH1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+
+.modal-bodyDH3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodyDH4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+
+
+
+
+
+.modal-bodySP1 {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 135px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodySP1 .form-control, .modal-bodySP2 .form-control, .modal-bodySP3 .cbo{
+    width: 250px;
+    display: block;
+}
+
+.modal-bodySP1 .form-control{
+    width: 400px;
+    display: block;
+}
+
+.modal-bodySP4 .form-control, .modal-bodySP4 .cbo, .modal-bodySP6 .form-control, .modal-bodySP6 .cbo{
+    width: 200px;
+    display: block;
+}
+
+.modal-bodySP2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 90px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodySP3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodySP4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodySP6 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 52px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodySP5 {
+    display: flex;
+    gap: 44px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
+
+.modal-bodyHD1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodyHD2 {
+    padding-right: 50px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodyHD3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modal-bodyHD4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 76px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+
+
+.modal-container{
+    background: #fff;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    min-height: 500px;
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerTK{
+    background: #fff;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerDH, .modal-containerHD{
+    background: #fff;
+    width: 1000px;
+    /* min-height: 500px; */
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerSP{
+    background: #fff;
+    width: 1000px;
+    /* max-width: calc(100% - 30px); */
+    min-height: 500px;
+    /* height: 800px; */
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerNCC{
+    background: #fff;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerQuyen{
+    background: #fff;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-containerVC{
+    background: #fff;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    position: relative;
+    animation: modalFadeIn ease 1s;
+}
+
+.modal-header{
+    background: aquamarine;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal-footer{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.btn_save{
+    background-color: aquamarine;
+    border: none;
+    margin-right: 15px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.btn_close{
+    font-size: 18px;
+    margin-right: 15px;
+    padding: 10px;
+    border: none;
+    background-color: pink;
+}
+
+.form2{
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.form3{
+    padding-bottom: 5px;
+}
+
+@keyframes modalFadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(-200px)
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+
+
+ .form2 .form-control {
+    display: block;
+    /* width: 250px; */
+}
+
+.day-sex-chucvu .form2 .form-control, .day-sex-chucvu .form2 .cbo {
+    display: block;
+    width: 158px;
+}
+
+.day-sex-chucvu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal-bodyHD3 .form3 .form-control, .modal-bodyHD4 .form3 .form-control {
+    display: block;
+    width: 250px;
+}
+
+
+
+
+

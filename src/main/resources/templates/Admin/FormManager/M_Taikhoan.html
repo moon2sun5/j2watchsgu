@@ -1,0 +1,85 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+    <script language="JavaScript" th:src="@{/js/clock.js}"></script>
+</head>
+<body onload="time()">
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
+	
+	<div class="content">
+
+    <div class="content-header">
+
+        <div id="clock"></div>
+        
+    </div>
+    
+    <div class="content-mid">
+        
+        <a th:href="@{/admin/qltaikhoan/addtaikhoan}" class="add" type="button" title="Thêm" id="add_nv"><i class="icon1 ti-plus"></i>Cấp tài khoản</a>
+        <label class="form-timkiem" for="">Tìm kiếm: 
+            <input type="search" id="search_tk" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
+        </label> 
+
+    </div>
+
+    <div class="form-dsnguoidung">
+        
+        <h1>Danh sách tài khoản</h1>
+
+        <table id=""  width="100%" border="3" cellspacing="2px" align="center" bordercolor = "aquamarine">
+            <thead >
+                <tr style="height: 60px;">
+                    <th width="5%">STT</th>
+                    <th width="5%">ID</th>
+                    <th width="10%">Phân quyền</th>
+                    <th width="15%">Họ và tên</th>
+                    <th width="15%">Tên đăng nhập</th>
+                    <th width="15%">Mật khẩu</th>
+                    <th width="15%">Ngày tạo tài khoản</th>
+                    <th width="10%">Trạng thái</th>
+                    <th width="10%">Tính năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+          
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align="center" font-size="20px"><input type="checkbox" checked></td>
+                    <td align="center"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button> 
+                     <button value="" href="" class="tinhnang2 js-change-taikhoan" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+                </tr>
+                
+                
+                </tr>
+               
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="footer">
+        <a th:href="@{/admin/qlquyen}" class="add" type="button" title="Quyền" id="">Quản lý quyền <i class="icon1 ti-hand-point-right"></i></a>
+    </div>
+    
+
+</div>
+</body>

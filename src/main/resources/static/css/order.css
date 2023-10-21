@@ -1,0 +1,55 @@
+.order-flex {
+    display: flex;
+    margin-top: 90px;
+    justify-content: space-between;
+}
+
+.info {
+    width: 60%;
+    padding: 0 100px;
+}
+
+.bill {
+    width: 40%;
+    max-height: 500px;
+}
+
+.info__title {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.info__rows-label {
+    font-weight: 600;
+}
+
+.info__rows-input {
+    height: 40px;
+    width: 100%;
+    margin: 10px 0 20px;
+    outline: none;
+    border: 2px solid #c9c9c9;
+}
+
+.info__rows-input:focus {
+    box-shadow: 0 0 2px #989b99;
+}
+
+.info__rows-input::placeholder {
+    position: absolute;
+    top: 0;
+}
+
+.info__rows-input-more {
+    height: 200px;
+    text-align: left;
+    padding: 0 0 180px 0;
+}
+
+.bill__rows-name_product{
+    max-width: 320px;
+    font-size: 14px;
+}
+.bill__rows-price-total{
+    color: red;
+}

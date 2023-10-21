@@ -1,0 +1,182 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    
+    
+</head>
+<body>
+	<div class="sidebar" th:fragment="menu">
+        
+        <div class="header">
+	        <p class="chaomung">Welcome to the admin page. Good luck to you ^^</p>
+	        <a class="a" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
+	    </div>
+	
+	    <div class="sidebar-user">
+	        <img class="anh-user" th:src="@{/css/Image/user1.png}" alt="" width="140px">
+	        <p id="username" class="user">Phát</p>
+	        <button type="button" class="js-change-nhanvien">helo</button>
+	        <hr>
+	    </div>
+        
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <a class="a" th:href="@{/admin/qlthongtin}"><li><i class="icon ti-id-badge"></i>Quản lý thông tin</li></a>
+                <a class="a" th:href="@{/admin/qltaikhoan}"><li><i class="icon ti-user" style="color: black;"></i>Quản lý tài khoản</li></a>
+                <a class="a" th:href="@{/admin/qlsanpham}"><li><i class="icon ti-apple"></i>Quản lý sản phẩm</li></a>
+                <a class="a" th:href="@{/admin/qlhoadon}"><li><i class="icon ti-receipt"></i>Quản lý hóa đơn</li></a>
+                <a class="a" th:href="@{/admin/qlnhaphang}"><li><i class="icon ti-truck"></i>Quản lý nhập hàng</li></a>
+                <a class="a" th:href="@{/admin/qlbaocao}"><li><i class="icon ti-bar-chart"></i>Báo cáo doanh thu</li></a>
+            </ul>
+            
+        </div>
+        
+        
+        
+        <script>
+		    const menuLinks = document.querySelectorAll('.menu a');
+		
+		    // Lấy thông tin về thẻ đang được chọn từ localStorage
+		    const selectedLink = localStorage.getItem('selectedLink');
+		
+		    menuLinks.forEach(link => {
+		        link.addEventListener('click', event => {
+		            // Xóa lớp 'active' khỏi tất cả các thẻ 
+		            menuLinks.forEach(link => {
+		                link.classList.remove('active');
+		            });
+		
+		            // Thêm lớp 'active' vào thẻ được nhấp vào
+		            link.classList.add('active');
+		
+		            // Lưu thông tin về thẻ đang được chọn vào localStorage
+		            localStorage.setItem('selectedLink', link.href);
+		        });
+		
+		        // Kiểm tra nếu đây là thẻ đang được chọn
+		        if (selectedLink === link.href) {
+		            // Thêm lớp 'active' vào thẻ đang được chọn
+		            link.classList.add('active');
+		        }
+		    });
+		    </script>
+
+   		<form enctype="multipart/form-data">
+		    <div class="modal js-modal">
+	            <div class="modal-container js-container">
+	
+	                <header class="modal-header">
+	                    Chỉnh sửa thông tin cá nhân
+	                </header>
+	
+	                <div class="modal-body">
+	                    <div class="form2">
+	                        <label class="labelnhanvien">Họ và tên: </label>
+	                        <input class="form-control" type="text">
+	                    </div>
+	
+	                    <div class="form2">
+	                        <label class="labelnhanvien">Địa chỉ: </label>
+	                        <input class="form-control" type="text">
+	                    </div>
+	
+	                    <div class="form2">
+	                        <label class="labelnhanvien">Email: </label>
+	                        <input class="form-control" type="text">
+	                    </div>
+	
+	                    <div class="day-sex-chucvu">
+	
+	                        <div class="form2">
+	                            <label class="labelnhanvien">Số điện thoại: </label>
+	                            <input class="form-control" type="text">
+	                        </div>
+	
+	                        <div class="form2">
+	                            <label class="labelnhanvien">Giới tính: </label>
+	                            <div class="chon">
+	                                <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label
+	                                    class="labeldonhang" for="">Nam</label>
+	                                <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label
+	                                    class="labeldonhang" for="">Nữ</label>
+	                            </div>
+	                        </div>
+	
+	                        <div class="form2">
+	                            <label class="labelnhanvien">Ngày sinh: </label>
+	                            <input class="form-control" type="date">
+	                        </div>
+	                    </div>
+	
+	                    <div class="form2">
+	                        <label class="labelnhanvien">Phân loại: </label>
+	                        <select class="cbo" name="" id="">
+	                            <option value="">Nhân viên</option>
+	                            <option value="">Khách hàng</option>
+	                        </select>
+	                    </div>
+	
+	                    <div class="form2">
+	                        <label class="labelnhanvien">Phân quyền : </label>
+	                        <select class="cbo" name="" id="">
+	                            <option value="">Admin</option>
+	                            <option value="">Quản lý</option>
+	                            <option value="">Nhân viên</option>
+	                            <option value="">Khách hàng</option>
+	                        </select>
+	                    </div>
+	
+	
+	                    <footer class="modal-footer">
+	                        <button id="btn-save" class="btn_save">Lưu lại</button>
+	                        <button id="btn-save" class="btn_close js-close">Hủy bỏ</button>
+	                    </footer>
+	                </div>
+	            </div>
+	        </div>
+		</form>
+	
+	<script>
+		
+const fixNVBtns = document.querySelectorAll('.js-change-nhanvien')
+const modal = document.querySelector('.js-modal')
+const modalcontainer = document.querySelector('.js-container')
+const modalclose = document.querySelector('.js-close')
+
+// Hàm hiển thị
+function showformchange(){
+    modal.classList.add('open')
+}
+
+// Hàm ẩn
+function closeformchange(){
+    modal.classList.remove('open')
+}
+
+// Lặp qua từng thẻ button và nghe hành vi click
+for( const fixNVBtn of fixNVBtns) {
+    fixNVBtn.addEventListener('click', showformchange)
+}
+
+// Nghe hành vi click
+modalclose.addEventListener('click', closeformchange)
+
+modal.addEventListener('click', closeformchange)
+
+// Bấm vào bên trong không bị out
+modalcontainer.addEventListener('click', function (event) {
+    event.stopPropagation()
+})
+    
+	</script>
+	</div>
+</body>
+</html>
+
