@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    
+    
+</head>
+<body>
+	<div class="sidebar" th:fragment="menu">
+        
+        <div class="header">
+	        <p class="chaomung">Welcome to the admin page. Good luck to you ^^</p>
+	        <a class="a" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
+	    </div>
+	
+	    <div class="sidebar-user">
+	        <img class="anh-user" th:src="@{/css/Image/user1.png}" alt="" width="140px">
+	        <p id="username" class="user">Phát</p>
+	        
+	        <hr>
+	    </div>
+        
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <a class="a" th:href="@{/admin/qlthongtin}"><li><i class="icon ti-id-badge"></i>Quản lý thông tin</li></a>
+                <a class="a" th:href="@{/admin/qltaikhoan}"><li><i class="icon ti-user" style="color: black;"></i>Quản lý tài khoản</li></a>
+                <a class="a" th:href="@{/admin/qlsanpham}"><li><i class="icon ti-apple"></i>Quản lý sản phẩm</li></a>
+                <a class="a" th:href="@{/admin/qlhoadon}"><li><i class="icon ti-receipt"></i>Quản lý hóa đơn</li></a>
+                <a class="a" th:href="@{/admin/qlnhaphang}"><li><i class="icon ti-truck"></i>Quản lý nhập hàng</li></a>
+                <a class="a" th:href="@{/admin/qlbaocao}"><li><i class="icon ti-bar-chart"></i>Báo cáo doanh thu</li></a>
+            </ul>
+            
+        </div>
+        
+        
+        
+        <script>
+		    const menuLinks = document.querySelectorAll('.menu a');
+		
+		    // Lấy thông tin về thẻ đang được chọn từ localStorage
+		    const selectedLink = localStorage.getItem('selectedLink');
+		
+		    menuLinks.forEach(link => {
+		        link.addEventListener('click', event => {
+		            // Xóa lớp 'active' khỏi tất cả các thẻ 
+		            menuLinks.forEach(link => {
+		                link.classList.remove('active');
+		            });
+		
+		            // Thêm lớp 'active' vào thẻ được nhấp vào
+		            link.classList.add('active');
+		
+		            // Lưu thông tin về thẻ đang được chọn vào localStorage
+		            localStorage.setItem('selectedLink', link.href);
+		        });
+		
+		        // Kiểm tra nếu đây là thẻ đang được chọn
+		        if (selectedLink === link.href) {
+		            // Thêm lớp 'active' vào thẻ đang được chọn
+		            link.classList.add('active');
+		        }
+		    });
+		    </script>
+
+   		<div th:replace="(~{Admin/FormEdit/E_Thongtin :: editthongtin})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Taikhoan :: edittaikhoan})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Sanpham :: editsanpham})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Nhacungcap :: editnhacungcap})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Voucher :: editvoucher})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Quyen :: editquyen})"></div>
+   		<div th:replace="(~{Admin/FormEdit/E_Nhaphang :: editnhaphang})"></div>
+	</div>
+</body>
+</html>
+

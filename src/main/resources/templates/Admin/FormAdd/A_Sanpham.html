@@ -1,0 +1,153 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+</head>
+<body>
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
+	<div id="form_addsp" class="content-formaddnhanvien">
+
+        <div class="row">
+
+            <div class="form1">
+                <label class="labelnhanvien">Tên sản phẩm: </label>
+                <input class="form-control" name="name" type="text" pattern="[a-zA-Z\s]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập tên của bạn. Tên chỉ được chứa các chữ cái và khoảng trắng')"
+  oninput="setCustomValidity('')">
+            </div>
+            <div class="form1">
+                <label class="labelnhanvien">Danh mục: </label>
+                <select class="cbo" name="id_category" id="">
+                    <option></option>
+                </select>
+            </div>
+
+            <div id="image-preview"></div>
+
+            <div class="load-img">
+                <label for="file-upload" class="up-img"><i class="upload">Tải ảnh lên</i></label>
+                
+                <input type="file" id="image" name="image" required oninvalid="this.setCustomValidity('Vui lòng chọn ảnh!')"
+  oninput="setCustomValidity('')" >
+            </div>
+
+
+            <hr>
+            <h1 class="thongso">Chi tiết sản phẩm</h1>
+
+            <div class="form1">
+                <label class="labelnhanvien">Mã sản phẩm: </label>
+                <input class="form-control" name="code" type="text" pattern="[A-Za-z0-9]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập mã của sản phẩm. Mã chỉ được chứa các chữ cái và số')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Bộ máy và năng lượng: </label>
+                <select class="cbo" name="id_pin" id="">
+                    
+
+                    <option value=""></option>
+                    
+                </select>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Chất liệu dây: </label>
+                <select class="cbo" name="id_material_wire" id="">
+                    
+
+                    <option value=""></option>
+                    
+                </select>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Chất liệu kính: </label>
+                <select class="cbo" name="id_material_glass" id="">
+
+                    <option value=""></option>
+                    
+                </select>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Giới tính: </label>
+                <div class="chon">
+                    <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
+                        for="">Nam</label>
+                    <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
+                        for="">Nữ</label>
+                </div>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Hình dạng mặt kính: </label>
+                <input class="form-control" name="shape" type="text" pattern="[a-zA-Z\s]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập hình dạng của sản phẩm. Hình dạng chỉ được chứa các chữ cái và khoảng trắng')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Size mặt kính: </label>
+                <input class="form-control" name="size" type="text" pattern="(\d+(\.\d+)?|\.\d+)(\s*(>|<)\s*(\d+(\.\d+)?|\.\d+))?mm" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập kích thước của sản phẩm theo định dạng số có đơn vị mm, ví dụ: 10mm hoặc >10mm')"
+  oninput="setCustomValidity('')">
+
+
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Màu: </label>
+                
+<input class="form-control" name="color" type="text" pattern="[a-zA-Z\s]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập màu sắc của sản phẩm. Màu sắc chỉ được chứa các chữ cái và khoảng trắng')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Khả năng chống nước: </label>
+                <input class="form-control" name="water_resistance" type="text" pattern="[0-9]+ATM" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập độ chịu nước của sản phẩm theo định dạng Số ATM. Ví dụ: 5ATM')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Thương hiệu: </label>
+                <select class="cbo" name="id_band" id="">
+
+                    <option value=""></option>
+                    
+                </select>
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Xuất xứ: </label>
+                <input class="form-control" name="origin" type="text" pattern="[a-zA-Z\s]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập xuất xứ của sản phẩm. Xuất xứ chỉ được chứa các chữ cái và khoảng trắng')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
+                <label class="labelnhanvien">Miêu tả sản phẩm: </label> <br>
+                <textarea name="description" id="ghichu" cols="50" rows="10"></textarea>
+            </div>
+
+            <div class="form1">
+                <button onclick="" class="add-nhanvien" type="submit" name="submitSP" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm sản phẩm</button>
+                <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+            </div>
+
+        </div>
+
+    </div>
+ </body>

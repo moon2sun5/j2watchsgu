@@ -1,0 +1,29 @@
+<form enctype="multipart/form-data" th:fragment="edittaikhoan">
+        <div  class="modalTK js-modalTK">
+            <div class="modal-containerTK js-containerTK">
+
+                <header class="modal-header">
+                    Chỉnh sửa tài khoản
+                </header>
+
+                <div class="modal-body">
+                    <div class="form2">
+                        <label class="labelnhanvien">Tên đăng nhập: </label>
+                        <input class="form-control" id="user_name" type="text">
+                    </div>
+
+                    <div class="form2">
+                        <label class="labelnhanvien">Mật khẩu: </label>
+                        <input class="form-control" id="password" type="text">
+                    </div>
+
+                </div>
+
+
+                <footer class="modal-footer">
+                    <button id="btn-save" class="btn_save">Lưu lại</button>
+                    <button id="btn-save" class="btn_close js-close-TK">Hủy bỏ</button>
+                </footer>
+            </div>
+        </div>
+    </form>

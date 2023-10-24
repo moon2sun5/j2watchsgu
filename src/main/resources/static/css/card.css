@@ -1,0 +1,186 @@
+.wrapper_child {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.title {
+    margin-top: 130px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 640;
+}
+
+.grid {
+    margin-top: 50px;
+}
+
+.card {
+    border: none;
+    margin-right: 40px;
+}
+
+.card__table-title {
+    font-size: 1.1rem;
+    padding-left: 36px;
+}
+
+.card-table-product-name {
+    margin-left: 40px;
+    line-height: 100px;
+}
+
+.card__table-rows {
+    border-bottom: 3px solid #dadada;
+}
+
+.card__table-product {
+    padding: 0 40px;
+}
+
+.card__table-product-item {
+    display: flex;
+}
+
+.card__table-product-img {
+    width: 100px;
+    height: 100px;
+}
+
+.card__table-product-quantity {
+    width: 80px;
+    background-color: var(--key);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.card__table-product-btn {
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    border: none;
+}
+
+.btn-edit,
+.btn-delete {
+    color: var(--key);
+    border-radius: 5px;
+}
+
+.btn-edit {
+    background-color: blue;
+}
+
+.btn-delete {
+    background-color: red;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+
+/* Bill */
+
+.bill {
+    background-color: #f4f4f4;
+    width: 25%;
+}
+
+.bill-detail {
+    width: 100%;
+    padding: 12px 24px;
+}
+
+.bill__rows {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-affect {
+    margin-top: 20px;
+}
+
+.bill__rows-name {
+    font-weight: 500;
+}
+
+.bill-title {
+    text-transform: uppercase;
+}
+
+.bill__rows-price {
+    color: red;
+}
+
+.bill-btn {
+    display: block;
+    height: 36px;
+    width: 110px;
+    background-color: rgb(13, 178, 13);
+    color: var(--key);
+    text-align: center;
+    margin: 20px auto;
+    border: none;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.bill-btn:hover {
+    background-color: rgb(33, 203, 33);
+}
+
+
+/* Responsive */
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .grid {
+        display: block;
+    }
+    .bill {
+        width: 50%;
+        margin: 20px 200px;
+    }
+    .card-table-product-name {
+        line-height: 2;
+    }
+}
+
+
+/* Mobile: width <740px */
+
+@media only screen and (max-width: 46.25em) {
+    .grid {
+        display: block;
+    }
+    .bill {
+        width: 50%;
+        margin: 20px 200px;
+    }
+    .card-table-product-name {
+        line-height: 2;
+    }
+}
+.img_cart{
+    width: 100px;
+    height: 100px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  tr:not(:first-child) {
+    border-top: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

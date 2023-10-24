@@ -1,0 +1,346 @@
+.sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    background-color: #d9d9d9;
+    z-index: 10;
+}
+
+.header{
+    display: block;
+    position: fixed;
+    right: 0;
+    left: 270px;
+    top: 0;
+    height: 60px;
+    background-color: #d9d9d9;
+}
+
+.user{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.sidebar-user{
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.menu{
+    padding-right: 25px;
+    padding-left: 30px;
+}
+
+.icon{
+    display: inline-block;
+    padding-right: 10px;
+}
+.icon1{
+    padding-right: 10px;
+    
+}
+
+.add{
+    padding: 10px 10px;
+    background-color: greenyellow;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.print{
+    padding: 10px 10px;
+    color: black;
+    background-color: cornflowerblue;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.delete{
+    padding: 10px 10px;
+    color: black;
+    background-color: red;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+
+.logout1{
+    float: right;
+    font-size: 60px;
+    color: red;
+}
+
+.logout1:hover{
+    background-color: red;
+    color: #d9d9d9;
+}
+
+.chaomung, .qlNhanvien, .qlKhachhang, .qlBaocao, .qlDonhang{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.form-dsdonhang h1{
+    text-align: center;
+}
+
+.form-dssanpham h1{
+    text-align: center;
+}
+.form-dsnguoidung h1{
+    text-align: center;
+}
+.form-dsnhacungcap h1{
+    text-align: center;
+}
+.form-dskhachhang h1{
+    text-align: center;
+}
+
+.form-doanhthu h1{
+    text-align: center;
+}
+
+.menu a{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    list-style: none;
+    display: block;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.menu a.active {
+    background-color: aquamarine;
+}
+
+.menu a:hover{
+    background-color: aquamarine;
+}
+
+.content{
+    margin-top: 60px;
+    margin-left: 270px;
+}
+
+.content-mid{
+    padding-top: 20px;
+}
+
+.form-timkiem{
+    font-weight: bold;
+    font-size: 20px;
+    border: 3px solid aquamarine;
+    border-radius: 15px;
+    padding: 10px 10px;
+}
+
+.search{
+    font-size: 15px;
+}
+
+.ti-search{
+    font-size: 15px;
+    padding-left: 10px;
+    border: none;
+    background-color: white;
+}
+
+.date{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    float: right;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.tinhnang1{
+    color: red;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: pink;
+    border-radius: 10px;
+    text-align: center;
+    padding-right: 0px;
+}
+
+.tinhnang2{
+    color: rgb(47, 138, 184);
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: aqua;
+    border-radius: 10px;
+    text-align: center;
+    padding-right: 0px;
+}
+
+.form-baocao{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.tonghop h4{
+    margin: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: red;
+
+}
+
+.one, .two, .three, .four{
+    width: 320px;
+}
+
+
+.one {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #b9ffd3;
+    border-radius: 5px;
+    margin-right: 50px;
+    margin-top: 30px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.two {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #cee3ff;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-right: 50px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.three {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fde1c3;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-right: 50px;
+}
+
+.four {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8fdb9;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-right: 50px;
+}
+  
+.ti-package, .ti-face-smile, .ti-face-sad{
+    color: green;
+}
+
+.ti-briefcase, .ti-user, .ti-crown{
+    color: blue;
+}
+
+.ti-archive, .ti-server, .ti-wallet{
+    color: orange;
+}
+
+.ti-shopping-cart-full, .ti-check-box, .ti-package{
+    color: #b7c03d;
+}
+
+
+.icon2{
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+
+  
+.chiso{
+    margin: 5px 0 0 0;
+    font-weight: 700;
+    color: blue;
+}
+
+.title{
+    font-size: 25px;
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: red;
+    border-bottom: 2px solid pink;
+}
+
+.spbanchay{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.spbanchay1{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.khachhangtiemnang{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.footer{
+    position: fixed;
+    display: block;
+    right: 20px;
+    bottom: 30px;
+}
+
+.check1{
+    transform: scale(1.5);
+    margin-top: 10px;
+}
+.muccheck1 {
+    width: 320px;
+    display: inline-flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 30px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+  
+  
+
+
