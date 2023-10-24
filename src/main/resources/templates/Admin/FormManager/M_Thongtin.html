@@ -12,7 +12,7 @@
     <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
     <script language="JavaScript" th:src="@{/js/clock.js}"></script>
-    <script language="text/JavaScript" th:src="@{/js/changeNV.js}"></script>
+    
 
 </head>
 <body onload="time()">
@@ -71,8 +71,9 @@
 	                    <td align="center"><button class="tinhnang1 infor" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>
 	                      <button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
                 	</tr>
-	
+					
 	            </tbody>
+	            <script type="text/JavaScript" th:src="@{/js/changeNV.js}"></script>
 	        </table>
 	    </div>
 	</div>

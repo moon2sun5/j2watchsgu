@@ -1,0 +1,145 @@
+<form enctype="multipart/form-data" th:fragment="editsanpham">
+        <div id="my-form" class="modalSP js-modalSP">
+            <div class="modal-containerSP js-containerSP">
+
+                <header class="modal-header">
+                    Chỉnh sửa thông tin sản phẩm
+                </header>
+
+                <div class="modal-bodySP1">
+
+                    <div class="form3">
+                        <label class="labelnhanvien">Tên sản phẩm: </label>
+                        <input class="form-control" type="text" id="name">
+                    </div>
+
+                    <div class="form3">
+                        <label class="labelnhanvien">Mã sản phẩm: </label>
+                        <input class="form-control" type="text" id="code">
+                    </div>
+
+                </div>
+
+                <div class="modal-bodySP3">
+                    <div class="form3">
+                        <label class="labelnhanvien">Chất liệu dây: </label>
+                        <select class="cbo" name="name_wire" id="name_wire">
+      
+                            <option value="">
+                            </option>
+                           
+                        </select>
+
+                    </div>
+
+                    <div class="form3">
+                        <label class="labelnhanvien">Chất liệu kính: </label>
+                        <select class="cbo" name="name_glass" id="name_glass">
+                           
+                            <option value="">
+                            </option>
+                           
+                        </select>
+                    </div>
+
+                    <div class="form3">
+                        <label class="labelnhanvien">Bộ máy và năng lượng: </label>
+                        <select class="cbo" name="name_pin" id="name_pin">
+                           
+                            <option value=""></option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-bodySP6">
+                    <div class="form1">
+                        <label class="labelnhanvien">Thương hiệu: </label>
+                        <select class="cbo" name="name_brand" id="name_brand">
+                           
+                            <option value=""></option>
+                           
+                        </select>
+                    </div>
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Danh mục: </label>
+                        <select class="cbo" name="name_category" id="name_category">
+                        
+                            <option value=""></option>
+                            
+                        </select>
+                    </div>
+
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Số lượng: </label>
+                        <input class="form-control" type="text" id="quantity">
+                    </div>
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Giới tính: </label>
+                        <div class="chon">
+                            <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label
+                                class="labeldonhang" for="">Nam</label>
+                            <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label
+                                class="labeldonhang" for="">Nữ</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-bodySP4">
+                    <div class="form1">
+                        <label class="labelnhanvien">Xuất xứ: </label>
+                        <input class="form-control" name="origin" type="text" id="origin">
+                    </div>
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Hình dáng: </label>
+                        <input class="form-control" name="shape" type="text" id="shape">
+                    </div>
+
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Màu: </label>
+                        <input class="form-control" type="text" id="color">
+                    </div>
+
+                    <div class="form1">
+                        <label class="labelnhanvien">Size mặt kính: </label>
+                        <input class="form-control" name="size" type="text" id="size">
+                    </div>
+                </div>
+
+                <div class="modal-bodySP5">
+                    <div class="form3">
+                        <div>
+                            <label class="labelnhanvien">Avatar:</label> <br>
+                            <img id="img" src="" alt="avatar preview"> <br>
+                            <input type="file" id="avatar" name="avatar">
+
+                        </div>
+                        <div>
+                            <label for="removeAvatar">Remove avatar?</label>
+                            <input type="checkbox" id="removeAvatar" name="removeAvatar" value="1">
+                        </div>
+
+                    </div>
+                    <div class="form3">
+                        <label class="labelnhanvien">Miêu tả sản phẩm: </label>
+                        <p><textarea name="description" id="description" cols="40" rows="5"></textarea></p>
+                    </div>
+
+                </div>
+
+                <footer class="modal-footer">
+                    <button id="btn_save_product" class="btn_save">Lưu lại</button>
+                    <button id="btn-delete" class="btn_close js-close-SP">Hủy bỏ</button>
+                </footer>
+
+            </div>
+        </div>
+
+
+
+    </form>
