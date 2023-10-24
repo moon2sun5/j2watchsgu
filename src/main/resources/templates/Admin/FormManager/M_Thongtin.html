@@ -1,0 +1,80 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+    <script language="JavaScript" th:src="@{/js/clock.js}"></script>
+    
+
+</head>
+<body onload="time()">
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})">
+		
+	</div>
+	
+	<div class="content">
+	
+	    <div class="content-header">
+	
+	        <div id="clock"></div>
+	        
+	    </div>
+	    
+	    <div class="content-mid">
+	        
+	        <a th:href="@{/admin/qlthongtin/addthongtin}" class="add" type="button" title="Thêm" id=""><i class="icon1 ti-plus"></i>Thêm hồ sơ</a>
+	        <label class="form-timkiem" for="">Tìm kiếm: 
+	            <input type="search" id="search_infor" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
+	        </label>
+	
+	    </div>
+	
+	    <div class="form-dsnguoidung">
+	        
+	        <h1>Danh sách người dùng</h1>
+	
+	        <table id="table_data_infor"  width="100%" border="3" cellspacing="2px" align="center" bordercolor = "aquamarine">
+	            <thead >
+	                <tr style="height: 60px;">
+	                    <th width="4%">ID</th>
+	                    <th width="16%">Họ và tên</th>
+	                    <th width="16%">Địa chỉ</th>
+	                    <th width="16%">Email</th>
+	                    <th width="8%">Số điện thoại</th>
+	                    <th width="8%">Ngày sinh</th>
+	                    <th width="8%">Giới tính</th>
+	                    <th width="8%">Phân loại</th>
+	                    <th width="8%">Phân quyền</th>
+	                    <th width="8%">Tính năng</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td align="center"><button class="tinhnang1 infor" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>
+	                      <button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+                	</tr>
+					
+	            </tbody>
+	            <script type="text/JavaScript" th:src="@{/js/changeNV.js}"></script>
+	        </table>
+	    </div>
+	</div>
+</body>

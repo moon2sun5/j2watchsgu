@@ -1,0 +1,72 @@
+<form th:fragment="editnhaphang">
+	<div class="modalDH js-modalDH">
+        <div class="modal-containerDH js-containerDH">
+
+            <header class="modal-header">
+                Chỉnh sửa thông tin đơn hàng
+            </header>
+
+            <div class="modal-bodyDH1">
+                <div class="form3">
+                    <label class="labelnhanvien">Nhà cung cấp: </label>
+                    <select style="width: 400px; display:block;" class="cbo" name="" id="">
+
+                    </select>
+                </div>
+
+                <div class="form3">
+                    <label class="labelnhanvien">Nhân viên: </label>
+                    <select style="width: 400px; display:block;" class="cbo" name="" id="">
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-bodyDH3">
+                <div class="form3">
+                    <label class="labelnhanvien">Sản phẩm: </label>
+                    <select style="width: 200px; display:block;" class="cbo" name="" id="">
+
+                    </select>
+                </div>
+
+                <div class="form3">
+                    <label class="labelnhanvien">Giá gốc: </label>
+                    <input style="width: 200px; display:block;" class="form-control" type="text">
+                </div>
+
+                <div class="form3">
+                    <label class="labelnhanvien">Số lượng: </label>
+                    <input style="width: 150px; display:block;" class="form-control" type="number" min="1">
+                </div>
+
+                <div class="form3">
+                    <label class="labelnhanvien">Phần trăm: </label>
+                    <input style="width: 150px; display:block;" class="form-control" type="text">
+                </div>
+
+            </div>
+
+            <div class="modal-bodyDH4">
+
+                <div class="form3">
+                    <label class="labelnhanvien">Ngày tạo đơn hàng: </label>
+                    <input style="width: 400px; display:block;" class="form-control" type="date">
+                </div>
+
+                <div class="form3">
+                    <label class="labelnhanvien">Tổng tiền: </label>
+                    <input style="width: 400px; display:block;" class="form-control" type="text">
+                </div>
+            </div>
+
+
+            <footer class="modal-footer">
+                <button id="btn-save" class="btn_save">Lưu lại</button>
+                <button id="btn-save" class="btn_close js-close-DH">Hủy bỏ</button>
+            </footer>
+
+
+        </div>
+    </div>
+</form>

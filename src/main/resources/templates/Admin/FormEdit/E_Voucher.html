@@ -1,0 +1,41 @@
+<form th:fragment="editvoucher">
+	 <div class="modalVC js-modalVC">
+        <div class="modal-containerVC js-containerVC">
+
+            <header class="modal-header">
+                Chỉnh sửa voucher
+            </header>
+
+            <div class="modal-body">
+                <div class="form2">
+                    <label class="labelnhanvien">Mã giảm giá: </label>
+                    <input class="form-control" type="text">
+                </div>
+
+                <div class="form2">
+                    <label class="labelnhanvien">Giá trị: </label>
+                    <input class="form-control" type="text">
+                </div>
+
+
+                <div class="form2">
+                    <label class="labelnhanvien">Ngày bắt đầu: </label>
+                    <input class="form-control" type="date">
+                </div>
+
+                <div class="form2">
+                    <label class="labelnhanvien">Ngày kết thúc: </label>
+                    <input class="form-control" type="date">
+                </div>
+
+
+            </div>
+
+
+            <footer class="modal-footer">
+                <button id="btn-save" class="btn_save">Lưu lại</button>
+                <button id="btn-save" class="btn_close js-close-VC">Hủy bỏ</button>
+            </footer>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,110 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+	<script language="JavaScript" th:src="@{/js/clock.js}"></script>
+</head>
+<body onload="time()">
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
+	
+	<div id="" class="content">
+
+    <div class="content-header">
+
+        <div id="clock">
+        </div>
+
+    </div>
+
+    <div class="content-mid">
+
+        <a th:href="@{/admin/qlsanpham/addsanpham}" class="add" type="button" title="Thêm" id="add_sp"><i
+                class="icon1 ti-plus"></i>Thêm sản phẩm</a>
+        <label class="form-timkiem" for="">Tìm kiếm:
+            <input type="search" id="txtsearch" class="search"><button class="ti-search" type="button" title="Tìm kiếm"
+                id=""></button>
+        </label>
+
+    </div>
+
+    <div class="form-dssanpham">
+
+        <h1>Danh sách sản phẩm</h1>
+        <form method="post">
+            <div class="form1 formchonloc">
+                <label class="labelnhanvien">Lọc: </label>
+                <select class="cbo chonloc" name="type" id="type" onchange="filterData()">
+                    <option value="asc">Theo thứ tự từ a -> z</option>
+                    <option value="desc">Theo thứ tự từ z -> a</option>
+                </select>
+
+            </div>
+        </form>
+
+
+        <table id="table_data" width="100%" border="3" cellspacing="2px" align="center" bordercolor="aquamarine">
+            <thead>
+                <tr style="height: 60px;">
+                    <th width="2%">ID</th>
+                    <th width="13%">Tên</th>
+                    <th width="6%">Ảnh</th>
+                    <th width="13%">Code</th>
+                    <th width="6%">Giá bán</th>
+                    <th width="6%">Số lượng</th>
+                    <th width="6%">Dây</th>
+                    <th width="6%">Kính</th>
+                    <th width="6%">Pin</th>
+                    <th width="6%">Màu</th>
+                    <th width="6%">Size</th>
+                    <th width="6%">Thương hiệu</th>
+                    <th width="6%">Danh mục</th>
+                    <th width="6%">Xuất xứ</th>
+                    <th width="6%">Tính năng</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+                <!--  -->
+                <tr>
+                    
+
+                <tr data-id="">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align="center"><button type="button" name="btn_delete"
+                            data-id="" class="tinhnang1 js-change-sanpham-delete"
+                            title="Xóa" id="btn_delete"><i class="icon1 ti-trash"></i></button>
+                        <button data-id =""  value="" class="tinhnang2 js-change-sanpham "
+                            type="submit" title="Sửa" id="btn_update"><i class="icon1 ti-marker-alt"></i></button>
+                    </td>
+                </tr>
+
+                </tr>
+
+            </tbody>
+            <script type="text/JavaScript" th:src="@{/js/changeSP.js}"></script>
+        </table>
+
+    </div>
+
+</div>
+</body>
