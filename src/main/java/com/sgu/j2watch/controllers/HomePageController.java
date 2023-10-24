@@ -61,7 +61,6 @@ public class HomePageController {
 	@RequestMapping("/admin/qlvoucher")
 	public String qlvoucher() {
 		return "Admin/FormManager/M_Voucher";
-	}
 	
 	@RequestMapping("/admin/qlquyen")
 	public String qlquyen() {
