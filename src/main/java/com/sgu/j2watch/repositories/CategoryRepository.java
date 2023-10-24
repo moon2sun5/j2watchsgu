@@ -8,5 +8,3 @@ import com.sgu.j2watch.entities.Category;
 public interface CategoryRepository  extends CrudRepository<Category, Integer>{
 
 }
-
-
