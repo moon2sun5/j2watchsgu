@@ -1,0 +1,134 @@
+.content-formaddnhanvien{
+    margin-top: 80px;
+    margin-left: 280px;
+    margin-right: 10px;
+    border: 2px solid aquamarine;
+}
+
+.row{
+    padding: 20px 20px;
+}
+
+.form1{
+    padding-bottom: 30px;
+}
+
+.form1-1{
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.form-control, .cbo{
+    margin-top: 10px;
+    font-size: 20px;
+    width: 100%;
+    border: 2px solid aquamarine;
+    border-radius: 5px;
+
+}
+
+.formchonloc{
+    float: right;
+}
+
+.chonloc{
+    width: 250px;
+}
+
+.labelnhanvien{
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.load-img{
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: black; 
+    padding: 10px 10px;
+}
+
+#image-preview img{
+    width: 140px;
+    height: 140px;
+}
+
+.btn-up{
+    font-size: 20px;
+}
+
+
+.add-nhanvien, .add-sanpham{
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: black;
+    background-color: aquamarine;
+    border: 3px solid aquamarine;
+    padding: 10px 10px;
+}
+
+.add-donhang{
+    font-weight: bold;
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: black;
+    background-color: aquamarine;
+    border: 3px solid aquamarine;
+    padding: 10px 10px;
+}
+
+
+.thongso{
+    text-align: center;
+    color: red;
+}
+
+#ghichu{
+    border: 3px solid aquamarine;
+    font-size: 20px;
+}
+
+.chon{
+    margin-top: 20px;
+}
+
+.labeldonhang{
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+.labelsp{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.addspmoi{
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: black;
+    background-color: aquamarine;
+    border: 3px solid aquamarine;
+    padding: 10px 10px;
+}
+
+.form-control1{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    width: 100%;
+    border: 2px solid aquamarine;
+    border-radius: 5px;
+
+}
+#img{
+    width: 100px;
+    height: 100px;
+}
