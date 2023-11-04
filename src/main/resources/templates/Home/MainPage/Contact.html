@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="(~{Home/MainPage/HomePage :: headtitle})">
+    
+</head>
+<body>
+	<div th:replace="(~{Home/Content/header :: header})"></div>
+
+	<div class="wrapper__content">
+	    <div class="wrapper__contact">
+	        <div class="wrapper__contact-child">
+	            <div class="wrapper__contact-left">
+	                <p class="wrapper__contact-left-desc">
+	
+	                </p>
+	            </div>
+	
+	            <div class="wrapper__contact-right">
+	                <div class="wrapper__contact-right-inp">
+	                    <div class="d-flex">
+	                        <input class="d-flex-child" placeholder="Họ và tên">
+	                        <input class="d-flex-child" placeholder="Số điện thoại">
+	                    </div>
+	
+	                    <div class="d-flex">
+	                        <input class="d-flex-child" placeholder="Email">
+	                        <input class="d-flex-child" placeholder="Địa chỉ">
+	
+	                    </div>
+	
+	                    <div class="message">
+	                        <input class="message-inp" placeholder="Lời nhắn">
+	
+	                    </div>
+	
+	                    <div class="wrapper__contact-right-btn">
+	                        <button class="submit">GỬI</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div th:replace="(~{Home/Content/footer :: footer})"></div>
+		<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
+	    <script>AOS.init();</script>
+	    <script th:src="@{/js/index.js}"></script>
+</body>

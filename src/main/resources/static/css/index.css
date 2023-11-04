@@ -94,6 +94,16 @@ a {
     position: relative;
 }
 
+.searchbtn{
+	font-size: 1.3rem;
+    height: 2.5rem;
+    background: black;
+    border-bottom: 2px solid gray;
+    ::placeholder{
+		color: white;
+	}
+}
+
 ul.header__list {
     display: none;
     width: 260px;
@@ -308,7 +318,7 @@ li.header__list__item-user {
 #slider {}
 
 .w-100 {
-    height: 700px;
+    height: 100vh;
 }
 
 
@@ -392,7 +402,13 @@ li.header__list__item-user {
 }
 
 .content__title {
+	margin: 30px;
     text-align: center;
+}
+
+.thongtinkhac{
+	height: auto;
+	background: no-repeat;
 }
 
 

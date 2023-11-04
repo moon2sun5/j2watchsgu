@@ -1,5 +1,5 @@
 .wrapper_child {
-    padding: 50px 160px 0;
+    padding: 0 160px 0;
 }
 
 .grid {
@@ -13,13 +13,18 @@
 }
 
 .c-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    
+    padding-left: 20px;
+   
 }
 
 .c-9 {
-    flex: 0 0 75%;
-    max-width: 75%;
+	
+    flex: 0 0 80%;
+    max-width: 80%;
+   
 }
 
 .c-10 {
@@ -149,6 +154,7 @@ li.brand_item-sub {
     flex: 0 0 30.33333%;
     max-width: 33.33333%;
     margin: 12px;
+
 }
 
 .grid__item-content {
@@ -194,7 +200,7 @@ li.brand_item-sub {
 
 .wrapper_content {
     height: 900px;
-    margin-top: 120px;
+
     padding-left: 100px;
 }
 

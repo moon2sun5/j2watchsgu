@@ -1,0 +1,69 @@
+<div th:fragment="header">
+	
+
+<header id="header">
+    <!-- Nav Mobile -->
+    <label class="header__col header__col-icon" for="checked-inp">
+        <i class="ti-align-justify header__col-icon-list"></i>
+    </label>
+
+    <input type="checkbox" id="checked-inp">
+    <label for="checked-inp" id="overlay"></label>
+    <div class="nav-mobile">
+        <div class="nav-close">
+            <label for="checked-inp" class="ti-close"></label>
+        </div>
+        <ul class="list-mobile">
+            <a href="" class="list-link">
+                <li class="item-mobile">Trang chủ</li>
+            </a>
+            <a href="" class="list-link">
+                <li class="item-mobile">Đồng hồ nam</li>
+            </a>
+            <a href="" class="list-link">
+                <li class="item-mobile">Đồng hồ nữ</li>
+            </a>
+            <a href="" class="list-link">
+                <li class="item-mobile">Liên hệ</li>
+            </a>
+
+            <li class="header__list__item-user">
+                <a style="color: inherit; text-decoration: none;" class="header__list__item item-mobile" href="">Lịch sử đơn hàng</a>
+            </li>
+            <li class="header__list__item">
+                <a style="color: inherit; text-decoration: none;" class="header__list__item a_madal item-mobile" href="">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Nav PC -->
+    <img th:src="@{/img/chulogo.png}" alt="image error " class="header__logo " srcset=" ">
+
+    <div class="header__col">
+        <ul class="header__nav">
+            <li class="header__nav-item" data-aos="zoom-in-down" data-aos-duration="2000"><a th:href="@{/home}" class="header__nav-link">TRANG CHỦ</a></li>
+            <li class="header__nav-item" data-aos="zoom-in-down" data-aos-duration="2000"><a th:href="@{/home/donghonam}" class="header__nav-link">ĐỒNG HỒ NAM</a></li>
+            <li class="header__nav-item" data-aos="zoom-in-down" data-aos-duration="2000"><a th:href="@{/home/donghonu}" class="header__nav-link dhn">ĐỒNG HỒ NỮ</a></li>
+            <li class="header__nav-item " data-aos="zoom-in-down" data-aos-duration="2000"><a th:href="@{/home/lienhe}" class="header__nav-link-spe">LIÊN HỆ</a></li>
+        </ul>
+    </div>
+
+    <div class="header__col">
+
+        <div div class="header__col-item-format">  
+		  <i><input type="text" class="header__item-login header__nav-link searchbtn" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" aria-describedby="button-addon2" data-aos="zoom-in-down" data-aos-duration="2000"></i>
+			<i type="button" class="header__icon-item header__item-login ti-search header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000"></i>	
+	        <a th:href="@{/home/giohang}" style="color: white;"><i type="button" class="header__icon-item header__item-login ti-shopping-cart header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000" ></i></a>
+            <i type="button" id="login-icon" class="header__icon-item header__item-login ti-user header__col-res-none js-change-Login" data-aos="zoom-in-down" data-aos-duration="2000"></i>
+        
+       
+            <li style="list-style-type: none;" id="username" class="header__nav-item header__nav-list " data-aos="zoom-in-down" data-aos-duration="2000"></li>
+        </div>
+        
+    </div>
+    <div th:replace="(~{Home/Log/Login :: login})"></div>
+    <div th:replace="(~{Home/Log/Register :: register})"></div>
+    <script type="text/JavaScript" th:src="@{/js/login.js}"></script>
+</header>
+</div>
+
