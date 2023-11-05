@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="(~{Home/MainPage/HomePage :: headtitle})">
+    
+</head>
+
+	<body>
+		<div th:replace="(~{Home/Content/header :: header})"></div>	
+
+		<div th:replace="(~{Home/Content/male :: male})"></div>	
+	    <div th:replace="(~{Home/Content/footer :: footer})"></div>
+		<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
+	    <script>AOS.init();</script>
+	    <script th:src="@{/js/index.js}"></script>
+	</body>
+</html>
+

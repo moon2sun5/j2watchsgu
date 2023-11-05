@@ -16,8 +16,49 @@ import com.sgu.j2watch.repositories.CategoryRepository;
 
 // Cach 1 - dung @Controller
 @Controller
-//@RestController
+@RequestMapping(path = "home")
 public class HomePageController {
+	@RequestMapping(value = "", method = RequestMethod.GET)
+    public String HomePage() {
+        return "Home/MainPage/Homepage";
+    }
+	
+	@GetMapping("/lienhe")
+    public String contact() {
+        return "Home/MainPage/Contact";
+    }
+	
+	@GetMapping("/donghonam")
+    public String malewatch() {
+        return "Home/MainPage/MaleWatch";
+    }
+
+	@GetMapping("/donghonu")
+    public String femalewatch() {
+        return "Home/MainPage/FemaleWatch";
+    }
+	
+	@GetMapping("/chitietsanpham")
+    public String detail() {
+        return "Home/MainPage/DetailProduct";
+    }
+	
+	@GetMapping("/giohang")
+    public String card() {
+        return "Home/MainPage/Card";
+	}
+	
+	@GetMapping("/giohang/thanhtoan")
+    public String payment() {
+        return "Home/MainPage/Payment";
+	}
+	
+	@GetMapping("/giohang/thanhtoan/camon")
+    public String thankyou() {
+        return "Home/MainPage/Thankyou";
+	}
+    
+	
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
