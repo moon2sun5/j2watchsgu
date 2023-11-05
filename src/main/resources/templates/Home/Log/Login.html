@@ -1,0 +1,28 @@
+<form th:fragment="login">
+	<div class="modalLogin js-modalLogin">
+        <div class="modal-containerLogin js-containerLogin">
+
+			<div class="login">
+			  <form>
+			    <button id="btn-save" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Login">Đóng</button>
+			    <label class="tieude" for="chk" aria-hidden="true">Đăng nhập</label>
+			    <div class="mb-3">
+			      <label for="formGroupExampleInput" class="form-label">Tên đăng nhập</label>
+			      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nhập tên đăng nhập...">
+			    </div>
+			    <div class="mb-3">
+			      <label for="formGroupExampleInput2" class="form-label">Mật khẩu</label>
+			      <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập mật khẩu...">
+			    </div>
+			    <div class="mb-3">
+			      <label for="formGroupExampleInput2" class="form-label">Bạn chưa có tài khoản? <i type="button" class="js-close-Login js-change-Register ">Đăng ký</i></label>
+			      
+			    </div>
+			    <button class="submitlog">Đăng nhập</button>
+			  </form>
+			</div>
+
+			
+        </div>
+	</div>     
+</form>
