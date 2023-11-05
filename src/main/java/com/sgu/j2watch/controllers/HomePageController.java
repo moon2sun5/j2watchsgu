@@ -52,6 +52,11 @@ public class HomePageController {
     public String payment() {
         return "Home/MainPage/Payment";
 	}
+	
+	@GetMapping("/giohang/thanhtoan/camon")
+    public String thankyou() {
+        return "Home/MainPage/Thankyou";
+	}
     
 	
 	@Autowired
