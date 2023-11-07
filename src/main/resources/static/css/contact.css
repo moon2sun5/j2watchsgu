@@ -16,7 +16,7 @@
 .wrapper__contact-left {
     height: 500px;
     width: 500px;
-    background-color: #000;
+    background-image: url(../img/logo.png);
 }
 
 .wrapper__contact-left-desc {}
