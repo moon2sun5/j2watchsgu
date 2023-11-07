@@ -1,0 +1,76 @@
+<div style="margin-top: 100px;" th:fragment="detail">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+	  </ol>
+	</nav>
+	<div class="wrapper_child">
+    <div class="wrapper_content">
+        <div class="content__left">
+            <img th:src="@{/img/dongho1.jpg}" class="content__left-img" data-image=""
+                alt="img error" srcset="">
+
+            <div class="content__left-container">
+                <p class="content__left-title">Thông số kỹ thuật</p>
+
+                <div class="content__left-sub">
+                    <div class="content__left-key">
+                        <ul class="content__left-key-list">
+                            <li class="content__left-key-child">Mã:</li>
+                            <li class="content__left-key-child">Chất liệu dây:</li>
+                            <li class="content__left-key-child">Chất liệu kính:</li>
+                            <li class="content__left-key-child">Bộ máy và năng lượng:</li>
+                            <li class="content__left-key-child">Độ chịu nước:</li>
+                            <li class="content__left-key-child">Màu:</li>
+                            <li class="content__left-key-child">Size mặt:</li>
+                            <li class="content__left-key-child">Thương hiệu:</li>
+                            <li class="content__left-key-child">Xuất xứ</li>
+                        </ul>
+                    </div>
+
+                    <div class="content__left-value">
+                        <ul class="content__left-key-list">
+                            <li class="content__left-value-child">SP001</li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                            <li class="content__left-value-child"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content__right">
+            <label class="content__right-detail">Chi tiết sản phẩm</label>
+            <p class="content__right-name" id="product-name" data-name="">
+                Casio dây da mặt kính</p>
+            <div class="is-divider"></div>
+            <p>Số lượng còn lại: 10</p>
+                            
+            <p class="content__right-price red" data-price=""><strong
+                    class="red">10.000.000đ</strong></p>
+            <p class="content__right-description">Đẹpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br></p>
+            <div class="content__right-btn">
+                <div class="content__right-btn-quantity">
+                    <input type="button" class="content__right-btn-minus" value="-" onclick="increaseQuantity()">
+                    <input class="content__right-btn-num" style="text-align: center;" value="1" min="1"
+                        max="5" disabled>
+                    <input type="button" class="content__right-btn-add" value="+" onclick="increaseQuantity()">
+                </div>
+                
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+		
+</div>

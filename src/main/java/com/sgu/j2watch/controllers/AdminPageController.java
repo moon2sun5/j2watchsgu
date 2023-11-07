@@ -3,11 +3,12 @@ package com.sgu.j2watch.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(path = "/admin")
+@RequestMapping(path = "admin")
 public class AdminPageController {
-    @GetMapping("")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String AdminPage() {
         return "Admin/FormManager/MainPage";
     }

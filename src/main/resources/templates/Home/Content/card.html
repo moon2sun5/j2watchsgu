@@ -1,0 +1,85 @@
+<div style="margin-top: 100px;" th:fragment="card">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+	  </ol>
+	</nav>
+	<div id="wrapper">
+    <div class="wrapper_child">
+        <h2 class="title">Giỏ hàng</h2>
+        <div class="no_cart"></div>
+        <div class="grid">
+            <!-- Content -->
+            <div class="card">
+                <form method="post">
+                    <table class="card__table">
+                        <tr class="card__table-rows">
+                            <th class="card__table-title"></th>
+                            <th class="card__table-title">Tên sản phẩm</th>
+                            <th class="card__table-title">Đơn giá</th>
+                            <th class="card__table-title">Số lượng</th>
+                            <th class="card__table-title">Thành tiền</th>
+                            <th class="card__table-title"></th>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <img class="img_cart" th:src="@{/img/dongho1.jpg}"
+                                    alt="">
+                            </td>
+                            <td>CASIO123</td>
+                            <td>3.000.000đ</td>
+                            <td>
+                                <input type="number" min="1" name="quantity" value="5">
+                            </td>
+
+                            <td>15.000.000đ</td>
+                            <td>
+                                <button type="submit"
+                                    onclick="return confirm('Bạn có muốn xóa sản phẩm này ra khỏi giỏ hàng không?')"
+                                    name="delete_item" value=""
+                                    class="btn btn-danger btn-sm"><i class="ti-close"></i></button>
+                                    <button type="submit"
+                                    name="update_cart" value=""
+                                    class="btn btn-danger btn-sm"><i class="ti-save"></i></button>
+                            </td>
+                        </tr>
+ 
+                    </table>
+                </form>
+            </div>
+
+            <div class="bill" style="margin-bottom: 40px;">
+                <div class="bill-detail">
+                    <h4 class="bill-title">Tổng số lượng</h4>
+
+                    <div class="bill__rows">
+                        <p class="bill__rows-name">Tiền sản phẩm</p>
+                        <b style="color: red;"
+                            class="bill__rows-price">3.000.000đ</b>
+                    </div>
+                    <div class="bill__rows">
+                        <p class="bill__rows-name_">Phí vận chuyển</p>
+                        <b
+                            class="bill__rows-price-ship">30.000đ</b>
+                    </div>
+                    <div class="bill__rows row-affect">
+                        <p class="bill__rows-name">Tổng cộng</p>
+                        <b
+                            class="bill__rows-price totalAmount">15.000.000đ</b>
+                    </div>
+                    <a th:href="@{/home/giohang/thanhtoan}">
+                        
+                        <input type="button" value="Thanh toán" class="bill-title bill-btn" />
+                        
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+		
+</div>

@@ -4,7 +4,6 @@
 }
 
 .title {
-    margin-top: 130px;
     text-align: center;
     text-transform: uppercase;
     font-weight: 640;
@@ -16,7 +15,8 @@
 
 .card {
     border: none;
-    margin-right: 40px;
+    margin-right: 50px;
+    margin-left: 50px
 }
 
 .card__table-title {
@@ -79,6 +79,15 @@
     opacity: 0.8;
 }
 
+.info__rows .form-label{
+	color: black;
+	margin-left: 0px;
+	font-size: 20px;
+}
+
+.info__rows .form-control{
+	width: 600px;
+}
 
 /* Bill */
 

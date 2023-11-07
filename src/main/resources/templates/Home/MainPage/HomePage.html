@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headtitle">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watch</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-5.2.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/Roboto/Roboto-Medium.ttf}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons-font/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+    <link rel="stylesheet" th:href="@{/css/product.css}">
+    <link rel="stylesheet" th:href="@{/css/card.css}">
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/aos-master/aos-master/dist/aos.css}">
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap}" >
+    <script th:src="@{/css/aos-master/aos-master/dist/aos.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <style>
+    /* Định dạng màu chữ */
+    .yellow {
+      color: yellow;
+    }
+  </style>
+</head>
+	<body>
+
+	    <div th:replace="(~{Home/Content/header :: header})"></div>
+	    <div th:replace="(~{Home/Content/slider :: slider})"></div>
+	    <div th:replace="(~{Home/Content/home :: home})"></div>
+	    <div th:replace="(~{Home/Content/footer :: footer})"></div>
+	    <!-- Modal -->
+	    <script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
+	    <script>AOS.init();</script>
+	    <script th:src="@{/js/index.js}"></script>
+	</body>
+</html>

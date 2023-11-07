@@ -1,0 +1,119 @@
+<div style="margin-top: 100px;" th:fragment="female">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Đồng hồ nữ</li>
+	  </ol>
+	</nav>
+	<div style="display: flex;">
+		<div class="c-3">
+		    <!-- CATEGORY -->
+		    <div class="category">
+		        <h5>DANH MỤC SẢN PHẨM</h5>
+		        <div class="is-divider"></div>
+		
+		        <ul class="list-group list-group-flush">
+				  <li class="list-group-item">Casio</li>
+				  <li class="list-group-item">A second item</li>
+				  <li class="list-group-item">A third item</li>
+				  <li class="list-group-item">A fourth item</li>
+				  <li class="list-group-item">And a fifth one</li>
+				</ul>
+		    </div>
+		
+		    <!-- BRAND -->
+		    <div class="category">
+		        <h5>THƯƠNG HIỆU</h5>
+		        <div class="is-divider"></div>
+		        <ul class="list-group list-group-flush">
+		           
+				  <li class="list-group-item">Casio</li>
+				  <li class="list-group-item">A second item</li>
+				  <li class="list-group-item">A third item</li>
+				  <li class="list-group-item">A fourth item</li>
+				  <li class="list-group-item">And a fifth one</li>
+				
+		        </ul>
+		    </div>
+		
+		    <!-- PRICE -->
+		    <div class="category">
+		        <form name="filter-form" id="filter-form" method="POST" action="">
+		            <h5>LỌC THEO GIÁ</h5>
+		            <div class="is-divider"></div>
+		            <label for="price-range">Chọn giá sản phẩm tối đa:</label>
+		                 <input type="range" id="category__price-range" name="price-range" min="100000" max="200000000" value="500" step="100000" oninput="showPriceRange(this.value)"> 
+		            <div id="category__range-value"></div>
+		            
+		        </form>
+		    </div>
+		</div>
+		
+		<div class="c-9">
+			
+		  <div class="wrapper__product">
+		      
+		        <div class="grid__item">
+		            <div class="grid__item-content">
+		                <a href="">
+		                    <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
+		                            class="grid__item-img" alt="img error" srcset=""></div>
+		
+		                    <div class="grid__item-info">
+		                        <label class="grid__item-title">Casio</label>
+		                        <div class="grid__item-name black">Casio12</div>
+		                        <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
+		                    </div>
+		                </a>
+		            </div>
+		        </div>
+		
+				<div class="grid__item">
+		            <div class="grid__item-content">
+		                <a href="">
+		                    <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
+		                            class="grid__item-img" alt="img error" srcset=""></div>
+		
+		                    <div class="grid__item-info">
+		                        <label class="grid__item-title">Casio</label>
+		                        <div class="grid__item-name black">Casio12</div>
+		                        <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
+		                    </div>
+		                </a>
+		            </div>
+		        </div>
+		        
+		        <div class="grid__item">
+		            <div class="grid__item-content">
+		                <a href="">
+		                    <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
+		                            class="grid__item-img" alt="img error" srcset=""></div>
+		
+		                    <div class="grid__item-info">
+		                        <label class="grid__item-title">Casio</label>
+		                        <div class="grid__item-name black">Casio12</div>
+		                        <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
+		                    </div>
+		                </a>
+		            </div>
+		        </div>
+		        
+		        <div class="grid__item">
+		            <div class="grid__item-content">
+		                <a href="">
+		                    <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
+		                            class="grid__item-img" alt="img error" srcset=""></div>
+		
+		                    <div class="grid__item-info">
+		                        <label class="grid__item-title">Casio</label>
+		                        <div class="grid__item-name black">Casio12</div>
+		                        <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
+		                    </div>
+		                </a>
+		            </div>
+		        </div>
+		  </div>
+		</div>
+	</div>
+		
+</div>
