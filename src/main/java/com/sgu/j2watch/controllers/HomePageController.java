@@ -20,7 +20,7 @@ import com.sgu.j2watch.repositories.CategoryRepository;
 public class HomePageController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
     public String HomePage() {
-        return "Home/MainPage/Homepage";
+        return "Home/MainPage/HomePage";
     }
 	
 	@GetMapping("/lienhe")
@@ -57,8 +57,6 @@ public class HomePageController {
     public String thankyou() {
         return "Home/MainPage/Thankyou";
 	}
-    
-	
 	@Autowired
 	private CategoryRepository categoryRepository;
 	

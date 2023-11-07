@@ -25,24 +25,15 @@
     }
   </style>
 </head>
-
 	<body>
-		
+
 	    <div th:replace="(~{Home/Content/header :: header})"></div>
 	    <div th:replace="(~{Home/Content/slider :: slider})"></div>
 	    <div th:replace="(~{Home/Content/home :: home})"></div>
 	    <div th:replace="(~{Home/Content/footer :: footer})"></div>
 	    <!-- Modal -->
-		
-		
 	    <script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
 	    <script>AOS.init();</script>
 	    <script th:src="@{/js/index.js}"></script>
-	    
-	    
-	    
 	</body>
-
-
-
 </html>
