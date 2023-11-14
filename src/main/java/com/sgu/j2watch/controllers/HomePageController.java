@@ -64,7 +64,7 @@ public class HomePageController {
 	@GetMapping("/thongtin")
     public String thongtin() {
         return "Home/MainPage/Infor";
-
+    }
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
