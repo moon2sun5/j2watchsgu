@@ -16,20 +16,28 @@
 	
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	<div id="form_addquyen" class="content-formaddnhanvien">
-            
-        <div class="row">
-
-            <div class="form1">
-                <label class="labelnhanvien">Tên quyền: </label>
-                <input name="name" class="form-control" type="text">
-            </div>
-
-            <div class="form1">
-                <button onclick="" class="add-nhanvien" type="submit" name="submitRole" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm quyền</button>
-                <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
-            </div>
-
-        </div>
-
+        <form th:action="@{/admin/qlquyen/addquyen}" th:object="${role}" method="post">
+	        <div class="row">
+	
+	            <div class="form1">
+	                <label class="labelnhanvien">Tên quyền: </label>
+	                <input class="form-control" type="text" th:field="*{name}" required
+						  oninvalid="this.setCustomValidity('Vui lòng nhập tên Quyền.')"
+						  oninput="setCustomValidity('')"/>
+					<span th:if="${message}" class="labelnhanvien" th:text="${message}" style="color: red;" ></span>
+	            </div>
+	
+	            <div class="form1">
+	                <button class="add-nhanvien" type="submit" name="submitRole" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm quyền</button>
+	                <button onclick="cancel()" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+	            </div>
+	
+	        </div>
+		</form>
     </div>
+    <script type="text/javascript">
+		function cancel(){
+			window.location = "/admin/qlquyen";
+		}
+	</script>
  </body>
