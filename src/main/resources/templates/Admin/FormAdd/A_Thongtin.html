@@ -16,66 +16,87 @@
 	
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	<div id="" class="content-formaddnhanvien" >
-	        
+	<form th:action="@{/admin/qlthongtin/addthongtin}" th:object="${user}" method="post">       
 	    <div class="row">
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Họ và tên: </label>
-	            <input name="name" class="form-control" type="text">
+	            <input name="name" class="form-control" type="text" th:field="*{name}"
+	            	required
+					oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên.')"
+					oninput="setCustomValidity('')">
 	        </div>
 	        
 	        <div class="form1">
 	            <label class="labelnhanvien">Địa chỉ: </label>
-	            <input name="address" class="form-control" type="text">
+	            <input name="address" class="form-control" type="text" th:field="*{address}"
+	            	required
+					oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ.')"
+					oninput="setCustomValidity('')">
 	        </div>
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Email: </label>
-	            <input name="email" class="form-control" type="text">
+	            <input name="email" class="form-control" type="text" th:field="*{email}"
+	            	pattern="^[A-Za-z0-9_.]+@[A-Za-z0-9-]+\\.[A-Za-z0-9-.]+$" required
+					oninvalid="this.setCustomValidity('Vui lòng nhập email.')"
+					oninput="setCustomValidity('')">
 	        </div>
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Số điện thoại: </label>
-	            <input name="phone" class="form-control" type="text">
+	            <input name="phone" class="form-control" type="text" th:field="*{phone}"
+	            	pattern="^0\d{9}$" required
+					oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại.')"
+					oninput="setCustomValidity('')">
 	        </div>
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Ngày sinh: </label>
-	            <input name="birthday" class="form-control" type="date">
+	            <input name="birthday" class="form-control" type="date" th:field="*{birthday}"
+	            	required
+					oninvalid="this.setCustomValidity('Vui lòng chọn ngày sinh.')"
+					oninput="setCustomValidity('')">
 	        </div>
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Giới tính: </label>
 	            <div class="chon">
-	                <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
+	                <input th:checked="*{gender == 1}" th:field="*{gender}" value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
 	                    for="">Nam</label>
-	                <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
+	                <input th:checked="*{gender == 2}" th:field="*{gender}" value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
 	                    for="">Nữ</label>
 	            </div>
 	        </div>
 	
 	        
-	        <div class="form1">
+	        <div class="form1" style="display: none;">
 	            <label class="labelnhanvien">Phân loại: </label>
-	            <select class="cbo" name="type" id="">
-	            
+	            <select class="cbo" name="type" id="" th:field="*{type}">
+	            	<option th:each="type : ${listType}" th:value="${type.id_type}" th:text="${type.name}" th:selected="${type.id_type == 1}"></option>
 	            </select>
 	        </div>
+	        
 	
 	        <div class="form1">
 	            <label class="labelnhanvien">Phân quyền : </label>
-	            <select class="cbo" name="role_id" id="">
-	            
+	            <select class="cbo" name="role_id" id="" th:field="*{role_id}">
+	            	<option th:each="role : ${listRole}" th:value="${role.id_role}" th:text="${role.name}"></option>
 	            </select>
 	        </div>
 	
 	        <div class="form1">
-	            <button onclick="" class="add-nhanvien" type="submit" name="submitTT" title="Lưu" ><i class="icon1 ti-save"></i>Tạo hồ sơ</button>
-	            <button class="add-nhanvien" type="button" title="Hủy" ><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+	            <button class="add-nhanvien" type="submit" name="submitTT" title="Lưu" ><i class="icon1 ti-save"></i>Tạo hồ sơ</button>
+	            <button onclick="cancel()" class="add-nhanvien" type="button" title="Hủy" ><i class="icon1 ti-trash"></i>Hủy bỏ</button>
 	        </div>
 	
 	    </div>
-	
+	</form>
 	
 	</div>
+	<script type="text/javascript">
+		function cancel(){
+			window.location = "/admin/qlthongtin";
+		}
+	</script>
 </body>

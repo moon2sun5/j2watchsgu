@@ -80,9 +80,10 @@ a {
     color: aqua;
 }
 
-.header__icon-item:hover {
+.header__icon-item:hover{
     color: aqua;
 }
+
 
 .header__icon-item {
     font-size: 1.3rem;
@@ -715,4 +716,29 @@ li.header__list__item-user {
     border-radius: 50%;
     padding: 5px;
     font-size: 12px;
+}
+
+.thongtin_gray{
+	color: gray;
+    font-size: 20px;
+    float: left;
+    margin-left: 0px;
+}
+
+
+.user_login{
+	display: none;
+	margin-top: -20px;
+    border-radius: 20px 0 20px 20px;
+	background-color: white;
+	margin-left: 160px;
+    margin-right: 15px;
+    box-shadow: 0 0 30px aqua;
+    font-size: 18px;
+    padding: 0 10px 10px 20px;
+}
+
+.user_menu{
+	line-height: 40px;
+	list-style-type: none;
 }
