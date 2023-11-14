@@ -35,24 +35,26 @@
 	        <h1>Quản lý quyền</h1>
 	
 	        <table id="table_data_q"  width="100%" border="3" cellspacing="2px" align="center" bordercolor = "aquamarine">
-	            <thead >
-	                <tr style="height: 60px;">
-	                    <th width="20%">ID</th>
-	                    <th width="60%">Tên quyền</th>
-	                    <th width="20%">Tính năng</th>
-	                </tr>
+	            <thead>
+					
+		                <tr style="height: 60px;">
+		                    <th width="20%">ID</th>
+		                    <th width="60%">Tên quyền</th>
+		                    <th width="20%">Tính năng</th>
+		                </tr>
+	                
 	            </thead>
 	            <tbody>
-	            <tr>
-	          
+	          		<th:block th:each="role : ${listRole}">
 	                    <tr>
-	                        <td align="center"></td>
-	                        <td align="center"></td>
-	                        <td align="center"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>  <button href="" class="tinhnang2 js-change-role" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+	                        <td align="center" th:text="${role.id_role}"></td>
+	                        <td align="center"  th:text="${role.name}"></td>
+	                        <td align="center"><a th:href="@{'/admin/qlquyen/delete/' + ${role.id_role}}"><button class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a>  
+	                        	<a th:href="@{'/admin/qlquyen/edit/' + ${role.id_role}}" id="editQuyen"><button data-id="${role.id_role}" class="tinhnang2" type="button" title="Sửa" id="name" name="name"><i class="icon1 ti-marker-alt"></i></button></a></td>
+	                        	
 	                    </tr>
-	
-	            </tr>
-
+	                  
+					</th:block>
 	            </tbody>
 	            <script type="text/JavaScript" th:src="@{/js/changeRole.js}"></script>
 	        </table>
@@ -65,4 +67,5 @@
 	    </div>
 	
 	</div>
+	
 </body>

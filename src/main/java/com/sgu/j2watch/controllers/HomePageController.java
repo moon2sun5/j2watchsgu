@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgu.j2watch.entities.Category;
+import com.sgu.j2watch.entities.User;
 import com.sgu.j2watch.repositories.CategoryRepository;
+import com.sgu.j2watch.repositories.UserRepository;
 
 // Cach 1 - dung @Controller
 @Controller
@@ -20,7 +22,7 @@ import com.sgu.j2watch.repositories.CategoryRepository;
 public class HomePageController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
     public String HomePage() {
-        return "Home/MainPage/Homepage";
+        return "Home/MainPage/HomePage";
     }
 	
 	@GetMapping("/lienhe")
@@ -58,21 +60,18 @@ public class HomePageController {
         return "Home/MainPage/Thankyou";
 	}
     
-	
-	@Autowired
-	private CategoryRepository categoryRepository;
-	
-	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public Optional<Category> category(@PathVariable int id) {
-		return categoryRepository.findById(id);
+	@GetMapping("/thongtin")
+    public String thongtin() {
+        return "Home/MainPage/Infor";
 	}
 	
-	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	@ResponseBody
-	public Iterable<Category> getAllCategory() {
-		return categoryRepository.findAll();
+	@GetMapping("/thongtin/taikhoan")
+    public String taikhoan() {
+        return "Home/MainPage/Account";
 	}
+	
+	
+	
 }
 
 // Cach 2 - dung RestController

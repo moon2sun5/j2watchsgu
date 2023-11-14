@@ -43,7 +43,7 @@
                 <tr style="height: 60px;">
                     <th width="5%">STT</th>
                     <th width="5%">ID</th>
-                    <th width="10%">Phân quyền</th>
+                    <th width="10%">Phân loại</th>
                     <th width="15%">Họ và tên</th>
                     <th width="15%">Tên đăng nhập</th>
                     <th width="15%">Mật khẩu</th>
@@ -53,24 +53,22 @@
                 </tr>
             </thead>
             <tbody>
+				<th:block th:each="acc : ${listAcc}">
                 <tr>
-          
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td align="center" font-size="20px"><input type="checkbox" checked></td>
-                    <td align="center"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button> 
-                     <button value="" href="" class="tinhnang2 js-change-taikhoan" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+                    <td th:text="${acc.id_account}"></td>
+                    <td th:text="${acc.user_id}"></td>
+                    <th:block th:each="user : ${listUser}" th:if="${user.id_user == acc.user_id}">
+						<td th:each="type : ${listType}" th:if="${user.type == type.id_type}" th:text="${type.name}"></td>
+                    </th:block>
+					<td th:each="user : ${listUser}" th:if="${user.id_user == acc.user_id}" th:text="${user.name}"></td>
+					<td th:text="${acc.user_name}"></td>
+					<td th:text="${acc.password}"></td>
+					<td th:text="${acc.create_date}"></td>
+                    <td align="center" font-size="20px"><input type="checkbox" th:checked="${acc.status == 1}"></td>
+                    <td align="center"><a th:href="@{'/admin/qltaikhoan/delete/' + ${acc.id_account}}"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a> 
+                    	<a th:href="@{'/admin/qltaikhoan/edit/' + ${acc.id_account}}"><button class="tinhnang2" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a></td>
                 </tr>
-                
-                
-                </tr>
-               
+               </th:block>
             </tbody>
             <script type="text/JavaScript" th:src="@{/js/changeTK.js}"></script>
         </table>

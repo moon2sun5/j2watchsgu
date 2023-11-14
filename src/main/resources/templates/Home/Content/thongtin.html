@@ -1,0 +1,80 @@
+<div style="margin-top: 100px;" th:fragment="thongtin">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+	  </ol>
+	</nav>
+	
+	<div class="content__male" style="padding-left: 360px; padding-right: 350px;">
+        <h3 class="content__title">THÔNG TIN CÁ NHÂN</h3>
+        <form>
+	        <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Họ và tên</label>
+			    <input type="text" class="form-control" id="formGroupExampleInput2"
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên.')"
+						oninput="setCustomValidity('')">
+			</div>
+			<div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Địa chỉ</label>
+		        <input type="text" class="form-control" id="formGroupExampleInput2" 
+			        required
+					oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ.')"
+					oninput="setCustomValidity('')">
+		   	</div>
+	      <div class="mb-3">
+	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Số điện thoại</label>
+	        <input type="text" class="form-control" id="formGroupExampleInput2" 
+		        pattern="^0\d{9}$" required
+				oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại.')"
+				oninput="setCustomValidity('')">
+	      </div>
+	      <div class="mb-3">
+	        <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Email</label>
+	        <input type="text" class="form-control" id="formGroupExampleInput2" 
+		        pattern="^[A-Za-z0-9_.]+@[A-Za-z0-9-]+\\.[A-Za-z0-9-.]+$" required
+				oninvalid="this.setCustomValidity('Vui lòng nhập email.')"
+				oninput="setCustomValidity('')">
+	      </div>
+		      
+			  
+	      <div class="mb-3 form-check" style=" font-size: 20px;">
+	          <input  value="1" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
+	          <label class="form-check-label thongtin_gray" style=" color: gray;" for="gridRadios1">
+	            Nam
+	          </label>
+	      
+	          <input value="2" class="form-check-input" style=" margin-left: 50px;" type="radio" name="gridRadios" id="gridRadios2">
+	          <label class="form-check-label thongtin_gray" style=" color: gray;" for="gridRadios2">
+	            Nữ
+	          </label>
+	      </div>
+			  
+		  <div class="mb-3 form-check" style=" font-size: 20px; margin-top: 30px;">
+            <i class="ti-calendar modal-login-icon thongtin_gray" style="padding-top: 5px; margin-left: -30px; color: gray;"></i>
+            <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 10px; color: gray;">Ngày sinh</label>
+            <input  type="date" class="modal-login-inp modal-format-inp date" name="date"  style="float: left;margin-left: 30px;margin-top: 0;"
+                required
+				oninvalid="this.setCustomValidity('Vui lòng chọn ngày sinh.')"
+				oninput="setCustomValidity('')">
+            
+        	</div>
+			  
+				  
+		  <div class="mb-3 form-check" style="margin-left: 6px; margin-top: 30px;">
+		    <input style="font-size: 20px;" type="checkbox" class="form-check-input" id="exampleCheck1"
+		     required
+					oninvalid="this.setCustomValidity('Bạn chưa check lại thông tin.')"
+					oninput="setCustomValidity('')">
+		   	 <label class="form-check-label thongtin_gray" style="margin-left: 0px; color: gray;" for="exampleCheck1">Tôi đã kiểm tra và xác nhận thông tin đúng.</label>
+		  </div>
+			<button type="submit" class="btn btn-primary" style="background-color: red; float: left;">Cập nhật thông tin</button>
+			
+			<a th:href="@{/home/thongtin/taikhoan}"  style=" font-size: 20px; float: right;">Thông tin tài khoản</a>
+		</form>
+	</div>
+</div>
+
+
+	

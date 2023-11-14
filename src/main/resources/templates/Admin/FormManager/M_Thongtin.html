@@ -58,19 +58,24 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	                <tr>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td align="center"><button class="tinhnang1 infor" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>
-	                      <button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
-                	</tr>
+					<th:block th:each="user : ${listUser}">
+		                <tr>
+		                    <td th:text="${user.id_user}"></td>
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.address}"></td>
+							<td th:text="${user.email}"></td>
+							<td th:text="${user.phone}"></td>
+							<td th:text="${user.birthday}"></td>
+							<td>
+								<span th:if="${user.gender} == '1'">Nam</span>
+								<span th:if="${user.gender} == '2'">Nữ</span>
+							</td>
+							<td th:each="type : ${listType}" th:if="${user.type == type.id_type}" th:text="${type.name}"></td>
+							<td th:each="role : ${listRole}" th:if="${user.role_id == role.id_role}" th:text="${role.name}"></td>
+		                    <td align="center"><a th:href="@{'/admin/qlthongtin/delete/' + ${user.id_user}}"><button class="tinhnang1 infor" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a>
+		                      <a th:href="@{'/admin/qlthongtin/edit/' + ${user.id_user}}"><button class="tinhnang2" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a></td>
+	                	</tr>
+                	</th:block>
 					
 	            </tbody>
 	            <script type="text/JavaScript" th:src="@{/js/changeNV.js}"></script>

@@ -1,5 +1,5 @@
+
 <div th:fragment="header">
-	
 
 <header id="header">
     <!-- Nav Mobile -->
@@ -53,17 +53,64 @@
         <div div class="header__col-item-format">  
 		  <i><input type="text" class="header__item-login header__nav-link searchbtn" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" aria-describedby="button-addon2" data-aos="zoom-in-down" data-aos-duration="2000"></i>
 			<i type="button" class="header__icon-item header__item-login ti-search header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000"></i>	
-	        <a th:href="@{/home/giohang}" style="color: white;"><i type="button" class="header__icon-item header__item-login ti-shopping-cart header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000" ></i></a>
-            <i type="button" id="login-icon" class="header__icon-item header__item-login ti-user header__col-res-none js-change-Login" data-aos="zoom-in-down" data-aos-duration="2000"></i>
-        
-       
-            <li style="list-style-type: none;" id="username" class="header__nav-item header__nav-list " data-aos="zoom-in-down" data-aos-duration="2000"></li>
+	        <a th:href="@{/home/giohang}" style="color: white;">
+				<i type="button" class="header__icon-item header__item-login ti-shopping-cart header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000" ></i>
+			</a>
+	        
+	        
+	        <!-- Nút user lúc chưa login -->
+	        <a th:href="@{/home/dangnhap}" style="color: white;">
+				<i style="display: none;" type="button" id="login-icon" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
+					
+				</i>
+			</a>
+			
+			<!-- Nút user lúc đã login -->
+			<i type="button" id="login-icon-logout" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
+				
+			</i>
+			<ul class="user_login">
+                <li class="user_menu"><a class="user_menu_a" th:href="@{/home/thongtin}">Thông tin cá nhân</a></li>
+                <li class="user_menu" style="border-bottom: 1px solid gray;"><a class="user_menu_a" th:href="@{/home/thongtin/taikhoan}">Đổi mật khẩu</a></li>
+                <li class="user_menu"><a class="user_menu_a" th:href="@{/home/dangnhap}">Đăng xuất</a></li>
+            </ul>
+
         </div>
+     
         
     </div>
     <div th:replace="(~{Home/Log/Login :: login})"></div>
     <div th:replace="(~{Home/Log/Register :: register})"></div>
     <script type="text/JavaScript" th:src="@{/js/login.js}"></script>
+    <script type="text/JavaScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // Lấy phần tử có id là "login-icon"
+            var loginIcon = document.getElementById('login-icon-logout');
+            // Lấy phần tử có class là "user_login"
+            var userLogin = document.querySelector('.user_login');
+
+            // Thêm sự kiện click cho phần tử "login-icon"
+            loginIcon.addEventListener('click', function (event) {
+                // Kiểm tra trạng thái hiển thị của phần tử "user_login"
+                if (userLogin.style.display === 'none' || userLogin.style.display === '') {
+                    // Nếu ẩn, hiển thị
+                    userLogin.style.display = 'block';
+                } else {
+                    // Nếu hiển thị, ẩn
+                    userLogin.style.display = 'none';
+                }
+                 event.stopPropagation();
+            });
+            document.addEventListener('click', function (event) {
+                // Kiểm tra xem phần tử được click có phải là loginIcon hoặc là con của loginIcon không
+                if (!loginIcon.contains(event.target)) {
+                    // Nếu không phải, ẩn user_login
+                    userLogin.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </header>
 </div>
+
 
