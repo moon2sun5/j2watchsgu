@@ -1,25 +1,38 @@
-<form th:fragment="editquyen">
-	<div class="modalQuyen js-modalQuyen">
+<form th:fragment="editquyen" th:if="${role != null}" th:action="@{'/admin/qlquyen/saveQuyen/' + ${id}}" th:object="${role}" method="post">
+	<div class="modalQuyen js-modalQuyen" th:each="listRole : ${listRole}" th:if="${listRole.id_role == role.id_role}" th:classappend="${role ne null} ? 'open' : ''" >
         <div class="modal-containerQuyen js-containerQuyen">
 
             <header class="modal-header">
                 Chỉnh sửa thông tin Quyền
+                
             </header>
-
-            <div class="modal-body">
-                <div class="form2">
-                    <label class="labelnhanvien">Tên quyền: </label>
-                    <input class="form-control" type="text">
-                </div>
-
-
-            </div>
-
-
-            <footer class="modal-footer">
-                <button id="btn-save" class="btn_save">Lưu lại</button>
-                <button id="btn-save" class="btn_close js-close-Quyen">Hủy bỏ</button>
-            </footer>
+            
+			
+		    <div class="modal-body">
+				
+				<div class="form2">
+		            <label class="labelnhanvien">ID Quyền: </label>
+		            <input class="form-control" type="text" th:field="*{id_role}"  readonly>
+		        </div>
+				
+		        <div class="form2">
+		            <label class="labelnhanvien">Tên quyền: </label>
+		            <input class="form-control" type="text" th:field="*{name}">
+		            <span th:if="${message}" class="labelnhanvien" th:text="${message}" style="color: red;" ></span>
+		        </div>
+		        
+		    </div>
+		
+		
+		    <footer class="modal-footer">
+		        <button type="submit"  class="btn_save">Lưu lại</button>
+		        <button onclick="cancel()" type="button" class="btn_close">Hủy bỏ</button>
+		    </footer>
+			<script type="text/javascript">
+			function cancel(){
+				window.location = "/admin/qlquyen";
+			}
+			</script>
         </div>
     </div>
 </form>

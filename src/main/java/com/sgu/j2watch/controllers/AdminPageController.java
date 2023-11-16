@@ -1,9 +1,33 @@
 package com.sgu.j2watch.controllers;
 
+
+import java.io.Console;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sgu.j2watch.entities.Account;
+import com.sgu.j2watch.entities.Role;
+import com.sgu.j2watch.entities.User;
+import com.sgu.j2watch.repositories.AccountRepository;
+import com.sgu.j2watch.repositories.CategoryRepository;
+import com.sgu.j2watch.repositories.RoleRepository;
+import com.sgu.j2watch.repositories.TypeRepository;
+import com.sgu.j2watch.repositories.UserRepository;
+import com.sgu.j2watch.serviceImpl.AccountServiceImpl;
+import com.sgu.j2watch.serviceImpl.RoleServiceImpl;
+import com.sgu.j2watch.serviceImpl.UserServiceImpl;
+import com.sgu.j2watch.services.RoleService;
+import com.sgu.j2watch.services.UserService;
 
 @Controller
 @RequestMapping(path = "admin")
@@ -13,15 +37,11 @@ public class AdminPageController {
         return "Admin/FormManager/MainPage";
     }
 
-    @GetMapping("/qlthongtin")
-    public String qlthongtin() {
-        return "Admin/FormManager/M_Thongtin";
-    }
-
-    @GetMapping("/qltaikhoan")
-    public String qltaikhoan() {
-        return "Admin/FormManager/M_Taikhoan";
-    }
+    
+ 
+    
+    // Quản lý tài khoản
+    
 
     @GetMapping("/qlsanpham")
     public String qlsanpham() {
@@ -53,20 +73,12 @@ public class AdminPageController {
         return "Admin/FormManager/M_Voucher";
     }
 
-    @GetMapping("/qlquyen")
-    public String qlquyen() {
-        return "Admin/FormManager/M_Quyen";
-    }
+    
 
-    @GetMapping("/qlthongtin/addthongtin")
-    public String addthongtin() {
-        return "Admin/FormAdd/A_Thongtin";
-    }
+    // Quản lý thông tin
+    
 
-    @GetMapping("/qltaikhoan/addtaikhoan")
-    public String addtaikhoan() {
-        return "Admin/FormAdd/A_Taikhoan";
-    }
+    
 
     @GetMapping("/qlsanpham/addsanpham")
     public String addsanpham() {
@@ -88,8 +100,6 @@ public class AdminPageController {
         return "Admin/FormAdd/A_Voucher";
     }
 
-    @GetMapping("/qlquyen/addquyen")
-    public String addquyen() {
-        return "Admin/FormAdd/A_Quyen";
-    }
+    // Quản lý quyền
+    
 }

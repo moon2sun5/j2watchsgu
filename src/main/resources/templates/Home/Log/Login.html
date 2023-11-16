@@ -1,28 +1,40 @@
-<form th:fragment="login">
-	<div class="modalLogin js-modalLogin">
+
+<form th:fragment="login" th:if="${account != null}" th:action="@{/home/dangnhap}" th:object="${account}" method="post">
+	<div class="modalLogin js-modalLogin" th:classappend="${account ne null} ? 'open' : ''">
         <div class="modal-containerLogin js-containerLogin">
 
 			<div class="login">
-			  <form>
+			  
 			    <button id="btn-save" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Login">Đóng</button>
 			    <label class="tieude" for="chk" aria-hidden="true">Đăng nhập</label>
 			    <div class="mb-3">
-			      <label for="formGroupExampleInput" class="form-label">Tên đăng nhập</label>
-			      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nhập tên đăng nhập...">
+			      <label for="formGroupExampleInput" class="form-label" >Tên đăng nhập</label>
+			      <input type="text" class="form-control" id="formGroupExampleInput" th:field="*{user_name}"  placeholder="Nhập tên đăng nhập..."
+			      		required
+						oninvalid="this.setCustomValidity('Vui lòng nhập tên đăng nhập.')"
+						oninput="setCustomValidity('')">
+					<span th:if="${taikhoan}" class="labelnhanvien" th:text="${taikhoan}" style="color: red; margin-left: 50px;" ></span>
+					<span th:if="${status}" class="labelnhanvien" th:text="${status}" style="color: red; margin-left: 50px;" ></span>
 			    </div>
 			    <div class="mb-3">
-			      <label for="formGroupExampleInput2" class="form-label">Mật khẩu</label>
-			      <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập mật khẩu...">
+			      <label for="formGroupExampleInput2" class="form-label" >Mật khẩu</label>
+			      <input type="password" class="form-control" id="formGroupExampleInput2" th:field="*{password}" placeholder="Nhập mật khẩu..."
+			      		required
+						oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+						oninput="setCustomValidity('')">
+					<span th:if="${matkhau}" class="labelnhanvien" th:text="${matkhau}" style="color: red; margin-left: 50px;" ></span>
 			    </div>
 			    <div class="mb-3">
-			      <label for="formGroupExampleInput2" class="form-label">Bạn chưa có tài khoản? <i type="button" class="js-close-Login js-change-Register ">Đăng ký</i></label>
+			      <label for="formGroupExampleInput2" class="form-label">Bạn chưa có tài khoản? <a th:href="@{/home/dangky}" style="color: white;"><i type="button" id="register" class="js-close-Login ">Đăng ký</i></a></label>
 			      
 			    </div>
-			    <button class="submitlog">Đăng nhập</button>
-			  </form>
+			    <button type="submit" class="submitlog">Đăng nhập</button>
+			  
 			</div>
 
 			
         </div>
-	</div>     
+	</div>
+	 
+	   
 </form>

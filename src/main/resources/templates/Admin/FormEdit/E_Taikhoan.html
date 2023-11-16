@@ -1,29 +1,78 @@
-<form enctype="multipart/form-data" th:fragment="edittaikhoan">
-        <div  class="modalTK js-modalTK">
-            <div class="modal-containerTK js-containerTK">
+<form th:fragment="edittaikhoan" th:if="${account != null}" th:action="@{'/admin/qltaikhoan/saveTaikhoan/' + ${id}}" th:object="${account}" method="post">
+    <div  class="modalTK js-modalTK" th:each="listAcc : ${listAcc}" th:if="${listAcc.id_account == account.id_account}" th:classappend="${account ne null} ? 'open' : ''" >
+        <div class="modal-containerTK js-containerTK">
 
-                <header class="modal-header">
-                    Chỉnh sửa tài khoản
-                </header>
+            <header class="modal-header">
+                Chỉnh sửa tài khoản
+            </header>
 
-                <div class="modal-body">
-                    <div class="form2">
-                        <label class="labelnhanvien">Tên đăng nhập: </label>
-                        <input class="form-control" id="user_name" type="text">
-                    </div>
-
-                    <div class="form2">
-                        <label class="labelnhanvien">Mật khẩu: </label>
-                        <input class="form-control" id="password" type="text">
-                    </div>
-
+            <div class="modal-body">
+				<div class="form2">
+		            <label class="labelnhanvien">ID Tài khoản: </label>
+		            <input class="form-control" type="text" th:field="*{id_account}"  readonly>
+		        </div>
+		        
+		        <div class="form2">
+		            <label class="labelnhanvien">ID người dùng: </label>
+		            <input class="form-control" type="text" th:field="*{user_id}"  readonly>
+		        </div>
+			        
+                <div class="form2">
+                    <label class="labelnhanvien">Tên đăng nhập: </label>
+                    <input class="form-control" th:field="*{user_name}" type="text">
+                	<span th:if="${message}" class="labelnhanvien" th:text="${message}" style="color: red;" ></span>
                 </div>
 
+                <div class="form2">
+                    <label class="labelnhanvien">Mật khẩu: </label>
+                    <input class="form-control" id="password1" type="text" th:field="*{password}">
+                </div>
+                
+                <div class="form2">
+                    <label class="labelnhanvien">Nhập lại mật khẩu: </label>
+                    <input class="form-control" id="password2" type="text">
+                	<span class="labelnhanvien" id="passwordError" style="color: red;" ></span>
+                </div>
+             	
+             	<div class="form1" style="display: none;">
+	            
+		            <input type="text" id="dateInput" th:field="*{create_date}" readonly/>
+	
+					<script th:inline="javascript">
+					    document.addEventListener('DOMContentLoaded', function() {
+					        var currentDate = /*[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]*/ '';
+					        document.getElementById('dateInput').value = currentDate;
+					    });
+					</script>
+		            
+		            <input type="number" th:value="${status} ?: 1" th:field="*{status}">	        
+	        	</div>
 
-                <footer class="modal-footer">
-                    <button id="btn-save" class="btn_save">Lưu lại</button>
-                    <button id="btn-save" class="btn_close js-close-TK">Hủy bỏ</button>
-                </footer>
             </div>
+
+
+            <footer class="modal-footer">
+                <button type="submit" id="btn-save" class="btn_save">Lưu lại</button>
+                <button onclick="cancel()" type="button" class="btn_close">Hủy bỏ</button>
+            </footer>
         </div>
-    </form>
+		<script type="text/javascript">
+			function cancel(){
+				window.location = "/admin/qltaikhoan";
+			}
+			document.getElementById("password2").addEventListener("input", function() {
+		        var password1 = document.getElementById("password1").value;
+		        var password2 = this.value;
+		        
+		        var errorSpan = document.getElementById("passwordError");
+		
+		        if (password1 === password2) {
+		            errorSpan.innerHTML = "";  // Xoá thông báo lỗi nếu mật khẩu khớp
+		        } else {
+		            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
+		        }
+			});
+				
+		</script>
+    </div>
+</form>

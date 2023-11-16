@@ -17,40 +17,85 @@
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	<div id="form_addnd" class="content-formaddnhanvien">
 
-            
+     <form th:action="@{/admin/qltaikhoan/addtaikhoan}" th:object="${account}" method="post">              
         <div class="row">
 
             <div class="form1">
                 <label class="labelnhanvien">Tên người dùng: </label>
-                <select class="cbo" name="user_id" id="">
+                <select class="cbo" name="user_id" id="" th:field="*{user_id}">
+						
+						<option th:each="user : ${listUser}" th:if="${user.type == 1}" th:value="${user.id_user}" th:text="${user.name}"></option>
 
-                        <option value=""></option>
-                        
                 </select>
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Tên đăng nhập: </label>
-                <input name="user_name" class="form-control" type="text">
+                <input name="user_name" class="form-control" type="text" th:field="*{user_name}"
+                	required
+					oninvalid="this.setCustomValidity('Vui lòng tên đăng nhập.')"
+					oninput="setCustomValidity('')">
+            	<span th:if="${message}" class="labelnhanvien" th:text="${message}" style="color: red;" ></span>
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Mật khẩu: </label>
-                <input name="password" class="form-control" type="text">
+                <input type="password" name="password" id="password1" class="form-control"  th:field="*{password}" 
+                	required
+					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+					oninput="setCustomValidity('')">
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Nhập lại mật khẩu: </label>
-                <input name="password2" class="form-control" type="text">
+                <input type="password" name="password2" id="password2" class="form-control" 
+                	required
+					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+					oninput="setCustomValidity('')">
+                <span class="labelnhanvien" id="passwordError" style="color: red;" ></span>
             </div>
+            
+            
+            <div class="form1" style="display: none;">
+	            
+	            <input type="text" id="dateInput" th:field="*{create_date}" readonly/>
+
+				<script th:inline="javascript">
+				    document.addEventListener('DOMContentLoaded', function() {
+				        var currentDate = /*[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]*/ '';
+				        document.getElementById('dateInput').value = currentDate;
+				    });
+				</script>
+	            
+	            <input type="number" th:value="${status} ?: 1" th:field="*{status}">	        
+	        </div>
 
             <div class="form1">
-                <button onclick="" class="add-nhanvien" type="submit" name="submitTK" title="Lưu" id=""><i class="icon1 ti-save"></i>Lưu thông tin</button>
-                <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+                <button class="add-nhanvien" type="submit" name="submitTK" title="Lưu" id=""><i class="icon1 ti-save"></i>Lưu thông tin</button>
+                <button onclick="cancel()" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
             </div>
 
         </div>
-
+     </form>
     </div>
+    <script type="text/javascript">
+		function cancel(){
+			window.location = "/admin/qltaikhoan";
+		}
+		document.getElementById("password2").addEventListener("input", function() {
+	        var password1 = document.getElementById("password1").value;
+	        var password2 = this.value;
+	        
+	        var errorSpan = document.getElementById("passwordError");
+	
+	        if (password1 === password2) {
+	            errorSpan.innerHTML = "";  // Xoá thông báo lỗi nếu mật khẩu khớp
+	        } else {
+	            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
+	        }
+    	});
+		
+    
+	</script>
 
 </body>

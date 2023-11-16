@@ -1,59 +1,127 @@
-<form th:fragment="register">
-	<div class="modalRegister js-modalRegister">
+<form th:fragment="register" th:if="${register != null}" th:action="@{/home/dangky}" th:object="${register}" method="post">
+	<div class="modalRegister js-modalRegister" th:classappend="${register ne null} ? 'open' : ''" >
         <div class="modal-containerRegister js-containerRegister">
 
 			<div class="login">
-			  <form>
-				  <button id="btn-save" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Register">Đóng</button>
+			  
+				  <button type="button" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Register">Đóng</button>
 			      <label class="tieude" for="chk" aria-hidden="true">Đăng ký</label>
 			      <div class="mb-3">
-			        
-			        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nhập họ tên...">
+
+			        <input type="text" th:field="*{user.name}" class="form-control" id="formGroupExampleInput" placeholder="Nhập họ tên..."
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên.')"
+						oninput="setCustomValidity('')">
 			      </div>
 			      
 			      <div class="mb-3">
 			        
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập địa chỉ...">
+			        <input type="text" th:field="*{user.address}" class="form-control" id="formGroupExampleInput2" placeholder="Nhập địa chỉ..."
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ.')"
+						oninput="setCustomValidity('')">
 			      </div>
 			      <div class="mb-3">
 			       
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập số điện thoại...">
+			        <input type="text" th:field="*{user.phone}" class="form-control" id="formGroupExampleInput2" placeholder="Nhập số điện thoại..."
+				        pattern="^0\d{9}$" required
+						oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại.')"
+						oninput="setCustomValidity('')">
 			      </div>
 			      <div class="mb-3">
 			        
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập email...">
+			        <input type="text" th:field="*{user.email}" class="form-control" id="formGroupExampleInput2" placeholder="Nhập email..."
+				        pattern="^[A-Za-z0-9_.]+@[A-Za-z0-9-]+\\.[A-Za-z0-9-.]+$" required
+						oninvalid="this.setCustomValidity('Vui lòng nhập email.')"
+						oninput="setCustomValidity('')">
 			      </div>
 			      <div class="mb-3">
 			        
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập tên đăng nhập...">
+			        <input type="text" th:field="*{account.user_name}" class="form-control" id="formGroupExampleInput2" placeholder="Nhập tên đăng nhập..."
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập tên đăng nhập.')"
+						oninput="setCustomValidity('')">
+					<span th:if="${message}" class="labelnhanvien" th:text="${message}" style="color: red; margin-left: 50px;" ></span>
 			      </div>
 			      <div class="mb-3">
 			        
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập mật khẩu...">
+			        <input type="password" th:field="*{account.password}" class="form-control" id="password1" placeholder="Nhập mật khẩu..."
+			        	required
+						oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+						oninput="setCustomValidity('')">
 			      </div>
 			      <div class="mb-3">
 			        
-			        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Nhập lại mật khẩu...">
+			        <input type="password" class="form-control" id="password2" placeholder="Nhập lại mật khẩu..."
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+						oninput="setCustomValidity('')">
+					<span class="labelnhanvien" id="passwordError" style="color: red; margin-left:50px;" ></span>
 			      </div>
+			      <div style="display: flex">
+				      <div class="mb-3" style="margin-left: 50px; font-size: 20px;">
+				          <input th:checked="*{user.gender == 1}" th:field="*{user.gender}" value="1" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
+				          <label class="form-check-label" for="gridRadios1">
+				            Nam
+				          </label>
+				          <input th:checked="*{user.gender == 2}" th:field="*{user.gender}" value="2" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2">
+				          <label class="form-check-label" for="gridRadios2">
+				            Nữ
+				          </label>
+				      </div>
+					  <div style="margin-left: 20px" class="modal-login-info">
+                        <i class="ti-calendar modal-login-icon"></i>
+                        <span>Ngày sinh</span>
+                        <input th:field="*{user.birthday}" type="date" class="modal-login-inp modal-format-inp date" name="date" 
+	                        required
+							oninvalid="this.setCustomValidity('Vui lòng chọn ngày sinh.')"
+							oninput="setCustomValidity('')">
+                        <p class="alike red date-hide text-hide">Chọn vào ngày sinh!</p>
+                    </div>
+				  </div>
 			      <div class="mb-3" style="margin-left: 50px; font-size: 20px;">
-			          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-			          <label class="form-check-label" for="gridRadios1">
-			            Nam
-			          </label>
-			          <input style="margin-left: 50px;" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-			          <label class="form-check-label" for="gridRadios2">
-			            Nữ
-			          </label>
-			      </div>
-			      <div class="mb-3" style="margin-left: 50px; font-size: 20px;">
 			        
-			        <input type="checkbox" class="form-check-input"> <span>Tôi đồng ý với tất cả điều khoản</span>
+			        <input type="checkbox" class="form-check-input"
+				        required
+						oninvalid="this.setCustomValidity('Bạn chưa đồng ý với điều khoản.')"
+						oninput="setCustomValidity('')"> 
+					<span>Tôi đồng ý với tất cả điều khoản</span>
 			      </div>
-			      <button class="submitlog">Đăng ký</button>
-			  </form>
+			      
+			      <div class="form1" style="display: none;">
+	            
+			            <input type="text" id="dateInput" th:field="*{account.create_date}" readonly/>
+		
+						<script th:inline="javascript">
+						    document.addEventListener('DOMContentLoaded', function() {
+						        var currentDate = /*[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]*/ '';
+						        document.getElementById('dateInput').value = currentDate;
+						    });
+						</script>
+			            	        
+			        </div>
+			        
+			      <button type="submit" class="submitlog">Đăng ký</button>
+			  
 			</div>
 
-			
         </div>
+        <script type="text/javascript">
+			
+			document.getElementById("password2").addEventListener("input", function() {
+		        var password1 = document.getElementById("password1").value;
+		        var password2 = this.value;
+		        
+		        var errorSpan = document.getElementById("passwordError");
+		
+		        if (password1 === password2) {
+		            errorSpan.innerHTML = "";  // Xoá thông báo lỗi nếu mật khẩu khớp
+		        } else {
+		            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
+		        }
+	    	});
+			
+	    
+		</script>
 	</div>     
 </form>
