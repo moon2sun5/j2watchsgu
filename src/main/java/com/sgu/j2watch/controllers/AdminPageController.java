@@ -63,10 +63,7 @@ public class AdminPageController {
         return "Admin/FormManager/M_Baocao";
     }
 
-    @GetMapping("/qlnhacungcap")
-    public String qlnhacungcap() {
-        return "Admin/FormManager/M_Nhacungcap";
-    }
+    
 
     @GetMapping("/qlvoucher")
     public String qlvoucher() {
@@ -90,10 +87,11 @@ public class AdminPageController {
         return "Admin/FormAdd/A_Nhaphang";
     }
 
-    @GetMapping("/qlnhacungcap/addnhacungcap")
-    public String addnhacungcap() {
-        return "Admin/FormAdd/A_Nhacungcap";
-    }
+    // quản lí nhà cung cấp
+//    @GetMapping("/qlnhacungcap/addnhacungcap")
+//    public String addnhacungcap() {
+//        return "Admin/FormAdd/A_Nhacungcap";
+//    }
 
     @GetMapping("/qlvoucher/addvoucher")
     public String addvoucher() {
