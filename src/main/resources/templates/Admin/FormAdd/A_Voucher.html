@@ -15,36 +15,37 @@
 <body>
 	
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
-	<div id="form_addvc" class="content-formaddnhanvien">
-            
+	<div class="content-formaddnhanvien">
+            <form th:action="@{/admin/qlvoucher/addvoucher}" th:object="${voucher}" method="post">     
         <div class="row">
 
             <div class="form1">
                 <label class="labelnhanvien">Mã giảm giá: </label>
-                <input name="code" class="form-control" type="text">
+                <input name="code" class="form-control" type="text" th:field="*{code}">
             </div>
             
             <div class="form1">
                 <label class="labelnhanvien">Giá trị: </label>
-                <input name="value" class="form-control" type="number" min="0" step="0.01">
+                <input name="value" class="form-control" type="number" th:field="*{value}" min="0" step="0.01">
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Ngày bắt đầu: </label>
-                <input name="start_date" class="form-control" type="date">
+                <input name="start_date" class="form-control" type="date" th:field="*{start_Date}">
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Ngày kết thúc: </label>
-                <input name="end_date" class="form-control" type="date">
+                <input name="end_date" class="form-control" type="date" th:field="*{end_Date}">
             </div>
 
             <div class="form1">
-                <button onclick="" href="" class="add-nhanvien" type="submit" name="submitVC" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm Voucher</button>
+                <button class="add-nhanvien" type="submit" name="submitVC" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm Voucher</button>
                 <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
             </div>
 
         </div>
-
+            </form>
     </div>
+    
  </body>

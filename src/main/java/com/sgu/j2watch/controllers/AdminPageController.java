@@ -64,11 +64,11 @@ public class AdminPageController {
     }
 
     
-
-    @GetMapping("/qlvoucher")
-    public String qlvoucher() {
-        return "Admin/FormManager/M_Voucher";
-    }
+// quản lí voucher
+//    @GetMapping("/qlvoucher")
+//    public String qlvoucher() {
+//        return "Admin/FormManager/M_Voucher";
+//    }
 
     
 
@@ -92,11 +92,11 @@ public class AdminPageController {
 //    public String addnhacungcap() {
 //        return "Admin/FormAdd/A_Nhacungcap";
 //    }
-
-    @GetMapping("/qlvoucher/addvoucher")
-    public String addvoucher() {
-        return "Admin/FormAdd/A_Voucher";
-    }
+//    quản lí voucher
+//    @GetMapping("/qlvoucher/addvoucher")
+//    public String addvoucher() {
+//        return "Admin/FormAdd/A_Voucher";
+//    }
 
     // Quản lý quyền
     
