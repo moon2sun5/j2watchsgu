@@ -12,6 +12,6 @@ public interface SupplierService {
     List<Supplier> getAllSuppliers();
     void saveSupplier(Supplier supplier);
     void updateSupplier(Supplier supplier);
-	Supplier getSupplierById(Long id);
-	void deleteSupplier(Long id);
+	Supplier getSupplierById(Integer id);
+	void deleteSupplier(Integer id);
 }

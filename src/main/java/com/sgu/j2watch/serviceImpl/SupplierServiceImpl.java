@@ -15,7 +15,7 @@ public class SupplierServiceImpl implements SupplierService {
     private SupplierRepository supplierRepository;
 
     @Override
-    public Supplier getSupplierById(Long id) {
+    public Supplier getSupplierById(Integer id) {
         return supplierRepository.findById(id).orElse(null);
     }
 
@@ -35,7 +35,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public void deleteSupplier(Long id) {
+    public void deleteSupplier(Integer id) {
         supplierRepository.deleteById(id);
     }
 
