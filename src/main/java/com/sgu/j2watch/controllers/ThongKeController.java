@@ -21,7 +21,7 @@ import com.sgu.j2watch.DTOs.ThongKeTopNhanVienDTO;
 import com.sgu.j2watch.DTOs.ThongkeTopSPDTO;
 import com.sgu.j2watch.entities.BillDetail;
 import com.sgu.j2watch.entities.Product;
-import com.sgu.j2watch.services.BillDetailService;
+import com.sgu.j2watch.services.ThongKeTopSPService;
 import com.sgu.j2watch.services.UserService;
 
 
@@ -31,7 +31,7 @@ import com.sgu.j2watch.services.UserService;
 @RequestMapping(path = "/admin")
 public class ThongKeController {
 	@Autowired
-    private BillDetailService billDetailService ;
+    private ThongKeTopSPService thongKeTopSPService ;
 	
 	@Autowired
 	private UserService userService;
@@ -56,7 +56,7 @@ public class ThongKeController {
 	@PostMapping("/qlthongkesptungcai")
 	public ModelAndView thongKeSanPham(@RequestParam("thongkeOption") Integer thongkeOption) {
 	     if((thongkeOption == 2)){
-	    	 List<ThongkeTopSPDTO> topProducts = billDetailService.getTop10BestSellingProducts();
+	    	 List<ThongkeTopSPDTO> topProducts = thongKeTopSPService.getTop10BestSellingProducts();
 		        ModelAndView modelAndView = new ModelAndView("Admin/FormManager/top6");
 		        modelAndView.addObject("topProducts", topProducts);
 		        return modelAndView;

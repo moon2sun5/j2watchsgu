@@ -8,10 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.sgu.j2watch.DTOs.ThongkeTopSPDTO;
 import com.sgu.j2watch.entities.BillDetail;
-import com.sgu.j2watch.entities.Product;
 
 @Repository
-public interface  BillDetailRepository  extends JpaRepository<BillDetail, Integer> {
+public interface  ThongKeTopSPRepository  extends JpaRepository<BillDetail, Integer> {
 	@Query("SELECT new com.sgu.j2watch.DTOs.ThongkeTopSPDTO(bd.id_product, P.name, SUM(bd.quantity)) " +
 		       "FROM BillDetail bd, Product P " +
 		       "WHERE bd.id_product = P.id_product " +

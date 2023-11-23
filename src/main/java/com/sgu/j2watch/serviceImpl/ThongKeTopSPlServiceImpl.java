@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 import com.sgu.j2watch.DTOs.ThongkeTopSPDTO;
 import com.sgu.j2watch.entities.BillDetail;
 import com.sgu.j2watch.entities.Product;
-import com.sgu.j2watch.repositories.BillDetailRepository;
-import com.sgu.j2watch.services.BillDetailService;
+import com.sgu.j2watch.repositories.ThongKeTopSPRepository;
+import com.sgu.j2watch.services.ThongKeTopSPService;
 
 
 @Service
-public class BillDetailServiceImpl implements BillDetailService {
+public class ThongKeTopSPlServiceImpl implements ThongKeTopSPService {
 
 	@Autowired
-	private BillDetailRepository  billDetailRepository;
+	private ThongKeTopSPRepository  thongKeTopSPRepository;
 	
 	@Override
 	public List<ThongkeTopSPDTO> getTop10BestSellingProducts() {
-		return billDetailRepository.findTop10BestSellingProducts();
+		return thongKeTopSPRepository.findTop10BestSellingProducts();
 		}
 	
 }
