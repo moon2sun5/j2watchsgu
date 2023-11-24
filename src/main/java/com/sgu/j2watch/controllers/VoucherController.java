@@ -41,23 +41,23 @@ public class VoucherController {
         return "redirect:/admin/qlvoucher";
     }
 
-    @GetMapping("/qlvoucher/delete/{id}")
-    public String deleteVoucher(@PathVariable("id") Integer id) {
-        voucherRepository.deleteById(id);
+    @GetMapping("/qlvoucher/delete/{id_voucher}")
+    public String deleteVoucher(@PathVariable("id_voucher") Integer id_voucher) {
+        voucherRepository.deleteById(id_voucher);
         return "redirect:/admin/qlvoucher";
     }
 
-    @GetMapping("/qlvoucher/edit/{id}")
-    public String editVoucher(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/qlvoucher/edit/{id_voucher}")
+    public String editVoucher(@PathVariable("id_voucher") Integer id_voucher, Model model) {
         model.addAttribute("listVoucher", voucherRepository.findAll());
-        Optional<Voucher> voucherOptional = voucherRepository.findById(id);
+        Optional<Voucher> voucherOptional = voucherRepository.findById(id_voucher);
         Voucher voucher = voucherOptional.orElse(new Voucher());
         model.addAttribute("voucher", voucher);
         return "Admin/FormManager/M_Voucher";
     }
 
-    @PostMapping("/qlvoucher/saveVoucher/{id}")
-    public String updateVoucher(@PathVariable("id") Integer id, Voucher voucher) {
+    @PostMapping("/qlvoucher/saveVoucher/{id_voucher}")
+    public String updateVoucher(@PathVariable("id_voucher") Integer id_voucher, Voucher voucher) {
         voucherRepository.save(voucher);
         return "redirect:/admin/qlvoucher";
     }
