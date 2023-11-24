@@ -19,10 +19,8 @@ import org.springframework.ui.Model;
 
 import com.sgu.j2watch.DTOs.ThongKeTopNhanVienDTO;
 import com.sgu.j2watch.DTOs.ThongkeTopSPDTO;
-import com.sgu.j2watch.entities.BillDetail;
-import com.sgu.j2watch.entities.Product;
 import com.sgu.j2watch.services.ThongKeTopSPService;
-import com.sgu.j2watch.services.UserService;
+import com.sgu.j2watch.services.ThongKeTopUserService;
 
 
 @Controller
@@ -34,34 +32,25 @@ public class ThongKeController {
     private ThongKeTopSPService thongKeTopSPService ;
 	
 	@Autowired
-	private UserService userService;
+	private ThongKeTopUserService thongKeTopUserService;
 
-
-//	    @GetMapping("/top6bestsellers")
-////	    @ResponseBody
-//	    public String abc() {
-//	        return "Admin/FormManager/thongkesp/top10";
-//    } 
-	    
-//	  @GetMapping("/top6bestsellers")
-//	    public String displayTopProducts(Model model) {
-//	        List<ThongkeTopSPDTO> topProducts = billDetailService.getTop7BestSellingProducts();
-//	        model.addAttribute("topProducts", topProducts);
-//	        return "Admin/FormManager/thongkesp/top10"; // Trả về tên trang HTML để hiển thị dữ liệu
-//	    }
-//	  
-
-
-
-	@PostMapping("/qlthongkesptungcai")
+	@PostMapping("/qlthongkesp/qlthongkesptungmuc")
 	public ModelAndView thongKeSanPham(@RequestParam("thongkeOption") Integer thongkeOption) {
-	     if((thongkeOption == 2)){
+	    if (thongkeOption == 1) {
+	    	List<ThongKeTopNhanVienDTO> topCustomers   = thongKeTopUserService.getTop5CustomerBuy();
+	    	 ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5KHMuaNhieuNhat");
+		        modelAndView.addObject("topCustomers", topCustomers);
+		        return modelAndView;
+	    } else if((thongkeOption == 2)){
 	    	 List<ThongkeTopSPDTO> topProducts = thongKeTopSPService.getTop10BestSellingProducts();
-		        ModelAndView modelAndView = new ModelAndView("Admin/FormManager/top6");
+		        ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top10SpBanChay");
 		        modelAndView.addObject("topProducts", topProducts);
 		        return modelAndView;
 	    }else {
-	    	return null;
+	    	List<ThongKeTopNhanVienDTO> topStaff  = thongKeTopUserService.getTop5BestSalesStaff();
+	    	 ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5NhanVienBanNhieuNhat");
+		        modelAndView.addObject("topStaff", topStaff);
+		        return modelAndView;
 	    }
 	}
 

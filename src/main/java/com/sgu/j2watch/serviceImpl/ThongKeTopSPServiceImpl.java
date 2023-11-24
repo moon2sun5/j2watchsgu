@@ -13,7 +13,7 @@ import com.sgu.j2watch.services.ThongKeTopSPService;
 
 
 @Service
-public class ThongKeTopSPlServiceImpl implements ThongKeTopSPService {
+public class ThongKeTopSPServiceImpl implements ThongKeTopSPService {
 
 	@Autowired
 	private ThongKeTopSPRepository  thongKeTopSPRepository;

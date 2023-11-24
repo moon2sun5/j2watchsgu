@@ -19,7 +19,13 @@
 	<script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	
+	 <style>
+        #thongkeOption {
+            border: 1px solid #4CAF50; /* Màu xanh */
+            padding: 2px; /* Thêm padding để làm đẹp */
+            border-radius: 4px; /* Bo tròn các góc */
+        }
+    </style>
 </head>
 <body onload="time()">
 	
@@ -33,16 +39,15 @@
         </div>
 
     </div>
-
-	   <div class="content-mid">
-    <form action="/admin/qlthongkesptungcai" method="POST" id="thongkeForm">
-        <label for="thongkeOption">Chọn số sản phẩm:</label>
+<div class="content-mid" style="margin-left: 30px;">
+    <form action="/admin/qlthongkesp/qlthongkesptungmuc" method="POST" id="thongkeForm">
+        <label for="thongkeOption"><b>Chọn số sản phẩm:</b></label>
         <select id="thongkeOption" name="thongkeOption">
             <option value="1">Top 5 khách hàng mua nhiều nhất</option>
             <option value="2">Top 10 sản phẩm bán chạy nhất</option>
             <option value="3">Top 5 nhân viên bán hàng xuất sắc nhất </option>
         </select>
-        <button type="submit" id="thongkeButton">Thực hiện thống kê ccs</button>
+        <button type="submit" id="thongkeButton" style="background-color: yellowgreen;"><b>Lọc</b></button>
     </form>
     
     
@@ -63,7 +68,7 @@
 				alert(thongkeOption);
             $.ajax({
                 type: "POST",
-                url: "/admin/qlthongkesptungcai",
+                url: "/admin/qlthongkesp/qlthongkesptungmuc",
                 data: {
                     thongkeOption: thongkeOption
                 },
