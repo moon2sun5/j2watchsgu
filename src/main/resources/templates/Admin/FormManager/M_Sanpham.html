@@ -56,51 +56,53 @@
                     <th width="2%">ID</th>
                     <th width="13%">Tên</th>
                     <th width="6%">Ảnh</th>
-                    <th width="13%">Code</th>
+                    <!-- <th width="13%">Code</th> -->
                     <th width="6%">Giá bán</th>
                     <th width="6%">Số lượng</th>
                     <th width="6%">Dây</th>
                     <th width="6%">Kính</th>
                     <th width="6%">Pin</th>
-                    <th width="6%">Màu</th>
-                    <th width="6%">Size</th>
+                    <!--<th width="6%">Màu</th>
+                    <th width="6%">Size</th>-->
                     <th width="6%">Thương hiệu</th>
                     <th width="6%">Danh mục</th>
-                    <th width="6%">Xuất xứ</th>
+                    <!--<th width="6%">Xuất xứ</th>-->
                     <th width="6%">Tính năng</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-
+			<th:block th:each="product : ${listProduct}">
                 <!--  -->
                 <tr>
                     
+	          		
 
                 <tr data-id="">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td align="center"><button type="button" name="btn_delete"
+                    <td align="center" th:text="${product.idProduct}"></td>
+                    <td align="center" th:text="${product.name}"></td>
+                    <td><img th:if="${product.img}" th:src="@{${product.img}}" alt="Product Image" /></td>
+                    <!--<td></td>-->
+                    <td align="center" th:text="${product.price}"></td>
+                    <td align="center" th:text="${product.quantity}"></td>
+                    <td align="center" th:text="${product.materialWire.name}"></td>
+                    <td align="center" th:text="${product.materialGlass.name}"></td>
+                    <!--<td></td>
+                    <td></td>-->
+                    <td align="center" th:text="${product.pin.name}"></td>
+                    <td align="center" th:text="${product.brand.name}"></td>
+                    <!--<td></td>-->
+                    <td align="center" th:text="${product.category.name}"></td>
+                    <td align="center">
+						<a th:href="@{'/admin/qlsanpham/delete/' + ${product.idProduct}}"><button type="button" name="btn_delete"
                             data-id="" class="tinhnang1 js-change-sanpham-delete"
-                            title="Xóa" id="btn_delete"><i class="icon1 ti-trash"></i></button>
-                        <button data-id =""  value="" class="tinhnang2 js-change-sanpham "
-                            type="submit" title="Sửa" id="btn_update"><i class="icon1 ti-marker-alt"></i></button>
+                            title="Xóa" id="btn_delete"><i class="icon1 ti-trash"></i></button></a>
+                        <a th:href="@{'/admin/qlsanpham/edit/' + ${product.idProduct}}"><button data-id =""  value="" class="tinhnang2 js-change-sanpham "
+                            type="submit" title="Sửa" id="btn_update"><i class="icon1 ti-marker-alt"></i></button></a>
                     </td>
                 </tr>
 
                 </tr>
-
+			</th:block>
             </tbody>
             <script type="text/JavaScript" th:src="@{/js/changeSP.js}"></script>
         </table>

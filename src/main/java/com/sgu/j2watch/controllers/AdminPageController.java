@@ -42,11 +42,11 @@ public class AdminPageController {
     
     // Quản lý tài khoản
     
-
-    @GetMapping("/qlsanpham")
-    public String qlsanpham() {
-        return "Admin/FormManager/M_Sanpham";
-    }
+// quản lí sản phẩm
+//    @GetMapping("/qlsanpham")
+//    public String qlsanpham() {
+//        return "Admin/FormManager/M_Sanpham";
+//    }
 
     @GetMapping("/qlhoadon")
     public String qlhoadon() {
@@ -76,11 +76,11 @@ public class AdminPageController {
     
 
     
-
-    @GetMapping("/qlsanpham/addsanpham")
-    public String addsanpham() {
-        return "Admin/FormAdd/A_Sanpham";
-    }
+// quản lí sản phẩm
+//    @GetMapping("/qlsanpham/addsanpham")
+//    public String addsanpham() {
+//        return "Admin/FormAdd/A_Sanpham";
+//    }
 
     @GetMapping("/qlnhaphang/addnhaphang")
     public String addnhaphang() {

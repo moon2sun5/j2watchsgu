@@ -1,8 +1,5 @@
 package com.sgu.j2watch.repositories;
 
-import java.security.Timestamp;
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
