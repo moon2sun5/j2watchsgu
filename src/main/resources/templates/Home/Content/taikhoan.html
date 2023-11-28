@@ -9,31 +9,51 @@
 	
 	<div class="content__male" style="padding-left: 360px; padding-right: 350px;">
         <h3 class="content__title">Tài khoản</h3>
-        <form>
-	        <div class="mb-3">
+        <form th:if="${account != null}" th:action="@{/home/thongtin/taikhoan}" th:object="${account}" method="post">
+	        <div th:if="${message}" class="alert alert-success" role="alert">
+			  Cập nhật thông tin tài khoản thành công!
+			</div>
+	        <input type="hidden" class="form-control" id="formGroupExampleInput2" th:field="*{id_account}">
+	        <div class="mb-3" style="margin-top: 38px">
 			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Tên đăng nhập</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2"
+			    <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{user_name}" readonly
 				        required
 						oninvalid="this.setCustomValidity('Vui lòng nhập tên đăng nhập.')"
 						oninput="setCustomValidity('')">
+				<span th:if="${taikhoan}" class="form-label thongtin_gray" th:text="${taikhoan}" style="color: red; margin-left: 0px;" ></span>
 			</div>
-			<div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Mật khẩu</label>
-		        <input type="text" class="form-control" id="password1" 
+			<div class="mb-3" style="margin-top: 38px">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập mật khẩu mới</label>
+		        <input type="password" class="form-control" id="password1" th:field="*{password}"
 			        required
-					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu mới.')"
 					oninput="setCustomValidity('')">
 		   	</div>
-	      <div class="mb-3">
-	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập lại mật khẩu</label>
-	        <input type="text" class="form-control" id="password2" 
+	      <div class="mb-3" style="margin-top: 38px">
+	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập lại mật khẩu mới</label>
+	        <input type="password" class="form-control" id="password2" 
 		        required
-				oninvalid="this.setCustomValidity('Vui lòng nhập lại mật khẩu.')"
+				oninvalid="this.setCustomValidity('Vui lòng nhập lại mật khẩu mới.')"
 				oninput="setCustomValidity('')">
 			<span class="form-label thongtin_gray" id="passwordError" style="color: red; margin-left:0px;" ></span>
 	      </div>
+	      <div class="mb-3" style="margin-top: 38px; display: none;">
+	            
+	            <input type="text" id="dateInput" th:field="*{create_date}" readonly/>
+	            
+	            <input type="text" id="dateInput" th:field="*{user_id}" readonly/>
+
+				<script th:inline="javascript">
+				    document.addEventListener('DOMContentLoaded', function() {
+				        var currentDate = /*[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]*/ '';
+				        document.getElementById('dateInput').value = currentDate;
+				    });
+				</script>
+	            
+	            <input type="number" th:value="${status} ?: 1" th:field="*{status}">	        
+        	</div>
 	      
-			<button type="submit" class="btn btn-primary" style="background-color: red; float: right;">Lưu thay đổi</button>
+			<button type="submit" class="btn btn-primary" style="border: none; background-color: red; float: right;">Lưu thay đổi</button>
 		
 			
 		</form>

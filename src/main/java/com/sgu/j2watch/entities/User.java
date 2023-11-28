@@ -42,17 +42,18 @@ public class User {
 	@Column(name = "gender")
 	private int gender;
 	
+	@Column(name = "reset_password_token")
+	private String resetpasswordtoken;
 	
 	
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
 	public User(int id_user, String name, String address, String phone, String email, int type, int role_id,
-			Date birthday, int gender) {
+			Date birthday, int gender, String resetpasswordtoken) {
 		
 		this.id_user = id_user;
 		this.name = name;
@@ -63,6 +64,7 @@ public class User {
 		this.role_id = role_id;
 		this.birthday = birthday;
 		this.gender = gender;
+		this.resetpasswordtoken = resetpasswordtoken;
 	}
 
 
@@ -137,8 +139,12 @@ public class User {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-
 	
+	public String getResetpasswordtoken() {
+		return resetpasswordtoken;
+	}
 
-	
+	public void setResetpasswordtoken(String resetpasswordtoken) {
+		this.resetpasswordtoken = resetpasswordtoken;
+	}
 }

@@ -3,6 +3,7 @@ package com.sgu.j2watch.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.sgu.j2watch.entities.Account;
@@ -20,4 +21,13 @@ public interface AccountService {
 	public int checkAccount(String name);
 	
 	public boolean checkPassword(String pass);
+	
+	public List<Integer> search(String input);
+	
+	public UserDetails loadUserByUsername(int id_user);
+	
+	public boolean checkLogin(int id_user, String password);
+	
+	
+//	Account findByUser_name(String user_name);
 }

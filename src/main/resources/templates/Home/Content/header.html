@@ -60,19 +60,29 @@
 	        
 	        <!-- Nút user lúc chưa login -->
 	        <a th:href="@{/home/dangnhap}" style="color: white;">
-				<i style="display: none;" type="button" id="login-icon" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
+				<i th:if="${#authorization.expression('!isAuthenticated()')}"
+					 type="button" id="login-icon" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
 					
 				</i>
 			</a>
 			
 			<!-- Nút user lúc đã login -->
-			<i type="button" id="login-icon-logout" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
+			<i th:if="${#authorization.expression('isAuthenticated()')}" 
+				type="button" id="login-icon-logout" class="header__icon-item header__item-login ti-user header__col-res-none login-user " data-aos="zoom-in-down" data-aos-duration="2000">
 				
 			</i>
-			<ul class="user_login">
-                <li class="user_menu"><a class="user_menu_a" th:href="@{/home/thongtin}">Thông tin cá nhân</a></li>
-                <li class="user_menu" style="border-bottom: 1px solid gray;"><a class="user_menu_a" th:href="@{/home/thongtin/taikhoan}">Đổi mật khẩu</a></li>
-                <li class="user_menu"><a class="user_menu_a" th:href="@{/home/dangnhap}">Đăng xuất</a></li>
+			
+            <ul th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasAuthority('Khách hàng')" class="user_login">
+	            <li class="user_menu"><a class="user_menu_a" th:href="@{/home/thongtin}">Thông tin cá nhân</a></li>
+	            <li class="user_menu" style="border-bottom: 1px solid gray;"><a class="user_menu_a" th:href="@{/home/thongtin/taikhoan}">Đổi mật khẩu</a></li>
+	            <li class="user_menu"><a class="user_menu_a" th:href="@{/dangxuat}">Đăng xuất</a></li>
+	        </ul>
+            
+            <!-- Nút admin lúc đã login -->
+			
+			<ul th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="!hasAuthority('Khách hàng')" class="user_login">
+                <li class="user_menu" style="border-bottom: 1px solid gray;"><a class="user_menu_a" th:href="@{/admin/qlthongtin}">Trang quản lý </a></li>
+                <li class="user_menu"><a class="user_menu_a" th:href="@{/dangxuat}">Đăng xuất</a></li>
             </ul>
 
         </div>

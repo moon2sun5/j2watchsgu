@@ -37,16 +37,12 @@ public class AdminPageController {
         return "Admin/FormManager/MainPage";
     }
 
-    
- 
-    
     // Quản lý tài khoản
-    
-// quản lí sản phẩm
-//    @GetMapping("/qlsanpham")
-//    public String qlsanpham() {
-//        return "Admin/FormManager/M_Sanpham";
-//    }
+
+    @GetMapping("/qlsanpham")
+    public String qlsanpham() {
+        return "Admin/FormManager/M_Sanpham";
+    }
 
     @GetMapping("/qlhoadon")
     public String qlhoadon() {
@@ -63,41 +59,42 @@ public class AdminPageController {
         return "Admin/FormManager/M_Baocao";
     }
 
-    
-// quản lí voucher
-//    @GetMapping("/qlvoucher")
-//    public String qlvoucher() {
-//        return "Admin/FormManager/M_Voucher";
-//    }
+    @GetMapping("/qlnhacungcap")
+    public String qlnhacungcap() {
+        return "Admin/FormManager/M_Nhacungcap";
+    }
 
-    
+    @GetMapping("/qlvoucher")
+    public String qlvoucher() {
+        return "Admin/FormManager/M_Voucher";
+    }
 
     // Quản lý thông tin
-    
 
-    
-// quản lí sản phẩm
-//    @GetMapping("/qlsanpham/addsanpham")
-//    public String addsanpham() {
-//        return "Admin/FormAdd/A_Sanpham";
-//    }
+    @GetMapping("/qlsanpham/addsanpham")
+    public String addsanpham() {
+        return "Admin/FormAdd/A_Sanpham";
+    }
 
     @GetMapping("/qlnhaphang/addnhaphang")
     public String addnhaphang() {
         return "Admin/FormAdd/A_Nhaphang";
     }
 
-    // quản lí nhà cung cấp
-//    @GetMapping("/qlnhacungcap/addnhacungcap")
-//    public String addnhacungcap() {
-//        return "Admin/FormAdd/A_Nhacungcap";
-//    }
-//    quản lí voucher
-//    @GetMapping("/qlvoucher/addvoucher")
-//    public String addvoucher() {
-//        return "Admin/FormAdd/A_Voucher";
-//    }
+    @GetMapping("/qlnhacungcap/addnhacungcap")
+    public String addnhacungcap() {
+        return "Admin/FormAdd/A_Nhacungcap";
+    }
+
+    @GetMapping("/qlvoucher/addvoucher")
+    public String addvoucher() {
+        return "Admin/FormAdd/A_Voucher";
+    }
+    
+    @GetMapping("/qlthongkesp")
+    public String qlthongkesp() {
+        return "Admin/FormManager/ThonkeThai";
+    } 
 
     // Quản lý quyền
-    
 }

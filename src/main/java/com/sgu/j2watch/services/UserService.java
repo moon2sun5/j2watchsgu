@@ -16,5 +16,11 @@ public interface UserService{
 	public Optional<User> findById(int id_user);
 
 	public List<User> find();
+	
+	public boolean updateResetPassword(String token, String email);
+	
+	public User get(String reset_password_token);
+	
+	public void updatePassword(User user, String newPassword);
 
 }

@@ -3,6 +3,18 @@ package com.sgu.j2watch.entities;
 import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+
+
 
 @Entity
 @Table(name = "product")
@@ -127,7 +139,4 @@ public class Product {
 	public void setMaterialGlassId(MaterialGlass materialGlassId) {
 		this.materialGlassId = materialGlassId;
 	}
-
-	
-    // Constructors, getters và setters
 }
