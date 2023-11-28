@@ -249,10 +249,6 @@ function validInput() {
     return valid;
 }
 
-
-
-
-
 /* Handle cart */
 
 var cartItemCount = 0; // khởi tạo giá trị ban đầu cho biến lưu trữ số lượng sản phẩm trong giỏ hàng
@@ -274,3 +270,13 @@ var priceRange = $('#category__price-range');
 function showPriceRange(value) {
     $('#category__range-value').innerHTML = value + " đ";
 }
+
+
+function changeQuantity(value, max){
+    if(value.value == "+" && $('.content__right-btn-num').value < max){
+    $('.content__right-btn-num').value= parseInt($('.content__right-btn-num').value) + 1;
+    }
+    else if(value.value == "-" && $('.content__right-btn-num').value >  0){
+    $('.content__right-btn-num').value-=1;
+    }
+};

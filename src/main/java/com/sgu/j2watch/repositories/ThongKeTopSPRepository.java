@@ -11,12 +11,12 @@ import com.sgu.j2watch.entities.BillDetail;
 
 @Repository
 public interface  ThongKeTopSPRepository  extends JpaRepository<BillDetail, Integer> {
-	@Query("SELECT new com.sgu.j2watch.DTOs.ThongkeTopSPDTO(bd.id_product, P.name, SUM(bd.quantity)) " +
+	@Query(value = "SELECT new com.sgu.j2watch.DTOs.ThongkeTopSPDTO(bd.id_product, P.name, SUM(bd.quantity)) " +
 		       "FROM BillDetail bd, Product P " +
 		       "WHERE bd.id_product = P.id_product " +
 		       "GROUP BY bd.id_product, P.name " +
 		       "ORDER BY SUM(bd.quantity) DESC " +
-		       "LIMIT 10")
+		       "LIMIT 10", nativeQuery = true)
 		List<ThongkeTopSPDTO> findTop10BestSellingProducts();
 
 
