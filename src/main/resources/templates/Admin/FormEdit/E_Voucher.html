@@ -1,5 +1,5 @@
-<form th:fragment="editvoucher">
-	 <div class="modalVC js-modalVC">
+<form th:fragment="editvoucher" th:if="${voucher != null}" th:action="@{'/admin/qlvoucher/saveVoucher/' + ${id_voucher}}" th:object="${voucher}" method="post">
+	 <div class="modalVC js-modalVC" th:each="listVoucher : ${listVoucher}" th:if="${listVoucher.id_voucher == voucher.id_voucher}" th:classappend="${voucher ne null} ? 'open' : ''" >
         <div class="modal-containerVC js-containerVC">
 
             <header class="modal-header">
@@ -9,23 +9,23 @@
             <div class="modal-body">
                 <div class="form2">
                     <label class="labelnhanvien">Mã giảm giá: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" th:field="*{code}">
                 </div>
 
                 <div class="form2">
                     <label class="labelnhanvien">Giá trị: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" th:field="*{value}">
                 </div>
 
 
                 <div class="form2">
                     <label class="labelnhanvien">Ngày bắt đầu: </label>
-                    <input class="form-control" type="date">
+                    <input class="form-control" type="date" th:field="*{start_Date}">
                 </div>
 
                 <div class="form2">
                     <label class="labelnhanvien">Ngày kết thúc: </label>
-                    <input class="form-control" type="date">
+                    <input class="form-control" type="date" th:field="*{end_Date}">
                 </div>
 
 
