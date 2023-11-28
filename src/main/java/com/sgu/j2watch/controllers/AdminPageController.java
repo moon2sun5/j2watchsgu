@@ -37,11 +37,7 @@ public class AdminPageController {
         return "Admin/FormManager/MainPage";
     }
 
-    
- 
-    
     // Quản lý tài khoản
-    
 
     @GetMapping("/qlsanpham")
     public String qlsanpham() {
@@ -73,12 +69,7 @@ public class AdminPageController {
         return "Admin/FormManager/M_Voucher";
     }
 
-    
-
     // Quản lý thông tin
-    
-
-    
 
     @GetMapping("/qlsanpham/addsanpham")
     public String addsanpham() {
@@ -106,5 +97,4 @@ public class AdminPageController {
     } 
 
     // Quản lý quyền
-    
 }

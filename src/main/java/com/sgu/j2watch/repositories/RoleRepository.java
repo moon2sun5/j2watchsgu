@@ -7,7 +7,7 @@ import com.sgu.j2watch.entities.Role;
 
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Integer>{
-
+	
 	
 
 }

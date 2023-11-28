@@ -33,66 +33,64 @@ import com.sgu.j2watch.services.UserService;
 @Controller
 @RequestMapping(path = "admin")
 public class RoleController {
-	@Autowired
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
-	private RoleServiceImpl roleServiceImpl;
-    
+    private RoleServiceImpl roleServiceImpl;
+
     @GetMapping("/qlquyen")
     public String qlquyen(Model model) {
-    	model.addAttribute("listRole", roleRepository.findAll());
+        model.addAttribute("listRole", roleRepository.findAll());
         return "Admin/FormManager/M_Quyen";
     }
-    
+
     @GetMapping("/qlquyen/addquyen")
     public String addquyen(Model model) {
-    	model.addAttribute("listRole", roleRepository.findAll());
-    	Role role = new Role();
-    	model.addAttribute("role", role);
+        model.addAttribute("listRole", roleRepository.findAll());
+        Role role = new Role();
+        model.addAttribute("role", role);
         return "Admin/FormAdd/A_Quyen";
     }
-    
+
     @PostMapping("/qlquyen/addquyen")
     public String saveQuyen(Role role, RedirectAttributes re) {
-    	String name = role.getName();
-    	if(roleServiceImpl.checkQuyen(name)) {
-    		roleRepository.save(role);
-        	return "redirect:/admin/qlquyen";
-    	}
-    	else {
-    		re.addFlashAttribute("message", "Quyền đã tồn tại, vui lòng thử tên khác");
-    		return "redirect:/admin/qlquyen/addquyen";
-		}
+        String name = role.getName();
+        if (roleServiceImpl.checkQuyen(name)) {
+            roleRepository.save(role);
+            return "redirect:/admin/qlquyen";
+        } else {
+            re.addFlashAttribute("message", "Quyền đã tồn tại, vui lòng thử tên khác");
+            return "redirect:/admin/qlquyen/addquyen";
+        }
     }
-    
+
     @GetMapping("/qlquyen/delete/{id}")
     public String deleteQuyen(@PathVariable("id") Integer id) {
-    	roleRepository.deleteById(id);
-    	return "redirect:/admin/qlquyen";
+        roleRepository.deleteById(id);
+        return "redirect:/admin/qlquyen";
     }
-    
+
     @GetMapping("/qlquyen/edit/{id}")
-    public String editQuyen(@PathVariable("id") Integer id, Model model){
-    	model.addAttribute("listRole", roleRepository.findAll());
-    	Optional<Role> roleOptional = roleServiceImpl.findById(id);
-    	Role role = roleOptional.get();    	
-    	model.addAttribute("role", role);
-    	
-    	return "Admin/FormManager/M_Quyen";
+    public String editQuyen(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("listRole", roleRepository.findAll());
+        Optional<Role> roleOptional = roleServiceImpl.findById(id);
+        Role role = roleOptional.get();
+        model.addAttribute("role", role);
+
+        return "Admin/FormManager/M_Quyen";
     }
-    
+
     @PostMapping("/qlquyen/saveQuyen/{id}")
     public String save(@PathVariable("id") Integer id, Role role, RedirectAttributes re) {
-    	String name = role.getName();
-    	if(roleServiceImpl.checkQuyen(name)) {
-    		roleRepository.save(role);
-        	return "redirect:/admin/qlquyen";
-    	}
-    	else {
-    		re.addFlashAttribute("message", "Quyền đã tồn tại, vui lòng thử tên khác");
-    		return "redirect:/admin/qlquyen/edit/" + id;
-		}
+        String name = role.getName();
+        if (roleServiceImpl.checkQuyen(name)) {
+            roleRepository.save(role);
+            return "redirect:/admin/qlquyen";
+        } else {
+            re.addFlashAttribute("message", "Quyền đã tồn tại, vui lòng thử tên khác");
+            return "redirect:/admin/qlquyen/edit/" + id;
+        }
     }
 
 }

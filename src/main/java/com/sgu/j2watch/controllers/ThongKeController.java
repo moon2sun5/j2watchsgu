@@ -28,35 +28,29 @@ import com.sgu.j2watch.services.ThongKeTopUserService;
 
 @RequestMapping(path = "/admin")
 public class ThongKeController {
-	@Autowired
-    private ThongKeTopSPService thongKeTopSPService ;
-	
-	@Autowired
-	private ThongKeTopUserService thongKeTopUserService;
+    @Autowired
+    private ThongKeTopSPService thongKeTopSPService;
 
-	@PostMapping("/qlthongkesp/qlthongkesptungmuc")
-	public ModelAndView thongKeSanPham(@RequestParam("thongkeOption") Integer thongkeOption) {
-	    if (thongkeOption == 1) {
-	    	List<ThongKeTopNhanVienDTO> topCustomers   = thongKeTopUserService.getTop5CustomerBuy();
-	    	 ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5KHMuaNhieuNhat");
-		        modelAndView.addObject("topCustomers", topCustomers);
-		        return modelAndView;
-	    } else if((thongkeOption == 2)){
-	    	 List<ThongkeTopSPDTO> topProducts = thongKeTopSPService.getTop10BestSellingProducts();
-		        ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top10SpBanChay");
-		        modelAndView.addObject("topProducts", topProducts);
-		        return modelAndView;
-	    }else {
-	    	List<ThongKeTopNhanVienDTO> topStaff  = thongKeTopUserService.getTop5BestSalesStaff();
-	    	 ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5NhanVienBanNhieuNhat");
-		        modelAndView.addObject("topStaff", topStaff);
-		        return modelAndView;
-	    }
-	}
+    @Autowired
+    private ThongKeTopUserService thongKeTopUserService;
 
-
-
-
-
-
+    @PostMapping("/qlthongkesp/qlthongkesptungmuc")
+    public ModelAndView thongKeSanPham(@RequestParam("thongkeOption") Integer thongkeOption) {
+        if (thongkeOption == 1) {
+            List<ThongKeTopNhanVienDTO> topCustomers = thongKeTopUserService.getTop5CustomerBuy();
+            ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5KHMuaNhieuNhat");
+            modelAndView.addObject("topCustomers", topCustomers);
+            return modelAndView;
+        } else if ((thongkeOption == 2)) {
+            List<ThongkeTopSPDTO> topProducts = thongKeTopSPService.getTop10BestSellingProducts();
+            ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top10SpBanChay");
+            modelAndView.addObject("topProducts", topProducts);
+            return modelAndView;
+        } else {
+            List<ThongKeTopNhanVienDTO> topStaff = thongKeTopUserService.getTop5BestSalesStaff();
+            ModelAndView modelAndView = new ModelAndView("Admin/FormManager/ThongKeThai/Top5NhanVienBanNhieuNhat");
+            modelAndView.addObject("topStaff", topStaff);
+            return modelAndView;
+        }
+    }
 }

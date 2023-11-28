@@ -20,68 +20,67 @@ import com.sgu.j2watch.repositories.UserRepository;
 @Controller
 @RequestMapping(path = "home")
 public class HomePageController {
-	@RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String HomePage() {
         return "Home/MainPage/HomePage";
     }
-	
-	@GetMapping("/lienhe")
+
+    @GetMapping("/lienhe")
     public String contact() {
         return "Home/MainPage/Contact";
     }
-	
-	@GetMapping("/donghonam")
+
+    @GetMapping("/donghonam")
     public String malewatch() {
         return "Home/MainPage/MaleWatch";
     }
 
-	@GetMapping("/donghonu")
+    @GetMapping("/donghonu")
     public String femalewatch() {
         return "Home/MainPage/FemaleWatch";
     }
-	
-	@GetMapping("/chitietsanpham")
+
+    @GetMapping("/chitietsanpham")
     public String detail() {
         return "Home/MainPage/DetailProduct";
     }
-	
-	@GetMapping("/giohang")
+
+    @GetMapping("/giohang")
     public String card() {
         return "Home/MainPage/Card";
-	}
-	
-	@GetMapping("/giohang/thanhtoan")
+    }
+
+    @GetMapping("/giohang/thanhtoan")
     public String payment() {
         return "Home/MainPage/Payment";
-	}
-	
-	@GetMapping("/giohang/thanhtoan/camon")
+    }
+
+    @GetMapping("/giohang/thanhtoan/camon")
     public String thankyou() {
         return "Home/MainPage/Thankyou";
-	}
-
-    
-	@GetMapping("/thongtin")
-    public String thongtin() {
-        return "Home/MainPage/Infor";
     }
-	@Autowired
-	private CategoryRepository categoryRepository;
-	
-	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public Optional<Category> category(@PathVariable int id) {
-		return categoryRepository.findById(id);
 
-	}
-	
-	@GetMapping("/thongtin/taikhoan")
-    public String taikhoan() {
-        return "Home/MainPage/Account";
-	}
-	
-	
-	
+//	@GetMapping("/thongtin")
+//    public String thongtin() {
+//        return "Home/MainPage/Infor";
+//	}
+
+//	@Autowired
+//	private CategoryRepository categoryRepository;
+//	
+//	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Optional<Category> category(@PathVariable int id) {
+//		return categoryRepository.findById(id);
+//
+//	}
+
+
+//	@GetMapping("/thongtin/taikhoan")
+//    public String taikhoan() {
+//        return "Home/MainPage/Account";
+//	}
+
 }
 
 // Cach 2 - dung RestController
