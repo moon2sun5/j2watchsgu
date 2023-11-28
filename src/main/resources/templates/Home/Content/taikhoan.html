@@ -1,0 +1,60 @@
+<div style="margin-top: 100px;" th:fragment="taikhoan">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/home/thongtin}">Thông tin cá nhân</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
+	  </ol>
+	</nav>
+	
+	<div class="content__male" style="padding-left: 360px; padding-right: 350px;">
+        <h3 class="content__title">Tài khoản</h3>
+        <form>
+	        <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Tên đăng nhập</label>
+			    <input type="text" class="form-control" id="formGroupExampleInput2"
+				        required
+						oninvalid="this.setCustomValidity('Vui lòng nhập tên đăng nhập.')"
+						oninput="setCustomValidity('')">
+			</div>
+			<div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Mật khẩu</label>
+		        <input type="text" class="form-control" id="password1" 
+			        required
+					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu.')"
+					oninput="setCustomValidity('')">
+		   	</div>
+	      <div class="mb-3">
+	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập lại mật khẩu</label>
+	        <input type="text" class="form-control" id="password2" 
+		        required
+				oninvalid="this.setCustomValidity('Vui lòng nhập lại mật khẩu.')"
+				oninput="setCustomValidity('')">
+			<span class="form-label thongtin_gray" id="passwordError" style="color: red; margin-left:0px;" ></span>
+	      </div>
+	      
+			<button type="submit" class="btn btn-primary" style="background-color: red; float: right;">Lưu thay đổi</button>
+		
+			
+		</form>
+	</div>
+	
+	<script type="text/javascript">
+			
+		document.getElementById("password2").addEventListener("input", function() {
+	        var password1 = document.getElementById("password1").value;
+	        var password2 = this.value;
+	        
+	        var errorSpan = document.getElementById("passwordError");
+	
+	        if (password1 === password2) {
+	            errorSpan.innerHTML = "";  // Xoá thông báo lỗi nếu mật khẩu khớp
+	        } else {
+	            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
+	        }
+    	});
+		
+    
+	</script>
+		
+</div>

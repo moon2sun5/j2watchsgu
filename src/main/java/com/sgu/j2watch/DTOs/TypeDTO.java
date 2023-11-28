@@ -1,5 +1,5 @@
 package com.sgu.j2watch.DTOs;
 
-public class userDTO {
+public class TypeDTO {
 
 }
