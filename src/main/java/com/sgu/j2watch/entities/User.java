@@ -49,7 +49,6 @@ public class User {
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -148,8 +147,4 @@ public class User {
 	public void setResetpasswordtoken(String resetpasswordtoken) {
 		this.resetpasswordtoken = resetpasswordtoken;
 	}
-
-	
-
-	
 }

@@ -59,7 +59,7 @@ public class LoginController {
     
     @PostMapping("/dangnhap")
     public String login(){
-    	System.out.println("hellooooo");
+    	System.out.println("hello");
     	return "redirect:/admin";
     }
     
@@ -133,7 +133,6 @@ public class LoginController {
     	userRepository.save(user);
     	re.addFlashAttribute("message", "Cập nhật thông tin người dùng thành công");
     	return "redirect:/home/thongtin";
-    		  	
     }
         
 }

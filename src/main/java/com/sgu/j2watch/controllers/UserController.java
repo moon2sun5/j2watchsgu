@@ -30,64 +30,65 @@ import com.sgu.j2watch.services.UserService;
 @Controller
 @RequestMapping(path = "admin")
 public class UserController {
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private TypeRepository typeRepository;
     @Autowired
     private RoleRepository roleRepository;
-    
-	@GetMapping("/qlthongtin")
+
+    @GetMapping("/qlthongtin")
     public String qlthongtin(Model model) {
-    	model.addAttribute("listType", typeRepository.findAll());   	
-    	model.addAttribute("listUser", userRepository.findAll());
-    	model.addAttribute("listRole", roleRepository.findAll());
+        model.addAttribute("listType", typeRepository.findAll());
+        model.addAttribute("listUser", userRepository.findAll());
+        model.addAttribute("listRole", roleRepository.findAll());
         return "Admin/FormManager/M_Thongtin";
     }
-    
+
     @GetMapping("/qlthongtin/addthongtin")
     public String addthongtin(Model model) {
-    	model.addAttribute("listType", typeRepository.findAll());
-    	model.addAttribute("listRole", roleRepository.findAll());
-    	User user = new User();
-    	model.addAttribute("user", user);
+        model.addAttribute("listType", typeRepository.findAll());
+        model.addAttribute("listRole", roleRepository.findAll());
+        User user = new User();
+        model.addAttribute("user", user);
         return "Admin/FormAdd/A_Thongtin";
     }
+
     @PostMapping("/qlthongtin/addthongtin")
     public String saveThongtin(User user) {
-    	userRepository.save(user);
-    	return "redirect:/admin/qlthongtin";
-    }
-    @GetMapping("/qlthongtin/delete/{id}")
-    public String deleteThongtin(@PathVariable("id") Integer id) {
-    	userRepository.deleteById(id);
-    	return "redirect:/admin/qlthongtin";
-    }
-    @GetMapping("/qlthongtin/edit/{id}")
-    public String editThongtin(@PathVariable("id") Integer id, Model model){
-    	model.addAttribute("listType", typeRepository.findAll());   	
-    	model.addAttribute("listUser", userRepository.findAll());
-    	model.addAttribute("listRole", roleRepository.findAll());
-    	
-    	Optional<User> userOptional = userRepository.findById(id);
-    	User user = userOptional.get();    	
-    	model.addAttribute("user", user);
-    	
-    	return "Admin/FormManager/M_Thongtin";
-    }
-    
-    @PostMapping("/qlthongtin/saveThongtin")
-    public String save( Integer id, User user) {
-    	int type = user.getType();
-    	if(type == 2) {
-    		user.setRole_id(14);
-    		userRepository.save(user);
-    		return "redirect:/admin/qlthongtin";
-    	}
-    	else {
-    		userRepository.save(user);
-    		return "redirect:/admin/qlthongtin";
-    	}  	  	
+        userRepository.save(user);
+        return "redirect:/admin/qlthongtin";
     }
 
+    @GetMapping("/qlthongtin/delete/{id}")
+    public String deleteThongtin(@PathVariable("id") Integer id) {
+        userRepository.deleteById(id);
+        return "redirect:/admin/qlthongtin";
+    }
+
+    @GetMapping("/qlthongtin/edit/{id}")
+    public String editThongtin(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("listType", typeRepository.findAll());
+        model.addAttribute("listUser", userRepository.findAll());
+        model.addAttribute("listRole", roleRepository.findAll());
+
+        Optional<User> userOptional = userRepository.findById(id);
+        User user = userOptional.get();
+        model.addAttribute("user", user);
+
+        return "Admin/FormManager/M_Thongtin";
+    }
+
+    @PostMapping("/qlthongtin/saveThongtin")
+    public String save(Integer id, User user) {
+        int type = user.getType();
+        if (type == 2) {
+            user.setRole_id(14);
+            userRepository.save(user);
+            return "redirect:/admin/qlthongtin";
+        } else {
+            userRepository.save(user);
+            return "redirect:/admin/qlthongtin";
+        }
+    }
 }

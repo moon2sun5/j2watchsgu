@@ -8,7 +8,6 @@
     <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
     <link rel="stylesheet" th:href="@{/css/Sua.css}">
     <link rel="stylesheet" th:href="@{/css/Donhang.css}">
-    <script src="https://cdn.tailwindcss.com"></script>
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
     <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
@@ -47,7 +46,7 @@
                     <th width="10%">Phân loại</th>
                     <th width="15%">Họ và tên</th>
                     <th width="15%">Tên đăng nhập</th>
-                    <th width="15%">Mật khẩu</th>
+<!--                    <th width="15%">Mật khẩu</th>-->
                     <th width="15%">Ngày tạo tài khoản</th>
                     <th width="10%">Trạng thái</th>
                     <th width="10%">Tính năng</th>
@@ -63,7 +62,7 @@
                     </th:block>
 					<td th:each="user : ${listUser}" th:if="${user.id_user == acc.user_id}" th:text="${user.name}"></td>
 					<td th:text="${acc.user_name}"></td>
-					<td th:text="${acc.password}"></td>
+<!--					<td th:text="${acc.password}"></td>-->
 					<td th:text="${acc.create_date}"></td>
                     <td align="center" font-size="20px"><a th:href="@{'/admin/qltaikhoan/status/' + ${acc.id_account}}"><input type="checkbox" th:checked="${acc.status == 1}"></a></td>
                     <td align="center"><a th:href="@{'/admin/qltaikhoan/delete/' + ${acc.id_account}}"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a> 
