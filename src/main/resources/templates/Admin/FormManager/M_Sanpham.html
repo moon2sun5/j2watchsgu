@@ -15,7 +15,7 @@
 	
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	
-	<div id="" class="content">
+	<div id="qlsp" class="content">
 
     <div class="content-header">
 
@@ -26,8 +26,7 @@
 
     <div class="content-mid">
 
-        <a th:href="@{/admin/qlsanpham/addsanpham}" class="add" type="button" title="Thêm" id="add_sp"><i
-                class="icon1 ti-plus"></i>Thêm sản phẩm</a>
+        <a th:href="@{/admin/qlsanpham/addsanpham}" class="add" type="button" title="Thêm" id="add_sp"><i class="icon1 ti-plus"></i>Thêm sản phẩm</a>
         <label class="form-timkiem" for="">Tìm kiếm:
             <input type="search" id="txtsearch" class="search"><button class="ti-search" type="button" title="Tìm kiếm"
                 id=""></button>
@@ -80,12 +79,13 @@
                 <tr data-id="">
                     <td align="center" th:text="${product.idProduct}"></td>
                     <td align="center" th:text="${product.name}"></td>
-                    <td><img th:if="${product.img}" th:src="@{${product.img}}" alt="Product Image" /></td>
+
+                   <td><img th:src="@{'/img/'+${product.img}}" class="content__left-img" data-image=""/></td>
                     <!--<td></td>-->
                     <td align="center" th:text="${product.price}"></td>
                     <td align="center" th:text="${product.quantity}"></td>
                     <td align="center" th:text="${product.materialWire.name}"></td>
-                    <td align="center" th:text="${product.materialGlass.name}"></td>
+                    <td align="center" th:text="${product.materialGlassId.name}"></td>
                     <!--<td></td>
                     <td></td>-->
                     <td align="center" th:text="${product.pin.name}"></td>
@@ -93,11 +93,8 @@
                     <!--<td></td>-->
                     <td align="center" th:text="${product.category.name}"></td>
                     <td align="center">
-						<a th:href="@{'/admin/qlsanpham/delete/' + ${product.idProduct}}"><button type="button" name="btn_delete"
-                            data-id="" class="tinhnang1 js-change-sanpham-delete"
-                            title="Xóa" id="btn_delete"><i class="icon1 ti-trash"></i></button></a>
-                        <a th:href="@{'/admin/qlsanpham/edit/' + ${product.idProduct}}"><button data-id =""  value="" class="tinhnang2 js-change-sanpham "
-                            type="submit" title="Sửa" id="btn_update"><i class="icon1 ti-marker-alt"></i></button></a>
+						<a th:href="@{'/admin/qlsanpham/delete/' + ${product.idProduct}}"><button type="button" name="btn_delete" data-id="" class="tinhnang1 js-change-sanpham-delete" title="Xóa" id="btn_delete"><i class="icon1 ti-trash"></i></button></a>
+                        <a th:href="@{'/admin/qlsanpham/edit/' + ${product.idProduct}}"><button data-id =""  value="" class="tinhnang2 js-change-sanpham " type="submit" title="Sửa" id="btn_update"><i class="icon1 ti-marker-alt"></i></button></a>
                     </td>
                 </tr>
 

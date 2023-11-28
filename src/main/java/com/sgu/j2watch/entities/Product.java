@@ -1,6 +1,8 @@
 package com.sgu.j2watch.entities;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Entity
 @Table(name = "product")
@@ -14,9 +16,10 @@ public class Product {
     @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "img", length = 100)
+    @Column(name = "img")
+//    @Transient
     private String img;
-
+    
     @Column(name = "price")
     private Float price;
 
@@ -32,16 +35,16 @@ public class Product {
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "pin_id", referencedColumnName = "id_pin") // Giả sử bạn có entity Pin
+    @JoinColumn(name = "pin_id", referencedColumnName = "id_pin") 
     private Pin pin;
 
     @ManyToOne
-    @JoinColumn(name = "material_wire_id", referencedColumnName = "id_material_wire") // Giả sử bạn có entity MaterialWire
+    @JoinColumn(name = "material_wire_id", referencedColumnName = "id_material_wire") 
     private MaterialWire materialWire;
-
+    
     @ManyToOne
-    @JoinColumn(name = "material_glass_id", referencedColumnName = "id_material_glass") // Giả sử bạn có entity MaterialGlass
-    private MaterialGlass materialGlass;
+    @JoinColumn(name = "material_glass_id", referencedColumnName = "id_material_glass") 
+    private MaterialGlass materialGlassId;
 
 	public Integer getIdProduct() {
 		return idProduct;
@@ -58,6 +61,8 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	
 
 	public String getImg() {
 		return img;
@@ -115,13 +120,14 @@ public class Product {
 		this.materialWire = materialWire;
 	}
 
-	public MaterialGlass getMaterialGlass() {
-		return materialGlass;
+	public MaterialGlass getMaterialGlassId() {
+		return materialGlassId;
 	}
 
-	public void setMaterialGlass(MaterialGlass materialGlass) {
-		this.materialGlass = materialGlass;
+	public void setMaterialGlassId(MaterialGlass materialGlassId) {
+		this.materialGlassId = materialGlassId;
 	}
 
+	
     // Constructors, getters và setters
 }

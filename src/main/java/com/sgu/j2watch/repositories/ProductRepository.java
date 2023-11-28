@@ -10,7 +10,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     List<Product> findByBrand_IdBand(Integer idBand);
 
-    // Sửa lại tên của thuộc tính category_id tương ứng trong phương thức này
     List<Product> findByCategory_IdCategory(Integer id_category);
 
 }
