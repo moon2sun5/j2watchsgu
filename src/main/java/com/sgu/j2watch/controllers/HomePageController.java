@@ -60,8 +60,6 @@ public class HomePageController {
         return "Home/MainPage/Thankyou";
 	}
 
-    
-
 //	@GetMapping("/thongtin")
 //    public String thongtin() {
 //        return "Home/MainPage/Infor";
@@ -82,8 +80,6 @@ public class HomePageController {
 //    public String taikhoan() {
 //        return "Home/MainPage/Account";
 //	}
-	
-	
 	
 }
 

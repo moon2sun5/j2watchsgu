@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	
+	<!--<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>-->
+	
+</head>
+<body>
+	
+	
+
+
+    <div class="form-thongke">
+
+        <h1>Thống kê sản phẩm top 6 SP  </h1>
+        
+       <div style="width: 1000px; height: 500px;"> 
+		   <canvas id="myChart" width="1000px" height="500"></canvas>
+ <script>
+        // Lấy tham chiếu đến canvas
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Dữ liệu mẫu cho biểu đồ (thay bằng dữ liệu thực tế)
+        var labels = []; // Tạo mảng cho tên sản phẩm
+        var dataValues = []; // Tạo mảng cho số lượng
+
+        // Tạo dữ liệu cho biểu đồ (thay bằng dữ liệu thực tế)
+        var data = {
+            labels: labels, // Sử dụng mảng tên sản phẩm
+            datasets: [{
+                data: dataValues, // Sử dụng mảng số lượng
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Màu nền cột
+                borderColor: 'rgba(75, 192, 192, 1)', // Màu viền cột
+                borderWidth: 1, // Độ rộng viền cột
+                label: 'Sản phẩm bán chạy'
+            }]
+        };
+
+        // Tạo biểu đồ cột
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <!-- This is a sample of how you might structure your controller method -->
+    <!-- Replace this with your actual Spring Boot controller code -->
+    <script th:inline="javascript">
+        var topProducts = /*[[${topProducts}]]*/ []; // Data passed from Spring Boot
+
+        // Populate labels and dataValues with actual data
+        for (var i = 0; i < topProducts.length; i++) {
+            labels.push(topProducts[i].name);
+            dataValues.push(topProducts[i].quantity);
+        }
+
+        // Update the chart data with the retrieved data
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = dataValues;
+
+        // Update the chart
+        myChart.update();
+    </script>
+
+</body>
