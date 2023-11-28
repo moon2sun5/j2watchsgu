@@ -8,13 +8,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.sgu.j2watch.entities.Supplier;
+import com.sgu.j2watch.repositories.ProductRepository;
+import com.sgu.j2watch.repositories.ReceiptDetailRepository;
+import com.sgu.j2watch.repositories.ReceiptRepository;
 import com.sgu.j2watch.repositories.SupplierRepository;
+import com.sgu.j2watch.repositories.UserRepository;
 
 @Controller
 @RequestMapping(path = "admin")
 public class SupplierController {
     @Autowired
     private SupplierRepository supplierRepository;
+    @Autowired
+    private ReceiptRepository receiptRepository;
+    @Autowired
+    private ReceiptDetailRepository receiptDetailRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/qlnhacungcap")
     public String qlnhacungcap(Model model) {
@@ -54,5 +66,21 @@ public class SupplierController {
     public String updateNhacungcap(@PathVariable("id_supplier") Integer id_supplier, Supplier supplier) {
     	supplierRepository.save(supplier);
         return "redirect:/admin/qlnhacungcap";
+    }
+    
+    
+
+    @GetMapping("/qlnhaphang")
+    public String qlnhaphang( Model model) {
+    	model.addAttribute("listReceipt", receiptRepository.findAll());
+    	model.addAttribute("listReceiptDetail", receiptDetailRepository.findAll());
+    	model.addAttribute("listSupplier", supplierRepository.findAll());
+    	model.addAttribute("listUser", userRepository.findAll());
+    	model.addAttribute("listProduct", productRepository.findAll());
+        return "Admin/FormManager/M_Nhaphang";
+    }
+    @GetMapping("/qlnhaphang/addnhaphang")
+    public String addnhaphang() {
+        return "Admin/FormAdd/A_Nhaphang";
     }
 }
