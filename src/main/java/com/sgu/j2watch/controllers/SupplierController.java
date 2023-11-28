@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.sgu.j2watch.entities.Receipt_detail;
 import com.sgu.j2watch.entities.Supplier;
 import com.sgu.j2watch.repositories.ProductRepository;
 import com.sgu.j2watch.repositories.ReceiptDetailRepository;
@@ -82,5 +83,17 @@ public class SupplierController {
     @GetMapping("/qlnhaphang/addnhaphang")
     public String addnhaphang() {
         return "Admin/FormAdd/A_Nhaphang";
+    }
+    
+    @GetMapping("/qlnhaphang/delete/{id_receipt}")
+    public String deletedonhang(@PathVariable("id_receipt") Integer id_receipt) {
+    	receiptRepository.deleteById(id_receipt);
+    	Iterable<Receipt_detail> receiptIterable = receiptDetailRepository.findAll();
+    	for(Receipt_detail receipt_detail : receiptIterable) {
+    		if(receipt_detail.getReceipt_id() == id_receipt) {
+    			 receiptDetailRepository.deleteById(receipt_detail.getReceipt_id());
+    		}
+    	}
+        return "redirect:/admin/qlnhaphang";
     }
 }

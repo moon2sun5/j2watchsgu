@@ -61,7 +61,7 @@
                     <td th:each="nhanvien : ${listUser}" th:if="${nhanvien.id_user == receipt.user_id}" th:text="${nhanvien.name}"></td>
                     <td th:text="${receipt.total}"></td>
                     <th:block th:each="receipt_detail : ${listReceiptDetail}" th:if="${receipt.id_receipt == receipt_detail.receipt_id}">
-						<td th:each="product : ${listProduct}" th:if="${product.id_product == receipt_detail.product_id}" th:text="${product.name}"></td>
+						<td th:each="product : ${listProduct}" th:if="${product.idProduct == receipt_detail.product_id}" th:text="${product.name}"></td>
 						<td th:text="${receipt_detail.quantity}"></td>
 						<td th:text="${receipt_detail.price}"></td>
 						<td th:text="${receipt_detail.percent}"></td>
