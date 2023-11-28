@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin</title>
+	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
     <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
     <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
@@ -28,58 +29,444 @@
 	        <div id="clock"></div>
 	        
 	    </div>
-	    
-	    <div class="content-mid">
-	        
-	        <a th:href="@{/admin/qlthongtin/addthongtin}" class="add" type="button" title="Thêm" id=""><i class="icon1 ti-plus"></i>Thêm hồ sơ</a>
-	        <label class="form-timkiem" for="">Tìm kiếm: 
-	            <input type="search" id="search_infor" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
-	        </label>
-	
-	    </div>
-	
-	    <div class="form-dsnguoidung">
-	        
-	        <h1>Danh sách người dùng</h1>
-	
-	        <table id="table_data_infor"  width="100%" border="3" cellspacing="2px" align="center" bordercolor = "aquamarine">
-	            <thead >
-	                <tr style="height: 60px;">
-	                    <th width="4%">ID</th>
-	                    <th width="16%">Họ và tên</th>
-	                    <th width="16%">Địa chỉ</th>
-	                    <th width="16%">Email</th>
-	                    <th width="8%">Số điện thoại</th>
-	                    <th width="8%">Ngày sinh</th>
-	                    <th width="8%">Giới tính</th>
-	                    <th width="8%">Phân loại</th>
-	                    <th width="8%">Phân quyền</th>
-	                    <th width="8%">Tính năng</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-					<th:block th:each="user : ${listUser}">
-		                <tr>
-		                    <td th:text="${user.id_user}"></td>
-							<td th:text="${user.name}"></td>
-							<td th:text="${user.address}"></td>
-							<td th:text="${user.email}"></td>
-							<td th:text="${user.phone}"></td>
-							<td th:text="${user.birthday}"></td>
-							<td>
-								<span th:if="${user.gender} == '1'">Nam</span>
-								<span th:if="${user.gender} == '2'">Nữ</span>
+
+
+		<div class="shadow-inner p-4">
+			<div class="content-mid">
+
+				<a th:href="@{/admin/qlthongtin/addthongtin}" class="add" type="button" title="Thêm" id=""><i class="icon1 ti-plus"></i>Thêm hồ sơ</a>
+				<label class="form-timkiem" for="">Tìm kiếm:
+					<input type="search" id="search_infor" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
+				</label>
+
+			</div>
+
+			<div class="form-dsnguoidung">
+
+				<h1>Danh sách người dùng</h1>
+
+				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+							<th scope="col" class="px-6 py-3">
+								ID
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Họ và tên
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Địa chỉ
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Email
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Số điện thoại
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Ngày sinh
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Giới tính
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Phân loại
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Phân quyền
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Tính năng
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
 							</td>
-							<td th:each="type : ${listType}" th:if="${user.type == type.id_type}" th:text="${type.name}"></td>
-							<td th:each="role : ${listRole}" th:if="${user.role_id == role.id_role}" th:text="${role.name}"></td>
-		                    <td align="center"><a th:href="@{'/admin/qlthongtin/delete/' + ${user.id_user}}"><button class="tinhnang1 infor" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a>
-		                      <a th:href="@{'/admin/qlthongtin/edit/' + ${user.id_user}}"><button class="tinhnang2" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a></td>
-	                	</tr>
-                	</th:block>
-					
-	            </tbody>
-	            <script type="text/JavaScript" th:src="@{/js/changeNV.js}"></script>
-	        </table>
-	    </div>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								1
+							</th>
+							<td class="px-6 py-4">
+								TÊN
+							</td>
+							<td class="px-6 py-4">
+								ĐỊA CHỈ 1
+							</td>
+							<td class="px-6 py-4">
+								EMAIL
+							</td>
+							<td class="px-6 py-4">
+								SDT
+							</td>
+							<td class="px-6 py-4">
+								NGAY SINH
+							</td>
+							<td class="px-6 py-4">
+								GIOI TINH
+							</td>
+							<td class="px-6 py-4">
+								LOAI 1
+							</td>
+							<td class="px-6 py-4">
+								QUYEN 1
+							</td>
+
+							<td class="px-6 py-4 text-right">
+								<button class="tinhnang1 infor" type="button" title="Xóa" id="">
+									<i class="icon1 ti-trash"></i>
+								</button>
+								<button class="tinhnang2 js-change-nhanvien" type="button" title="Sửa" id="">
+									<i class="icon1 ti-marker-alt"></i>
+								</button>
+							</td>
+						</tr>
+						</tbody>
+						<script type="text/JavaScript" th:src="@{/js/changeNV.js}"></script>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
