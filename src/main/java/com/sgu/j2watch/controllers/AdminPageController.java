@@ -99,6 +99,11 @@ public class AdminPageController {
     public String addvoucher() {
         return "Admin/FormAdd/A_Voucher";
     }
+    
+    @GetMapping("/qlthongkesp")
+    public String qlthongkesp() {
+        return "Admin/FormManager/ThonkeThai";
+    } 
 
     // Quản lý quyền
     
