@@ -61,26 +61,22 @@ public class HomePageController {
 	}
 
     
-<<<<<<< HEAD
+
 //	@GetMapping("/thongtin")
 //    public String thongtin() {
 //        return "Home/MainPage/Infor";
 //	}
-=======
-	@GetMapping("/thongtin")
-    public String thongtin() {
-        return "Home/MainPage/Infor";
 
-	@Autowired
-	private CategoryRepository categoryRepository;
-	
-	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public Optional<Category> category(@PathVariable int id) {
-		return categoryRepository.findById(id);
+//	@Autowired
+//	private CategoryRepository categoryRepository;
+//	
+//	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Optional<Category> category(@PathVariable int id) {
+//		return categoryRepository.findById(id);
+//
+//	}
 
-	}
->>>>>>> 2e8672ba0760bb90af8968187c6549a124bc7675
 	
 //	@GetMapping("/thongtin/taikhoan")
 //    public String taikhoan() {

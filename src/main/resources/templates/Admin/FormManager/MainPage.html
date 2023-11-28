@@ -12,7 +12,6 @@
 </head>
 <body>
 	<div class="sidebar" th:fragment="menu">
-<<<<<<< HEAD
         
         <div class="header">
 	        <p class="chaomung">Welcome to the admin page. Good luck to you ^^ ( <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.principal.authorities[0].authority}"></span> )</p>
@@ -34,7 +33,6 @@
                 <a class="a" th:href="@{/admin/qlhoadon}"><li><i class="icon ti-receipt"></i>Quản lý hóa đơn</li></a>
                 <a class="a" th:href="@{/admin/qlnhaphang}"><li><i class="icon ti-truck"></i>Quản lý nhập hàng</li></a>
                 <a class="a" th:href="@{/admin/qlbaocao}"><li><i class="icon ti-bar-chart"></i>Báo cáo doanh thu</li></a>
-=======
         <div class="header flex">
 	        <p class="chaomung flex-1">Welcome to the admin page. Good luck to you ^^</p>
 	        <a href="/home	" class="" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
@@ -98,7 +96,6 @@
 									</li>
 								</ul>
 							</li>
->>>>>>> 2e8672ba0760bb90af8968187c6549a124bc7675
             </ul>
 					<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
         </div>
