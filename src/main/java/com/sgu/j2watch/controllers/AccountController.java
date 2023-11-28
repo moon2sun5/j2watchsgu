@@ -1,6 +1,9 @@
 package com.sgu.j2watch.controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,8 @@ public class AccountController {
     	model.addAttribute("listAcc", accountRepository.findAll());
         return "Admin/FormManager/M_Taikhoan";
     }
+	
+	// Thêm tài khoản
     @GetMapping("/qltaikhoan/addtaikhoan")
     public String addtaikhoan(Model model) {
 //    	model.addAttribute("listUser", userRepository.findAll());
@@ -61,11 +66,7 @@ public class AccountController {
     	model.addAttribute("account", account);
         return "Admin/FormAdd/A_Taikhoan";
     }
-//    @PostMapping("/qltaikhoan")
-//    public String saveTaikhoan(Account account) {
-//    	accountRepository.save(account);
-//    	return "redirect:/admin/qltaikhoan";
-//    }
+    
     @PostMapping("/qltaikhoan/addtaikhoan")
     public String saveTaikhoan(Account account, RedirectAttributes re){
     	String user_name = account.getUser_name();
@@ -79,12 +80,34 @@ public class AccountController {
 		}
     }
     
+    // On / Off trạng thái
+    @GetMapping("/qltaikhoan/status/{id}")
+    public String saveStatus(@PathVariable("id") Integer id){
+    	Optional<Account> accOptional = accountServiceImpl.findById(id);
+    	Account acc = accOptional.get(); 
+    	int status = acc.getStatus();
+    	if( status != 1 ) {
+    		acc.setStatus(1);
+    		accountRepository.save(acc);
+    		return "redirect:/admin/qltaikhoan";    		
+    	}
+    	else {
+    		acc.setStatus(0);
+    		accountRepository.save(acc);
+    		return "redirect:/admin/qltaikhoan"; 
+		}
+    }
+    
+    
+    // Xóa tài khoản
     @GetMapping("/qltaikhoan/delete/{id}")
     public String deleteTaikhoan(@PathVariable("id") Integer id) {
     	accountRepository.deleteById(id);
     	return "redirect:/admin/qltaikhoan";
     }
     
+    
+    // Sửa tài khoản
     @GetMapping("/qltaikhoan/edit/{id}")
     public String editTaikhoan(@PathVariable("id") Integer id, Model model){
     	model.addAttribute("listAcc", accountRepository.findAll());
@@ -108,4 +131,25 @@ public class AccountController {
     		return "redirect:/admin/qltaikhoan/edit/" + id;
 		}
     }
+    
+//    // Tìm kiếm tài khoản
+//    @PostMapping("/qltaikhoan/search/{input}")
+//    public String search(@PathVariable("input") String input, Model model, RedirectAttributes re) {
+////    	Iterable<Account> accIter = accountRepository.findAll();
+//    	List<Integer> list = accountServiceImpl.search(input);
+////    	model.addAttribute("listAcc", accountRepository.findAll());
+////    	Optional<Account> accOptional = accountServiceImpl.findById(id);
+//    	
+//   
+//		for(Integer newList : list) {
+//			Optional<Account> accOptional = accountServiceImpl.findById(newList);
+//			Account account = accOptional.get();
+//		}
+//	
+//    	model.addAttribute("account", acc);
+//    	accountRepository.deleteById(id);
+//    	return "redirect:/admin/qltaikhoan";
+//    }
+    
+    
 }

@@ -1,0 +1,48 @@
+<div style="margin-top: 100px;" th:fragment="datlaimatkhau">
+	<div class="content__male" style="padding-left: 360px; padding-right: 350px;">
+        <h3 class="content__title" style="font-size: 35px; padding-top: 23px;">Quên mật khẩu</h3>
+        <form th:action="@{/home/datlaimatkhau}"  method="post">
+	       	 <div th:if="${message}" class="alert alert-success" role="alert">
+			   <p th:text="${message}"></p>
+			</div>
+	        <input type="hidden" name="token" th:value="${token}"/>
+	        <div class="mb-3" style="margin-top: 38px">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập mật khẩu mới</label>
+		        <input type="password" class="form-control" id="password1" name="newpassword"
+			        required
+					oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu mới.')"
+					oninput="setCustomValidity('')">
+		   	</div>
+	      <div class="mb-3" style="margin-top: 38px">
+	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Nhập lại mật khẩu mới</label>
+	        <input type="password" class="form-control" id="password2" 
+		        required
+				oninvalid="this.setCustomValidity('Vui lòng nhập lại mật khẩu mới.')"
+				oninput="setCustomValidity('')">
+			<span class="form-label thongtin_gray" id="passwordError" style="color: red; margin-left:0px;" ></span>
+			
+	      
+	      
+			<button type="submit" class="btn btn-primary" style="margin-top: 15px; border: none; background-color: red; float: right;">Đặt lại mật khẩu</button>
+		
+			
+		</form>
+	</div>
+	<script type="text/javascript">
+			
+		document.getElementById("password2").addEventListener("input", function() {
+	        var password1 = document.getElementById("password1").value;
+	        var password2 = this.value;
+	        
+	        var errorSpan = document.getElementById("passwordError");
+	
+	        if (password1 === password2) {
+	            errorSpan.innerHTML = "";  // Xoá thông báo lỗi nếu mật khẩu khớp
+	        } else {
+	            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
+	        }
+    	});
+		
+    
+	</script>	
+</div>

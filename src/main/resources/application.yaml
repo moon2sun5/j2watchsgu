@@ -7,3 +7,14 @@ spring:
   resources:
     static-locations: file:src/main/resources/static/
     cache-period: 0
+  mail:
+    host: smtp.gmail.com
+    password: uftiqznjmxciufsa
+    port: 587
+    properties:
+      mail:
+       smtp:
+        auth: true
+        starttls:
+            enable: true
+    username: phatchuong007@gmail.com	 

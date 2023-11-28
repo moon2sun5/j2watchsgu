@@ -15,13 +15,13 @@
 	<div class="sidebar" th:fragment="menu">
         
         <div class="header">
-	        <p class="chaomung">Welcome to the admin page. Good luck to you ^^</p>
-	        <a class="a" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
+	        <p class="chaomung">Welcome to the admin page. Good luck to you ^^ ( <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.principal.authorities[0].authority}"></span> )</p>
+	        <a th:href="@{/home}" class="a" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
 	    </div>
 	
 	    <div class="sidebar-user">
 	        <img class="anh-user" th:src="@{/css/Image/user1.png}" alt="" width="140px">
-	        <p id="username" class="user">Phát</p>
+	        <p id="username" class="user"><span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.principal.username}"></span></p>
 	        
 	        <hr>
 	    </div>
@@ -29,7 +29,7 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <a class="a" th:href="@{/admin/qlthongtin}"><li><i class="icon ti-id-badge"></i>Quản lý thông tin</li></a>
-                <a class="a" th:href="@{/admin/qltaikhoan}"><li><i class="icon ti-user" style="color: black;"></i>Quản lý tài khoản</li></a>
+                <a th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="!hasAuthority('Nhân viên bán hàng')" class="a" th:href="@{/admin/qltaikhoan}"><li><i class="icon ti-user" style="color: black;"></i>Quản lý tài khoản</li></a>
                 <a class="a" th:href="@{/admin/qlsanpham}"><li><i class="icon ti-apple"></i>Quản lý sản phẩm</li></a>
                 <a class="a" th:href="@{/admin/qlhoadon}"><li><i class="icon ti-receipt"></i>Quản lý hóa đơn</li></a>
                 <a class="a" th:href="@{/admin/qlnhaphang}"><li><i class="icon ti-truck"></i>Quản lý nhập hàng</li></a>

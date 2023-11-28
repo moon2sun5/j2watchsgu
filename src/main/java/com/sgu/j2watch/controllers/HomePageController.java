@@ -60,15 +60,15 @@ public class HomePageController {
         return "Home/MainPage/Thankyou";
 	}
     
-	@GetMapping("/thongtin")
-    public String thongtin() {
-        return "Home/MainPage/Infor";
-	}
+//	@GetMapping("/thongtin")
+//    public String thongtin() {
+//        return "Home/MainPage/Infor";
+//	}
 	
-	@GetMapping("/thongtin/taikhoan")
-    public String taikhoan() {
-        return "Home/MainPage/Account";
-	}
+//	@GetMapping("/thongtin/taikhoan")
+//    public String taikhoan() {
+//        return "Home/MainPage/Account";
+//	}
 	
 	
 	
