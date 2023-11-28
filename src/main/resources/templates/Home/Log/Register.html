@@ -4,7 +4,7 @@
 
 			<div class="login">
 			  
-				  <button type="button" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Register">Đóng</button>
+				  <button onclick="cancel()" type="button" style=" position: absolute; top: -35px; right: -15px; z-index: 1; " class="btn_close js-close-Register">Đóng</button>
 			      <label class="tieude" for="chk" aria-hidden="true">Đăng ký</label>
 			      <div class="mb-3">
 
@@ -120,6 +120,10 @@
 		            errorSpan.innerHTML = "Mật khẩu không khớp. Vui lòng nhập lại.";
 		        }
 	    	});
+	    	
+	    	function cancel(){
+				window.location = "/home";
+			}
 			
 	    
 		</script>

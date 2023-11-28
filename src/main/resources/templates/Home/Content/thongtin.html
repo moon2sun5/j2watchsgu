@@ -8,31 +8,38 @@
 	
 	<div class="content__male" style="padding-left: 360px; padding-right: 350px;">
         <h3 class="content__title">THÔNG TIN CÁ NHÂN</h3>
-        <form>
+        <form th:if="${user != null}" th:action="@{/home/thongtin}" th:object="${user}" method="post">
+	        <div th:if="${message}" class="alert alert-success" role="alert">
+			  Cập nhật thông tin người dùng thành công!
+			</div>
+	        <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Id người dùng: </label>
+			    <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{id_user}" readonly>
+			</div>
 	        <div class="mb-3">
 			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Họ và tên</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2"
+			    <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{name}"
 				        required
 						oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên.')"
 						oninput="setCustomValidity('')">
 			</div>
 			<div class="mb-3">
 			    <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Địa chỉ</label>
-		        <input type="text" class="form-control" id="formGroupExampleInput2" 
+		        <input type="text" class="form-control" id="formGroupExampleInput2"  th:field="*{address}"
 			        required
 					oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ.')"
 					oninput="setCustomValidity('')">
 		   	</div>
 	      <div class="mb-3">
 	       	<label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Số điện thoại</label>
-	        <input type="text" class="form-control" id="formGroupExampleInput2" 
+	        <input type="text" class="form-control" id="formGroupExampleInput2"  th:field="*{phone}"
 		        pattern="^0\d{9}$" required
 				oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại.')"
 				oninput="setCustomValidity('')">
 	      </div>
 	      <div class="mb-3">
 	        <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 0px; color: gray;">Email</label>
-	        <input type="text" class="form-control" id="formGroupExampleInput2" 
+	        <input type="text" class="form-control" id="formGroupExampleInput2"  th:field="*{email}"
 		        pattern="^[A-Za-z0-9_.]+@[A-Za-z0-9-]+\\.[A-Za-z0-9-.]+$" required
 				oninvalid="this.setCustomValidity('Vui lòng nhập email.')"
 				oninput="setCustomValidity('')">
@@ -40,12 +47,12 @@
 		      
 			  
 	      <div class="mb-3 form-check" style=" font-size: 20px;">
-	          <input  value="1" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
+	          <input th:checked="*{gender == 1}" th:field="*{gender}" value="1" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
 	          <label class="form-check-label thongtin_gray" style=" color: gray;" for="gridRadios1">
 	            Nam
 	          </label>
 	      
-	          <input value="2" class="form-check-input" style=" margin-left: 50px;" type="radio" name="gridRadios" id="gridRadios2">
+	          <input th:checked="*{gender == 2}" th:field="*{gender}" value="2" class="form-check-input" style=" margin-left: 50px;" type="radio" name="gridRadios" id="gridRadios2">
 	          <label class="form-check-label thongtin_gray" style=" color: gray;" for="gridRadios2">
 	            Nữ
 	          </label>
@@ -54,7 +61,7 @@
 		  <div class="mb-3 form-check" style=" font-size: 20px; margin-top: 30px;">
             <i class="ti-calendar modal-login-icon thongtin_gray" style="padding-top: 5px; margin-left: -30px; color: gray;"></i>
             <label for="exampleInputEmail1" class="form-label thongtin_gray" style="margin-left: 10px; color: gray;">Ngày sinh</label>
-            <input  type="date" class="modal-login-inp modal-format-inp date" name="date"  style="float: left;margin-left: 30px;margin-top: 0;"
+            <input th:field="*{birthday}" type="date" class="modal-login-inp modal-format-inp date" name="date"  style="float: left;margin-left: 30px;margin-top: 0;"
                 required
 				oninvalid="this.setCustomValidity('Vui lòng chọn ngày sinh.')"
 				oninput="setCustomValidity('')">
@@ -69,7 +76,7 @@
 					oninput="setCustomValidity('')">
 		   	 <label class="form-check-label thongtin_gray" style="margin-left: 0px; color: gray;" for="exampleCheck1">Tôi đã kiểm tra và xác nhận thông tin đúng.</label>
 		  </div>
-			<button type="submit" class="btn btn-primary" style="background-color: red; float: left;">Cập nhật thông tin</button>
+			<button type="submit" class="btn btn-primary" style="border: none; background-color: red; float: left;">Cập nhật thông tin</button>
 			
 			<a th:href="@{/home/thongtin/taikhoan}"  style=" font-size: 20px; float: right;">Thông tin tài khoản</a>
 		</form>
