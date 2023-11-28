@@ -3,22 +3,22 @@ package com.sgu.j2watch.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "material_wire")
+public class MaterialWire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_category")
-    private Integer idCategory;
+    @Column(name = "id_material_wire")
+    private Integer id;
 
     @Column(name = "name", length = 100)
     private String name;
 
-	public Integer getIdCategory() {
-		return idCategory;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdCategory(Integer idCategory) {
-		this.idCategory = idCategory;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {

@@ -1,5 +1,5 @@
-<form th:fragment="editnhacungcap">
-	 <div class="modalNCC js-modalNCC">
+<form th:fragment="editnhacungcap" th:if="${supplier != null}" th:action="@{'/admin/qlnhacungcap/saveNhacungcap/' + ${id_supplier}}" th:object="${supplier}" method="post">
+	 <div class="modalNCC js-modalNCC" th:each="listSupplier : ${listSupplier}" th:if="${listSupplier.id_supplier == supplier.id_supplier}" th:classappend="${supplier ne null} ? 'open' : ''" >
         <div class="modal-containerNCC js-containerNCC">
 
             <header class="modal-header">
@@ -7,37 +7,38 @@
             </header>
 
             <div class="modal-body">
+				<div class="form2">
+                    <label class="labelnhanvien">Id nhà cung cấp: </label>
+                    <input class="form-control" type="text"  th:field="*{id_supplier}" readonly>
+                </div>
                 <div class="form2">
                     <label class="labelnhanvien">Tên nhà cung cấp: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text"  th:field="*{name}" >
                 </div>
 
                 <div class="form2">
                     <label class="labelnhanvien">Địa chỉ: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" th:field="*{address}">
                 </div>
 
                 <div class="form2">
                     <label class="labelnhanvien">Email: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" th:field="*{email}">
                 </div>
 
                 <div class="form2">
                     <label class="labelnhanvien">Số điện thoại: </label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" th:field="*{phone_number}">
                 </div>
 
-                <div class="form2">
-                    <label class="labelnhanvien">Ngày tạo: </label>
-                    <input class="form-control" type="date">
-                </div>
+             
 
 
             </div>
 
 
             <footer class="modal-footer">
-                <button id="btn-save" class="btn_save">Lưu lại</button>
+                <button type="submit"  class="btn_save">Lưu lại</button>
                 <button id="btn-save" class="btn_close js-close-NCC">Hủy bỏ</button>
             </footer>
         </div>

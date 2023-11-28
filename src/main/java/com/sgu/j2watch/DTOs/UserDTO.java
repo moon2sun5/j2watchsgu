@@ -78,7 +78,4 @@ public class UserDTO {
 //		this.type = type;
 //		this.role_id = role_id;
 //	}
-	
-	
-	
 }
