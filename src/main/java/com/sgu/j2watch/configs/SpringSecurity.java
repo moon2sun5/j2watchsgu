@@ -32,14 +32,12 @@ public class SpringSecurity {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth
                 		.requestMatchers("/home/thongtin/**").hasAuthority("Khách hàng")
-                        .requestMatchers("/home/**").permitAll()
+                        .requestMatchers("/home/**", "/home/donghonam/**", "/home/donghonu/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/img/**").permitAll()
-                        
                         .requestMatchers("/admin/qltaikhoan/**", "/admin/qlquyen/**").hasAnyAuthority("Admin", "Giám sát ca")
                         .requestMatchers("/admin/**").hasAnyAuthority("Admin", "Nhân viên bán hàng", "Giám sát ca")
-//                 
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

@@ -1,36 +1,33 @@
 package com.sgu.j2watch.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "category")
 public class Category {
-	@Id
-	@Column(name =  "id_category")
-	private int categoryID;
-	@Column(name = "name")
-	private String categoryName;
-	
-	public Category() {
-		
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_category")
+    private Integer idCategory;
+
+    @Column(name = "name", length = 100)
+    private String name;
+
+	public Integer getIdCategory() {
+		return idCategory;
 	}
-	public Category(int categoryID, String categoryName) {
-		this.categoryID = categoryID;
-		this.categoryName = categoryName;
+
+	public void setIdCategory(Integer idCategory) {
+		this.idCategory = idCategory;
 	}
-	public int getCategoryID() {
-		return categoryID;
+
+	public String getName() {
+		return name;
 	}
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
+
+    // Constructors, getters và setters
 }

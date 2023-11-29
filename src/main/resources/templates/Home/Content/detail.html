@@ -1,76 +1,92 @@
-<div style="margin-top: 100px;" th:fragment="detail">
-	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
-	  </ol>
-	</nav>
-	<div class="wrapper_child">
-    <div class="wrapper_content">
-        <div class="content__left">
-            <img th:src="@{/img/dongho1.jpg}" class="content__left-img" data-image=""
-                alt="img error" srcset="">
+<div style="margin-top: 100px;" th:fragment="detail" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+        </ol>
+    </nav>
+    <div class="wrapper_child">
+        <div class="wrapper_content">
+            <div class="content__left">
+                <img th:src="@{'/img/'+${productDetail.productImg}}" class="content__left-img" data-image=""
+                     alt="img error" srcset="">
 
-            <div class="content__left-container">
-                <p class="content__left-title">Thông số kỹ thuật</p>
+                <div class="content__left-container">
+                    <p class="content__left-title">Thông số kỹ thuật</p>
 
-                <div class="content__left-sub">
-                    <div class="content__left-key">
-                        <ul class="content__left-key-list">
-                            <li class="content__left-key-child">Mã:</li>
-                            <li class="content__left-key-child">Chất liệu dây:</li>
-                            <li class="content__left-key-child">Chất liệu kính:</li>
-                            <li class="content__left-key-child">Bộ máy và năng lượng:</li>
-                            <li class="content__left-key-child">Độ chịu nước:</li>
-                            <li class="content__left-key-child">Màu:</li>
-                            <li class="content__left-key-child">Size mặt:</li>
-                            <li class="content__left-key-child">Thương hiệu:</li>
-                            <li class="content__left-key-child">Xuất xứ</li>
-                        </ul>
-                    </div>
+                    <div class="content__left-sub">
+                        <div class="content__left-key">
+                            <ul class="content__left-key-list">
+                                <li class="content__left-key-child">Mã:</li>
+                                <li class="content__left-key-child">Chất liệu dây:</li>
+                                <li class="content__left-key-child">Chất liệu kính:</li>
+                                <li class="content__left-key-child">Bộ máy và năng lượng:</li>
+                                <li class="content__left-key-child">Độ chịu nước:</li>
+                                <li class="content__left-key-child">Màu:</li>
+                                <li class="content__left-key-child">Size mặt:</li>
+                                <li class="content__left-key-child">Thương hiệu:</li>
+                                <li class="content__left-key-child">Xuất xứ</li>
+                            </ul>
+                        </div>
 
-                    <div class="content__left-value">
-                        <ul class="content__left-key-list">
-                            <li class="content__left-value-child">SP001</li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                            <li class="content__left-value-child"></li>
-                        </ul>
+                        <div class="content__left-value">
+                            <ul class="content__left-key-list">
+                                <li class="content__left-value-child" th:text="${productDetail.productCode}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productMaterialWire}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productMaterialGlass}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productPin}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productWater_Resistance}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productColor}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productSize}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productBrand}"></li>
+                                <li class="content__left-value-child" th:text="${productDetail.productOrigin}"></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-        <div class="content__right">
-            <label class="content__right-detail">Chi tiết sản phẩm</label>
-            <p class="content__right-name" id="product-name" data-name="">
-                Casio dây da mặt kính</p>
-            <div class="is-divider"></div>
-            <p>Số lượng còn lại: 10</p>
-                            
-            <p class="content__right-price red" data-price=""><strong
-                    class="red">10.000.000đ</strong></p>
-            <p class="content__right-description">Đẹpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br></p>
-            <div class="content__right-btn">
-                <div class="content__right-btn-quantity">
-                    <input type="button" class="content__right-btn-minus" value="-" onclick="increaseQuantity()">
-                    <input class="content__right-btn-num" style="text-align: center;" value="1" min="1"
-                        max="5" disabled>
-                    <input type="button" class="content__right-btn-add" value="+" onclick="increaseQuantity()">
-                </div>
-                
 
             </div>
+
+            <div class="content__right">
+                <form th:action="@{add-to-cart}" method="post">
+                    <label class="content__right-detail">Chi tiết sản phẩm</label>
+                    <p class="content__right-name" id="product-name" data-name="" th:text="${productDetail.productName}">
+                    </p>
+                    <div class="is-divider"></div>
+                    <p th:text="'Số lượng còn lại: '+${productDetail.productQuantity}"> </p>
+
+                    <p class="content__right-price red" data-price=""><strong
+                            class="red" th:text="${productDetail.productPrice}+'đ'"></strong></p>
+                    <p class="content__right-description" th:text="${productDetail.productDescription}"><br></p>
+                    <div class="content__right-btn">
+                        <div class="content__right-btn-quantity" th:if="${OOS == false}">
+                            <input type="button" class="content__right-btn-minus" value="-" th:onclick="changeQuantity(this,[[${productDetail.productQuantity}]])">
+                            <input class="content__right-btn-num" name="quantity" style="text-align: center;" value="1" min="1"
+                                   th:max="${productDetail.productQuantity}" readonly>
+                            <input type="button" class="content__right-btn-add" value="+" th:onclick="changeQuantity(this,[[${productDetail.productQuantity}]])">
+                            <input type="hidden" name="id" th:value="${productDetail.productID}">
+                        </div>
+                        <div class="content__right-btn-quantity" th:if="${OOS == true}">
+                        </div>
+                    </div>
+                    <div class="center" style="padding-top:50px;" th:if="${OOS == false}">
+                        <div class="buttons d-flex flex-row">
+                            <button class="btn btn-success cart-button px-5">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="center" style="padding-top:50px;"th:if="${OOS == true}">
+                        <div class="buttons d-flex flex-row">
+                            <button class="btn btn-dark cart-button px-5 disabled" >
+                                Sản phẩm hết hàng
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-
     </div>
+
 </div>
-		
-</div>
+

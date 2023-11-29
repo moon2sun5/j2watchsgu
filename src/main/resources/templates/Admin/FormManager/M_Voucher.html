@@ -53,15 +53,17 @@
 	                </tr>
 	            </thead>
 	            <tbody>
+					<th:block th:each="voucher : ${listVoucher}">
 	            <tr>
 	               
 	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td align="center"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>  <button href="" class="tinhnang2 js-change-voucher" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+	                        <td align="center"  th:text="${voucher.id_voucher}"></td>
+	                        <td align="center"  th:text="${voucher.code}"></td>
+	                        <td align="center"  th:text="${voucher.value}"></td>
+	                        <td align="center"  th:text="${voucher.start_Date}"></td>
+	                        <td align="center"  th:text="${voucher.end_Date}"></td>
+	                        <td align="center"><a th:href="@{'/admin/qlvoucher/delete/' + ${voucher.id_voucher}}"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button> </a>
+	                         <a th:href="@{'/admin/qlvoucher/edit/' + ${voucher.id_voucher}}"><button href="" class="tinhnang2 " type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a></td>
 	                    </tr>
 	
 	            </tr>
