@@ -85,11 +85,3 @@
 </script>
 
 </body>
-<!--
-câu lệnh truy vấn top 6
-SELECT P.id_product, P.name, COUNT(BD.id_product) AS total_sold
-FROM product AS P
-JOIN bill_detail AS BD ON P.id_product = BD.id_product
-GROUP BY P.id_product, P.name
-ORDER BY total_sold DESC
-LIMIT 6;-->
