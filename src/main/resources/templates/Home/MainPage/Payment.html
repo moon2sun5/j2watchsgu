@@ -1,17 +1,62 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="(~{Home/MainPage/HomePage :: headtitle})">
-    
+
 </head>
 
-	<body>
-		<div th:replace="(~{Home/Content/header :: header})"></div>	
+<body>
+<script>
+	jQuery(document).ready(function($) {
+    window.checkVoucher = function(totalPrice) {
+  var voucher = document.getElementById("promocode");
+  checkVoucherValid(voucher.value,totalPrice);
+};
 
-		<div th:replace="(~{Home/Content/pay :: pay})"></div>	
-	    <div th:replace="(~{Home/Content/footer :: footer})"></div>
-		<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
-	    <script>AOS.init();</script>
-	    <script th:src="@{/js/index.js}"></script>
-	</body>
+
+function checkVoucherValid(voucher,totalPrice) {
+  $.ajax({
+    type: "POST",
+    url: "/home/giohang/thanhtoan/checkVoucher",
+    data: {voucher: voucher},
+    success: function(response) {
+      if(response.discount!=null){
+        $('#messageVoucher').text(response.message);
+        $('#message').removeAttr('hidden');
+        $('#messageVoucher').css('color','green');
+        $('#totalBill').text((totalPrice*(100-response.discount.value)/100).toString()+'đ')
+        $('#voucher').val(response.discount.id_voucher);
+      }
+      else if(response.message!=null){
+        $('#messageVoucher').text(response.message);
+        $('#message').removeAttr('hidden');
+        $('#messageVoucher').css('color','red');
+        $('#totalBill').text(totalPrice.toString()+'đ');
+        $('#voucher').val('');
+      }
+      else{
+        $('#messageVoucher').text("");
+        $('#message').attr('hidden',true);
+        $('#totalBill').text(totalPrice.toString()+'đ');
+        $('#voucher').val('');
+      }
+    },
+    error: function(error) {
+      alert(error);
+    }
+  });
+};
+
+
+
+  });
+</script>
+<div th:replace="(~{Home/Content/header :: header})"></div>
+
+<div th:replace="(~{Home/Content/pay :: pay})"></div>
+<div th:replace="(~{Home/Content/footer :: footer})"></div>
+<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
+<script>AOS.init();</script>
+<script th:src="@{/js/index.js}"></script>
+</body>
 </html>
 

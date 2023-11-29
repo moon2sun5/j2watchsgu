@@ -7,5 +7,5 @@ import com.sgu.j2watch.entities.Voucher;
 
 @Repository
 public interface VoucherRepository extends CrudRepository<Voucher, Integer>{
-
+    public Voucher findByCode(String code);
 }

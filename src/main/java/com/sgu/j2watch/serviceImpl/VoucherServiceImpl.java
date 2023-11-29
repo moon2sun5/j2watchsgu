@@ -42,21 +42,26 @@ public class VoucherServiceImpl implements VoucherService {
         voucherRepository.deleteById(id);
     }
 
-	@Override
-	public List<Voucher> getVouchersByStartDateBeforeAndEndDateAfter(Timestamp startDate, Timestamp endDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Voucher> getVouchersByStartDateBeforeAndEndDateAfter(Timestamp startDate, Timestamp endDate) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Iterable<Voucher> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Iterable<Voucher> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Optional<Voucher> findById(int id_voucher) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
+    @Override
+    public Voucher findByCode(String code) {
+        return voucherRepository.findByCode(code);
+    }
+
+    @Override
+    public Optional<Voucher> findById(int id_voucher) {
+        // TODO Auto-generated method stub
+        return Optional.empty();
+    }
 }

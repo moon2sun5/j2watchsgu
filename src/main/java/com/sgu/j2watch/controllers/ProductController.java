@@ -112,11 +112,6 @@ public class ProductController {
         return "redirect:/admin/qlsanpham/addsanpham";
     }
 
-  
-
-
-    
-
 	@GetMapping("/qlsanpham/delete/{id}")
     public String deleteSanpham(@PathVariable("id") Integer id) {
         productRepository.deleteById(id);

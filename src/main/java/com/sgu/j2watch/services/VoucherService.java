@@ -27,6 +27,7 @@ public interface VoucherService {
 	List<Voucher> getVouchersByStartDateBeforeAndEndDateAfter(Timestamp startDate, Timestamp endDate);
 
 	Iterable<Voucher> findAll();
+	Voucher findByCode(String code);
 
 	Optional<Voucher> findById(int id_voucher);
 

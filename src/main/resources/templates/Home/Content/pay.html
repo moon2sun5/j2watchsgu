@@ -1,51 +1,51 @@
-<div style="margin-top: 100px;" th:fragment="pay">
-	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
-	    <li class="breadcrumb-item"><a th:href="@{/home/giohang}">Giỏ hàng</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
-	  </ol>
-	</nav>
-	<form method="post" action="">
+<div style="margin-top: 100px;" th:fragment="pay" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/home/giohang}">Giỏ hàng</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
+        </ol>
+    </nav>
+    <form method="post" action="/home/giohang/thanhtoan/ondoing">
         <div id="wrapper">
-                    <h2 class="title">Thông tin thanh toán</h2>
+            <h2 class="title">Thông tin thanh toán</h2>
             <div class="wrapper_child" style="display: flex; margin-top: 20px; margin-left: 135px;">
                 <!-- Content -->
                 <div class="info" style="margin: 10px 50px 20px 50px;">
-                    
+
                     <div class="info__rows">
                         <label for="" class="form-label">Họ tên *</label><br>
                         <input class="form-control" name="fullname" value="" type="text"
-                            required oninvalid="this.setCustomValidity('Vui lòng nhập họ tên của bạn')" oninput="setCustomValidity('')">
+                               required oninvalid="this.setCustomValidity('Vui lòng nhập họ tên của bạn')" oninput="setCustomValidity('')">
                     </div>
 
                     <div class="info__rows">
                         <label for="" class="form-label">Địa chỉ *</label>
                         <input class="form-control" value="" name="deliver_address"
-                            type="text" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ của bạn')"oninput="setCustomValidity('')">
+                               type="text" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ của bạn')"oninput="setCustomValidity('')">
                     </div>
 
                     <div class="info__rows">
                         <label for="" class="form-label">Số điện thoại *</label>
                         <input class="form-control" value="" name="dienthoai" type="tel"
-                        pattern="^0[0-9]{9,10}" required
-                            oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại của bạn! Số điện thoại phải đủ 10 số và bắt đầu bằng 0')"
-                            oninput="setCustomValidity('')">
+                               pattern="^0[0-9]{9,10}" required
+                               oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại của bạn! Số điện thoại phải đủ 10 số và bắt đầu bằng 0')"
+                               oninput="setCustomValidity('')">
                     </div>
 
                     <div class="info__rows">
                         <label for="" class="form-label">Email *</label>
                         <input class="form-control" value="" name="email" type="email"
-                            required oninvalid="this.setCustomValidity('Vui lòng nhập email của bạn! Email phải đúng định dang. Vd abc@abc.com')" oninput="setCustomValidity('')">
+                               required oninvalid="this.setCustomValidity('Vui lòng nhập email của bạn! Email phải đúng định dang. Vd abc@abc.com')" oninput="setCustomValidity('')">
                     </div>
 
                     <div class="info__rows">
                         <label for="" class="form-label">Ghi chú đơn hàng *</label>
                         <input name="description_bill" class="form-control" type="text"
-                            placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
-                            autofocus>
+                               placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
+                               autofocus>
                     </div>
-                   
+
                 </div>
                 <div class="bill" style="margin-bottom: 40px;">
                     <div class="bill-detail">
@@ -54,46 +54,45 @@
                             <p class="bill__rows-name">SẢN PHẨM</p>
                             <b class="bill__rows-price">TỔNG CỘNG</b>
                         </div>
-                        
 
-                        <div class="bill__rows">
-                            <p class="bill__rows-name">CASIO x 5
-                            </p>
-                            <b class="bill__rows-price">15.000.000đ</b>
-                        </div>
-                       
+                        <span th:each="cartItem : ${cartProductList}">
+                            <div class="bill__rows" >
+                                <p class="bill__rows-name" th:text="${cartItem.name +' (SL: '+cartItem.quantity+')'}">
+                                </p>
+                                <b class="bill__rows-price" th:text="${cartItem.price}"></b>
+                            </div>
+                        </span>
                         <div class="bill__rows">
                             <p class="bill__rows-name">Phí vận chuyển</p>
                             <b class="bill__rows-price">30.000đ</b>
                         </div>
 
                         <p class="bill__rows-name">Mã giảm giá</p>
-                    	<div style="display: flex; height: 40px; ">
-                        	<input value="" id="promocode" class="form-control" style="width: 140px; margin-right: 10px; ">
-                        	<button type="button" class="btn btn-outline-danger">Áp dụng</button>
+                        <div style="display: flex; height: 40px; ">
+                            <input type='text' id="promocode" class="form-control" style="width: 140px; margin-right: 10px; ">
+                            <button type="button" class="btn btn-outline-danger" id="btn_voucher" th:onclick="checkVoucher([[${totalPrice+30000}]])">Áp dụng</button>
                         </div>
+                        <div  id="message" class="bill_rows" hidden>
+                            <p id="messageVoucher" class="bill__rows-name" text="" style="padding-top:15px;text-align:center"></p>
+                        </div>
+
+                        <input type="hidden" id='voucher' name="voucher" value="">
                         <div id="result"></div>
 
                         <div class="bill__rows row-affect">
                             <p class="bill__rows-name">Tổng cộng</p>
-                            <b
-                                class="bill__rows-price-total">15.030.000đ</b>
+                            <b id="totalBill"
+                               class="bill__rows-price-total" th:text="${totalPrice+30000+'đ'}"></b>
                             <input type="hidden" name="totalAfterDiscount" id="totalAfterDiscount"
-                                value="<?php echo $totalWithShipping; ?>">
+                                   value="<?php echo $totalWithShipping; ?>">
                         </div>
 
-                        <div>
-                            <input type="checkbox" class="">
-                            <span>Thanh toán khi nhận hàng</span>
-                        </div>
-
-                        <input type="hidden" id="voucher_id" name="voucher_id">
                         <button type="submit" id="order_product_detail"
-                            name="order_product_detail" class="bill-title bill-btn">Đặt hàng</button>
+                                name="order_product_detail" class="bill-title bill-btn" value="submit">Đặt hàng</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-		
+
 </div>
