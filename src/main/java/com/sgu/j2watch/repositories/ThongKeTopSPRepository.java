@@ -16,7 +16,7 @@ public interface  ThongKeTopSPRepository  extends JpaRepository<BillDetail, Inte
 		       "WHERE bd.id_product = P.id_product " +
 		       "GROUP BY bd.id_product, P.name " +
 		       "ORDER BY SUM(bd.quantity) DESC " +
-		       "LIMIT 10", nativeQuery = true)
+		       "LIMIT 10", nativeQuery = false)
 		List<ThongkeTopSPDTO> findTop10BestSellingProducts();
 
 
