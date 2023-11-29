@@ -59,11 +59,11 @@
                     <td th:text="${receipt.id_receipt}"></td>
                     <td th:each="sup : ${listSupplier}" th:if="${sup.id_supplier == receipt.supplier_id}" th:text="${sup.name}"></td>
                     <td th:each="nhanvien : ${listUser}" th:if="${nhanvien.id_user == receipt.user_id}" th:text="${nhanvien.name}"></td>
-                    <td th:text="${receipt.total}"></td>
+                    <td th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${receipt.total} + '))</script>'"></td>
                     <th:block th:each="receipt_detail : ${listReceiptDetail}" th:if="${receipt.id_receipt == receipt_detail.receipt_id}">
 						<td th:each="product : ${listProduct}" th:if="${product.idProduct == receipt_detail.product_id}" th:text="${product.name}"></td>
 						<td th:text="${receipt_detail.quantity}"></td>
-						<td th:text="${receipt_detail.price}"></td>
+						<td th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${receipt_detail.price} + '))</script>'"></td>
 						<td th:text="${receipt_detail.percent}"></td>
                     </th:block>
 					<td th:text="${receipt.create_date}"></td>
