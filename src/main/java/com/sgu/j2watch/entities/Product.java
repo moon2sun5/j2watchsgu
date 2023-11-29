@@ -23,7 +23,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
-    private Integer idProduct;
+    private Integer id_product;
 
     @Column(name = "name", length = 100)
     private String name;
@@ -59,11 +59,11 @@ public class Product {
     private MaterialGlass materialGlassId;
 
 	public Integer getIdProduct() {
-		return idProduct;
+		return id_product;
 	}
 
 	public void setIdProduct(Integer idProduct) {
-		this.idProduct = idProduct;
+		this.id_product = idProduct;
 	}
 
 	public String getName() {

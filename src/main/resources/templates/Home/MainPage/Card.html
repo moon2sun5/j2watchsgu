@@ -1,17 +1,120 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="(~{Home/MainPage/HomePage :: headtitle})">
-    
 </head>
 
-	<body>
-		<div th:replace="(~{Home/Content/header :: header})"></div>	
+<body>
+<script>
+	jQuery(document).ready(function($) {
+window.changeQuantityCart = function(itemId, newQuantity) {
+  updateQuantity(itemId, newQuantity);
+};
+window.deleteItem = function(itemId){
+  var confirmation = confirm("Bạn chắc chắn muốn xoá sản phẩm khỏi giỏ hàng?");
+  if(confirmation){
+    $.ajax({
+      url: '/home/giohang/deleteItem',
+      method: 'POST',
+      data: { id: itemId},
+      success: function(response) {
+        $('#item'+itemId).remove();
+        updateTable(response);
+        updateTotal(response);
+        updateButtonColor(response);
+      },
+      error: function(error) {
+        alert(error);
+      }
+    });
+  }
+  else{
 
-		<div th:replace="(~{Home/Content/card :: card})"></div>	
-	    <div th:replace="(~{Home/Content/footer :: footer})"></div>
-		<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
-	    <script>AOS.init();</script>
-	    <script th:src="@{/js/index.js}"></script>
-	</body>
+  }
+};
+
+function updateQuantity(itemId, newQuantity) {
+  $.ajax({
+    type: "POST",
+    url: "/home/giohang/updateQuantity",
+    data: { id: itemId, quantity: newQuantity },
+    success: function(response) {
+      $('#price_'+itemId).text(Number(newQuantity*$('#price_'+itemId).data('price')).toFixed(3));
+      $('#totalPriceOfProduct').text(response+'đ');
+      $('#totalPriceOfBill').text(response+30000+'đ');
+    },
+    error: function(error) {
+      alert(error);
+    }
+  });
+};
+
+function updateTable(data){
+  var table = $('#cart_Table');
+  var tbody = $('#cart_Table tbody');
+  var emptyMessage = $('#emptyMessage');
+  tbody.empty();
+
+  if (data.length > 0) {
+    $.each(data, function(index, cartItem) {
+      var row = $('<tr>');
+      row.attr('th:id', 'item' + cartItem.id);  // Set th:id attribute
+      row.append($('<td>').html('<img class="img_cart" src="/img/' + cartItem.img + '" alt="Product Image"/>'));
+      row.append($('<td>').html('<p>' + cartItem.name + '</p>'));
+      row.append($('<td>').html('<p>' + cartItem.price + '</p>'));
+      row.append($('<td>').html('<input type="number" min="1" name="quantity" id="quantity_input_' + cartItem.id + '" value="' + cartItem.quantity + '" onclick="changeQuantityCart(' + cartItem.id + ', this.value)">'));
+      row.append($('<td>').html('<p id="price_' + cartItem.id + '" data-price="' + cartItem.price + '">' + cartItem.price * cartItem.quantity + '</p>'));
+      row.append($('<td>').html('<button type="button" onclick="deleteItem(' + cartItem.id + ')" id="delete_btn_' + cartItem.id + '" name="delete_item" value="' + cartItem.id + '" class="btn btn-danger btn-sm"><i class="ti-close"></i></button><button type="button" name="update_cart" value="" class="btn btn-danger btn-sm"><i class="ti-save"></i></button>'));
+      tbody.append(row);
+           });
+  }else {
+    var row = 	'<tr>' +
+                      '<td colspan="5" style="text-align:center; padding-top:50px;">' +
+                        'Giỏ hàng của bạn đang trống - ' +
+                        '<a href="/home" style="color: blue; font-weight: bold;">Mua sắm</a>' +
+                      '</td>' +
+                    '</tr>';
+    tbody.append(row);
+       }
+};
+
+function updateTotal(data){
+    if (data.length > 0) {
+    var total = 0;
+    $.each(data, function(index, cartItem) {
+      total += cartItem.price * Float.valueOf(cartItem.quantity);
+           });
+           $('#totalPriceOfProduct').text(total+'đ');
+           $('#delivery').text(30000+'đ');
+           $('#totalPriceOfBill').text(total+30000+'đ');
+  }else {
+    $('#totalPriceOfProduct').text(0+'đ');
+    $('#delivery').text(0+'đ');
+    $('#totalPriceOfBill').text(0+'đ');
+       }
+}
+
+function updateButtonColor(data){
+  if (data.length > 0) {
+    $('#btn_Payment').css('background-color','rgb(13, 178, 13)');
+    $('#btn_Payment').prop('disabled',false);
+  }
+  else{
+    $('#btn_Payment').css('background-color','gray');
+    $('#btn_Payment').prop('disabled',true);
+  }
+}
+
+
+});
+</script>
+<div th:replace="(~{Home/Content/header :: header})"></div>
+<div th:replace="(~{Home/Content/card :: card})"></div>
+<div th:replace="(~{Home/Content/footer :: footer})"></div>
+<script th:src="@{/css/bootstrap/bootstrap-5.2.2-dist/js/bootstrap.js}"></script>
+<script>AOS.init();</script>
+<script th:src="@{/js/index.js}" defer="defer"></script>
+
+
+</body>
 </html>
 
