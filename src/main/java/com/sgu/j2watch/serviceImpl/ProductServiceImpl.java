@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sgu.j2watch.entities.Product;
 import com.sgu.j2watch.repositories.ProductRepository;
+import com.sgu.j2watch.repositories.ProductRepositoryJPA;
 import com.sgu.j2watch.services.ProductService;
 
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    
+    @Autowired
+    private ProductRepositoryJPA productRepositoryJPA;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -96,4 +100,15 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Product> searchNameProduct(String keyName){
+		return this.productRepositoryJPA.searchNameProduct(keyName);
+	}
+	
+	@Override
+	public List<Product> findByCondition(Integer id_category, Integer id_brand, Float price){
+		return this.productRepositoryJPA.findByCondition(id_category, id_brand, price);
+	}
+	
 }

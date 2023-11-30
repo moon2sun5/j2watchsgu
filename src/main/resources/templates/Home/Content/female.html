@@ -13,11 +13,14 @@
 				<div class="is-divider"></div>
 
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item">Casio</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
+					<th:block th:each="category : ${listCategory}">
+						<li class="list-group-item">
+							<label>
+			                    <input class="form-check-input mt-0" style="padding-top: 20px; padding-right: 20px;" type="checkbox"/>
+			                    <span style="padding-left: 10px;" th:text="${category.name}"></span>
+			                </label>
+						</li>
+					</th:block>
 				</ul>
 			</div>
 
@@ -27,11 +30,14 @@
 				<div class="is-divider"></div>
 				<ul class="list-group list-group-flush">
 
-					<li class="list-group-item">Casio</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
+					<th:block th:each="brand : ${listBrand}">
+						<li class="list-group-item">
+							<label>
+			                    <input class="form-check-input mt-0" style="padding-top: 20px; padding-right: 20px;" type="checkbox"/>
+			                    <span style="padding-left: 10px;" th:text="${brand.name}"></span>
+			                </label>
+						</li>
+					</th:block>
 
 				</ul>
 			</div>
@@ -44,8 +50,11 @@
 					<label for="price-range">Chọn giá sản phẩm tối đa:</label>
 					<input type="range" id="category__price-range" name="price-range" min="100000" max="200000000" value="500" step="100000" oninput="showPriceRange(this.value)">
 					<div id="category__range-value"></div>
-
 				</form>
+			</div>
+			
+			<div class="category d-grid gap-2 d-md-flex justify-content-md-end">
+			  <button style="margin-top: -20px; margin-bottom: 20px;" class="btn btn-outline-dark" type="button">Tìm kiếm</button>
 			</div>
 		</div>
 
