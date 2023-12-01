@@ -16,31 +16,30 @@
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	<div id="form_adddh" class="content-formaddnhanvien">
 
-        
+	<form th:action="@{/admin/qlnhaphang/addnhaphang}" th:object="${receiptSupplier}" method="post">
         <div class="row">
-
 
             <div class="form1">
                 <label class="labelnhanvien">Nhà cung cấp: </label>
-                <select class="cbo" name="supplier_id" id="">
+                <select class="cbo" name="supplier_id" th:field="*{receipt.supplier_id}">
 
-                        <option value=""></option>
+                        <option th:each="sup : ${listSupplier}" th:value="${sup.id_supplier}" th:text="${sup.name}"></option>
                         
                 </select>
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Nhân viên: </label>
-                <select class="cbo" name="user_id" id="">
+                <select class="cbo" name="user_id" th:field="*{receipt.user_id}">
                    
-                        <option value=""></option>
+                        <option th:each="user : ${listUser}" th:if="${user.role_id == 2 || user.role_id == 3}" th:value="${user.id_user}" th:text="${user.name}"></option>
                         
                  </select>
             </div>
             
             <div class="form1">
                 <label class="labelnhanvien">Tổng tiền: </label>
-                <input class="form-control" id="total" name="total" type="text" >
+                <input class="form-control" id="total" name="total" type="text" th:field="*{receipt.total}">
             </div>
 
             
@@ -50,27 +49,26 @@
 
             <div class="form1">
                 <label class="labelnhanvien">Sản phẩm: </label>
-                <select class="cbo" name="product_id" id="">
-                    
+                <select class="cbo" name="product_id" id="" th:field="*{receipt_detail.product_id}">
 
-                        <option value=""></option>
+                        <option th:each="product : ${listProduct}" th:value="${product.idProduct}" th:text="${product.name}"></option>
                         
                 </select>
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Số lượng: </label>
-                <input class="form-control" id="soluong" name="quantity" type="number" min="0" step="1" oninput="result()" >
+                <input class="form-control" id="soluong" name="quantity" type="number" min="1" step="1" oninput="result()" th:field="*{receipt_detail.quantity}">
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Giá gốc: </label>
-                <input class="form-control" id="price" name="price" type="number" oninput="result()">
+                <input class="form-control" id="price" name="price" type="number" oninput="result()" th:field="*{receipt_detail.price}">
             </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Phần trăm: </label>
-                <input class="form-control" id="percent" name="percent" type="number" min="0" step="0.01" oninput="result()">
+                <input class="form-control" id="percent" name="percent" type="number" min="0" step="0.01" oninput="result()" th:field="*{receipt_detail.percent}">
             </div>
 
             <div class="form1">
@@ -78,8 +76,45 @@
                 <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
 
             </div>
+            <div class="form1" style="display: none;">
+	            
+	            <input type="text" id="dateInput" th:field="*{receipt.create_date}" readonly/>
+
+				<script th:inline="javascript">
+				    document.addEventListener('DOMContentLoaded', function() {
+				        var currentDate = /*[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]*/ '';
+				        document.getElementById('dateInput').value = currentDate;
+				    });
+				</script>
+	            	        
+	        </div>
 
         </div>
+        <script>
+		    function result() {
+		    // Lấy giá trị của số a và b từ ô input
 
+		        var a = document.getElementById("price").value;
+		        var b = document.getElementById("percent").value;
+		        var c = document.getElementById("soluong").value;
+
+		        let sum = 0;
+		        a = parseFloat(a);
+		        b = parseFloat(b);
+		        c = parseFloat(c);
+		
+		        // Tính tổng của a và b
+		        // var sum = (a + (a * b)) * c;
+		        // sum = (parseFloat(a) + (parseFloat(a) * parseFloat(b))) * parseFloat(c);
+		        sum = a * c;
+		        var formattedSum = sum.toLocaleString('de-DE'); // đổi thành tiền
+		        
+		
+		        // Hiển thị kết quả tính toán trên ô kết quả
+		        document.getElementById("total").value = sum;
+		    }
+		    
+		</script>
+	</form>        
     </div>
  </body>

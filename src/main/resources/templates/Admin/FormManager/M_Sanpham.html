@@ -81,7 +81,7 @@
 
                    <td><img th:src="@{'/img/'+${product.img}}" class="content__left-img" data-image=""/></td>
                     <!--<td></td>-->
-                    <td align="center" th:text="${product.price}"></td>
+                    <td th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${product.price} + '))</script>'"></td>
                     <td align="center" th:text="${product.quantity}"></td>
                     <td align="center" th:text="${product.materialWire.name}"></td>
                     <td align="center" th:text="${product.materialGlassId.name}"></td>

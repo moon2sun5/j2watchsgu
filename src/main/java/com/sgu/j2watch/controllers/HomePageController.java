@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.sgu.j2watch.repositories.BrandRepository;
 import com.sgu.j2watch.repositories.CategoryRepository;
 import com.sgu.j2watch.repositories.UserRepository;
 
@@ -33,6 +34,10 @@ public class HomePageController {
     private ProductFSService productFSService;
     @Autowired
     private ProductService productService;
+    @Autowired
+	private CategoryRepository categoryRepository;
+	@Autowired
+	private BrandRepository brandRepository;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String HomePage() {
@@ -63,6 +68,8 @@ public class HomePageController {
         model.addAttribute("totalProducts", productFSService.findTotalProducts(4));
         model.addAttribute("totalPages",totalPages);
         model.addAttribute("currentPage",page);
+        model.addAttribute("listCategory", categoryRepository.findAll());
+		model.addAttribute("listBrand", brandRepository.findAll());
 
         return "Home/MainPage/MaleWatch";
     }
@@ -85,7 +92,8 @@ public class HomePageController {
         model.addAttribute("totalProducts", productFSService.findTotalProducts(5));
         model.addAttribute("totalPages",totalPages);
         model.addAttribute("currentPage",page);
-
+        model.addAttribute("listCategory", categoryRepository.findAll());
+		model.addAttribute("listBrand", brandRepository.findAll());
         return "Home/MainPage/FemaleWatch";
 
     }

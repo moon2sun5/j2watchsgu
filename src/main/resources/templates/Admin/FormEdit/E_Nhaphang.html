@@ -1,5 +1,5 @@
-<form th:fragment="editnhaphang">
-	<div class="modalDH js-modalDH">
+<form th:fragment="editnhaphang" th:if="${receiptSupplier != null}" th:action="@{'/admin/qlnhaphang/saveNhaphang/' + ${receiptSupplier.receipt.id_receipt}}" th:object="${receiptSupplier}" method="post">
+	<div class="modalDH js-modalDH" th:each="listUser : ${listUser}" th:if="${listUser.id_user == receiptSupplier.receipt.user_id}" th:classappend="${receiptSupplier ne null} ? 'open' : ''" >
         <div class="modal-containerDH js-containerDH">
 
             <header class="modal-header">
@@ -7,17 +7,19 @@
             </header>
 
             <div class="modal-bodyDH1">
+		        <input style="display: none;" class="form-control" type="text" th:field="*{receipt.id_receipt}"  readonly>
+				<input style="display: none;" class="form-control" type="text" th:field="*{receipt_detail.id_receipt_detail}"  readonly>
                 <div class="form3">
                     <label class="labelnhanvien">Nhà cung cấp: </label>
-                    <select style="width: 400px; display:block;" class="cbo" name="" id="">
-
+                    <select style="width: 400px; display:block;" class="cbo" name="" th:field="*{receipt.supplier_id}">
+							<option th:each="sup : ${listSupplier}" th:value="${sup.id_supplier}" th:text="${sup.name}"></option>
                     </select>
                 </div>
 
                 <div class="form3">
                     <label class="labelnhanvien">Nhân viên: </label>
-                    <select style="width: 400px; display:block;" class="cbo" name="" id="">
-
+                    <select style="width: 400px; display:block;" class="cbo" name="" th:field="*{receipt.user_id}">
+							<option th:each="user : ${listUser}" th:if="${user.role_id == 2 || user.role_id == 3}" th:value="${user.id_user}" th:text="${user.name}"></option>
                     </select>
                 </div>
             </div>
@@ -25,24 +27,24 @@
             <div class="modal-bodyDH3">
                 <div class="form3">
                     <label class="labelnhanvien">Sản phẩm: </label>
-                    <select style="width: 200px; display:block;" class="cbo" name="" id="">
-
+                    <select style="width: 200px; display:block;" class="cbo" name="" th:field="*{receipt_detail.product_id}">
+						<option th:each="product : ${listProduct}" th:value="${product.idProduct}" th:text="${product.name}"></option>
                     </select>
                 </div>
 
                 <div class="form3">
                     <label class="labelnhanvien">Giá gốc: </label>
-                    <input style="width: 200px; display:block;" class="form-control" type="text">
+                    <input style="width: 200px; display:block;" id="price"  class="form-control" type="number" oninput="result()" th:field="*{receipt_detail.price}">
                 </div>
 
                 <div class="form3">
                     <label class="labelnhanvien">Số lượng: </label>
-                    <input style="width: 150px; display:block;" class="form-control" type="number" min="1">
+                    <input style="width: 150px; display:block;" id="soluong"  class="form-control" type="number" min="1" oninput="result()" th:field="*{receipt_detail.quantity}">
                 </div>
 
                 <div class="form3">
                     <label class="labelnhanvien">Phần trăm: </label>
-                    <input style="width: 150px; display:block;" class="form-control" type="text">
+                    <input style="width: 150px; display:block;" id="percent" class="form-control" type="text" th:field="*{receipt_detail.percent}">
                 </div>
 
             </div>
@@ -51,22 +53,49 @@
 
                 <div class="form3">
                     <label class="labelnhanvien">Ngày tạo đơn hàng: </label>
-                    <input style="width: 400px; display:block;" class="form-control" type="date">
+                    <input style="width: 400px; display:block;" class="form-control" type="date" th:field="*{receipt.create_date}" readonly>
                 </div>
 
                 <div class="form3">
                     <label class="labelnhanvien">Tổng tiền: </label>
-                    <input style="width: 400px; display:block;" class="form-control" type="text">
+                    <input style="width: 400px; display:block;" id="total"  class="form-control" type="text" th:field="*{receipt.total}" readonly>
                 </div>
             </div>
 
 
             <footer class="modal-footer">
-                <button id="btn-save" class="btn_save">Lưu lại</button>
-                <button id="btn-save" class="btn_close js-close-DH">Hủy bỏ</button>
+                <button id="btn-save" type="submit" class="btn_save">Lưu lại</button>
+                <button onclick="cancel()" type="button" id="btn-save" class="btn_close">Hủy bỏ</button>
             </footer>
 
+			
 
         </div>
+        <script type="text/javascript">
+				function cancel(){
+					window.location = "/admin/qlnhaphang";
+				}
+			    function result() {
+			    // Lấy giá trị của số a và b từ ô input
+	
+			        var a = document.getElementById("price").value;
+			        var c = document.getElementById("soluong").value;
+	
+			        let sum = 0;
+			        a = parseFloat(a);
+			        c = parseFloat(c);
+			
+			        // Tính tổng của a và b
+			        // var sum = (a + (a * b)) * c;
+			        // sum = (parseFloat(a) + (parseFloat(a) * parseFloat(b))) * parseFloat(c);
+			        sum = a * c;
+			        var formattedSum = sum.toLocaleString('de-DE'); // đổi thành tiền
+			        
+			
+			        // Hiển thị kết quả tính toán trên ô kết quả
+			        document.getElementById("total").value = sum;
+			    }
+			    
+			</script>
     </div>
 </form>
