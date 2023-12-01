@@ -49,10 +49,7 @@ public class AdminPageController {
         return "Admin/FormManager/M_Hoadon";
     }
 
-    @GetMapping("/qlnhaphang")
-    public String qlnhaphang() {
-        return "Admin/FormManager/M_Nhaphang";
-    }
+
 
     @GetMapping("/qlbaocao")
     public String qlbaocao() {
@@ -76,10 +73,6 @@ public class AdminPageController {
 //        return "Admin/FormAdd/A_Sanpham";
 //    }
 
-    @GetMapping("/qlnhaphang/addnhaphang")
-    public String addnhaphang() {
-        return "Admin/FormAdd/A_Nhaphang";
-    }
 
 //    @GetMapping("/qlnhacungcap/addnhacungcap")
 //    public String addnhacungcap() {
