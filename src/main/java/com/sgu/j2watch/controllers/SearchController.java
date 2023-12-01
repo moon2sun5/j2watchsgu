@@ -1,5 +1,7 @@
 package com.sgu.j2watch.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sgu.j2watch.entities.Category;
 import com.sgu.j2watch.entities.Product;
 import com.sgu.j2watch.entities.ProductFS;
 import com.sgu.j2watch.repositories.BrandRepository;
@@ -44,6 +47,10 @@ public class SearchController {
 		model.addAttribute("listCategory", categoryRepository.findAll());
 		model.addAttribute("listBrand", brandRepository.findAll());
 		List<Product> list = this.productService.getAllProducts();
+		
+		List<Product> listAll = new Array();
+
+		
 //		System.out.println(request.getParameter("price_product"));
 		Float price = 0f;
 		String priceString = request.getParameter("price_product");
@@ -51,7 +58,7 @@ public class SearchController {
 		if(priceString != null) {
 			price = Float.parseFloat(priceString);
 			if (price == 100000f) {
-				price = 200000000f;
+				price = 0f;
 			}
 			System.out.println("khác null" + price);
 		}
@@ -90,7 +97,7 @@ public class SearchController {
 				}
 			}
 			else if (category != null && !category.isEmpty() && brand != null && !brand.isEmpty()){
-				System.out.println("Trường hợp lọc giá vs category");
+				System.out.println("Trường hợp lọc brand vs category");
 	            for (int v_category : category) {
 	            	for (int v_brand : brand) {
 	            		list = this.productService.findByCondition(v_category, v_brand, null);
@@ -106,7 +113,9 @@ public class SearchController {
 				}
 				else if(brand != null && !brand.isEmpty()) {
 					for (int value : brand) {
+						System.out.println(value);
 						list = this.productService.findByCondition(null, value, null);
+						list.addAll(list);
 					}					
 				}
 				else if(price > 100000) {
@@ -116,6 +125,26 @@ public class SearchController {
 			}
 		}
 		model.addAttribute("listSearch", list);
+		if (category == null) {
+			model.addAttribute("list_Category", 0);
+			model.addAttribute("list_Brand", brand);
+			model.addAttribute("list_Price", price);
+		}
+		if (brand == null) {
+			model.addAttribute("list_Brand", 0);									
+			model.addAttribute("list_Category", category);
+		}
+		if (price == 0) {
+			model.addAttribute("list_Price", 0);			
+		}
+		if (category != null && brand != null) {
+			model.addAttribute("list_Category", category);
+			model.addAttribute("list_Brand", brand);
+		}
+		if (category == null && brand == null) {
+			model.addAttribute("list_Category", 0);
+			model.addAttribute("list_Brand", 0);
+		}
         return "Home/MainPage/SearchPage";
     }
 }
