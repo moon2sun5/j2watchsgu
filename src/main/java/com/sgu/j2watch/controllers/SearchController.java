@@ -48,7 +48,7 @@ public class SearchController {
 		model.addAttribute("listBrand", brandRepository.findAll());
 		List<Product> list = this.productService.getAllProducts();
 		
-		List<Product> listAll = new Array();
+		List<Product> listAll = new ArrayList();
 
 		
 //		System.out.println(request.getParameter("price_product"));
@@ -67,7 +67,8 @@ public class SearchController {
 		}
 		System.out.println(price);
 		if(keyword != null) {
-			list = this.productService.searchNameProduct(keyword);	
+			list = this.productService.searchNameProduct(keyword);
+			listAll.addAll(list);
 //			System.out.println("helloooo");
 		}
 		else{
@@ -76,6 +77,7 @@ public class SearchController {
 	            for (int v_category : category) {
 	            	for (int v_brand : brand) {
 	            		list = this.productService.findByCondition(v_category, v_brand, price);
+	            		listAll.addAll(list);
 	            	}
 	            }
 	        }
@@ -85,6 +87,7 @@ public class SearchController {
 				if(brand != null && !brand.isEmpty()) {
 					for (int value : brand) {
 						list = this.productService.findByCondition(null, value, price);
+						listAll.addAll(list);
 					}					
 				}
 			}
@@ -93,6 +96,7 @@ public class SearchController {
 				if(category != null && !category.isEmpty()) {
 					for (int value : category) {
 						list = this.productService.findByCondition(value, null, price);
+						listAll.addAll(list);
 					}					
 				}
 			}
@@ -101,6 +105,7 @@ public class SearchController {
 	            for (int v_category : category) {
 	            	for (int v_brand : brand) {
 	            		list = this.productService.findByCondition(v_category, v_brand, null);
+	            		listAll.addAll(list);
 	            	}
 	            }
 			}
@@ -109,22 +114,23 @@ public class SearchController {
 				if(category != null && !category.isEmpty()) {
 					for (int value : category) {
 						list = this.productService.findByCondition(value, null, null);
+						listAll.addAll(list);
 					}					
 				}
 				else if(brand != null && !brand.isEmpty()) {
 					for (int value : brand) {
 						System.out.println(value);
 						list = this.productService.findByCondition(null, value, null);
-						list.addAll(list);
+						listAll.addAll(list);
 					}					
 				}
 				else if(price > 100000) {
-					
-					list = this.productService.findByCondition(null, null, price);					
+					list = this.productService.findByCondition(null, null, price);
+					listAll.addAll(list);
 				}
 			}
 		}
-		model.addAttribute("listSearch", list);
+		model.addAttribute("listSearch", listAll);
 		if (category == null) {
 			model.addAttribute("list_Category", 0);
 			model.addAttribute("list_Brand", brand);
