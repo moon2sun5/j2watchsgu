@@ -14,7 +14,7 @@
 				<div class="is-divider"></div>
 
 				<ul class="list-group list-group-flush">
-					
+
 					<th:block th:each="category : ${listCategory}">
 						<li class="list-group-item">
 							<label >
@@ -23,7 +23,7 @@
 			                </label>
 						</li>
 					</th:block>
-					
+
 				</ul>
 			</div>
 
@@ -47,13 +47,13 @@
 
 			<!-- PRICE -->
 			<div class="category">
-				
+
 					<h5>LỌC THEO GIÁ</h5>
 					<div class="is-divider"></div>
 					<label for="price-range">Chọn giá sản phẩm tối đa:</label>
 					<input type="range" id="category__price-range" name="price_product" min="100000" max="200000000" value="500" step="100000" oninput="showPriceRange(this.value)">
 					<div id="category__range-value" th:each="list : ${list_Price}"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${list} + '))</script>'"> đ</p></div>
-				
+
 			</div>
 			<script>
 			    function showPriceRange(value) {
@@ -61,15 +61,15 @@
 			        document.getElementById("category__price-range").value = parseFloat(value);
 			    }
 			</script>
-						
+
 			<div class="category d-grid gap-2 d-md-flex justify-content-md-end">
 			  <button style="margin-top: -20px; margin-bottom: 20px;" class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
 			</div>
 			</form>
 		</div>
-		
-		
-		
+
+
+
 		<div class="c-9">
 
 			<div class="wrapper__product">

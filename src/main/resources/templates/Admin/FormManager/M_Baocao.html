@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Revenue Chart</title>
+  <!-- Thêm các thư viện Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>Revenue Chart</h2>
+<!-- Đồ thị doanh thu theo tháng -->
+<canvas id="monthlyRevenueChart" width="400" height="200"></canvas>
+<br/>
+<!-- Đồ thị doanh thu theo thứ trong tuần -->
+<canvas id="weeklyRevenueChart" width="400" height="200"></canvas>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+      // Dữ liệu doanh thu theo tháng và thứ
+      var monthlyData = /*[[${monthlyData}]]*/ [];
+      var weeklyData = /*[[${weeklyData}]]*/ [];
+
+      // Vẽ đồ thị doanh thu theo tháng
+      var monthlyCanvas = document.getElementById("monthlyRevenueChart");
+      var monthlyChart = new Chart(monthlyCanvas, {
+          type: 'bar',
+          data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              datasets: [{
+                  label: 'Monthly Revenue',
+                  data: monthlyData,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }]
+          }
+      });
+
+      // Vẽ đồ thị doanh thu theo thứ trong tuần
+      var weeklyCanvas = document.getElementById("weeklyRevenueChart");
+      var weeklyChart = new Chart(weeklyCanvas, {
+          type: 'bar',
+          data: {
+              labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+              datasets: [{
+                  label: 'Weekly Revenue',
+                  data: weeklyData,
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }]
+          }
+      });
+  /*]]>*/
+</script>
+</body>
+</html>

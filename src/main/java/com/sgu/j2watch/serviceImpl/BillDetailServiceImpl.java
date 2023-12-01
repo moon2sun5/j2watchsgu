@@ -28,7 +28,7 @@ public class BillDetailServiceImpl implements BillDetailService {
     public void saveData(Bill bill, List<CartProductDTO> cartProductDTOList) {
         for (CartProductDTO cartProductDto : cartProductDTOList) {
             BillDetail billDetail = new BillDetail();
-            billDetail.setId_bill(bill.getId_bill());
+            billDetail.setId_bill(bill.getId());
             billDetail.setId_product(cartProductDto.getId());
             billDetail.setUnit_price(cartProductDto.getPrice());
             billDetail.setQuantity(cartProductDto.getQuantity());

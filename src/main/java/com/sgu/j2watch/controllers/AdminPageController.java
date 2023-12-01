@@ -2,17 +2,15 @@ package com.sgu.j2watch.controllers;
 
 
 import java.io.Console;
+import java.util.List;
 import java.util.Optional;
 
+import com.sgu.j2watch.entities.Bill;
+import com.sgu.j2watch.services.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sgu.j2watch.entities.Account;
@@ -32,6 +30,8 @@ import com.sgu.j2watch.services.UserService;
 @Controller
 @RequestMapping(path = "admin")
 public class AdminPageController {
+    @Autowired
+    private BillService billService;
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String AdminPage() {
         return "Admin/FormManager/MainPage";
@@ -53,6 +53,31 @@ public class AdminPageController {
 
     @GetMapping("/qlbaocao")
     public String qlbaocao() {
+        return "Admin/FormManager/M_Baocao";
+    }
+
+    @GetMapping("/qlbaocao/billsByMonth")
+    public String getBillsByMonth(
+            @RequestParam(name = "year") int year,
+            @RequestParam(name = "month") int month,
+            Model model
+    ) {
+        List<Bill> bills;
+        bills = billService.getBillsByMonth(year, month);
+        model.addAttribute("bills", bills);
+        return "Admin/FormManager/M_Baocao";
+    }
+
+    @GetMapping("/qlbaocao/revenueChart")
+    public String getRevenueChart(Model model) {
+        // Lấy dữ liệu doanh thu theo tháng và thứ
+        List<Double> monthlyRevenueData = billService.getMonthlyRevenueData();
+        List<Double> weeklyRevenueData = billService.getWeeklyRevenueData();
+
+        // Truyền dữ liệu vào Thymeleaf Template
+        model.addAttribute("monthlyData", monthlyRevenueData);
+        model.addAttribute("weeklyData", weeklyRevenueData);
+
         return "Admin/FormManager/M_Baocao";
     }
 
