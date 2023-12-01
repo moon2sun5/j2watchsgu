@@ -1,0 +1,91 @@
+<div style="margin-top: 100px;" th:fragment="search" xmlns:th="http://www.w3.org/1999/xhtml">
+	<nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Tìm kiếm</li>
+		</ol>
+	</nav>
+	<div style="display: flex;">
+		<div class="c-3">
+			<!-- CATEGORY -->
+			<form th:action="@{/home/timkiem}" method="get">
+			<div class="category">
+				<h5>DANH MỤC SẢN PHẨM</h5>
+				<div class="is-divider"></div>
+
+				<ul class="list-group list-group-flush">
+					
+					<th:block th:each="category : ${listCategory}">
+						<li class="list-group-item">
+							<label >
+			                    <input name="category" th:checked="${#lists.contains(list_Category, category.idCategory)}" th:value="${category.idCategory}" class="form-check-input mt-0" style="padding-top: 20px; padding-right: 20px;" type="checkbox"/>
+			                    <span style="padding-left: 10px;" th:text="${category.name}"></span>
+			                </label>
+						</li>
+					</th:block>
+					
+				</ul>
+			</div>
+
+			<!-- BRAND -->
+			<div class="category">
+				<h5>THƯƠNG HIỆU</h5>
+				<div class="is-divider"></div>
+				<ul class="list-group list-group-flush">
+
+					<th:block th:each="brand : ${listBrand}">
+						<li class="list-group-item">
+							<label>
+			                    <input name="brand" th:checked="${#lists.contains(list_Brand, brand.idBand)}" th:value="${brand.idBand}" class="form-check-input mt-0" style="padding-top: 20px; padding-right: 20px;" type="checkbox"/>
+			                    <span style="padding-left: 10px;" th:text="${brand.name}"></span>
+			                </label>
+						</li>
+					</th:block>
+
+				</ul>
+			</div>
+
+			<!-- PRICE -->
+			<div class="category">
+				
+					<h5>LỌC THEO GIÁ</h5>
+					<div class="is-divider"></div>
+					<label for="price-range">Chọn giá sản phẩm tối đa:</label>
+					<input type="range" id="category__price-range" name="price_product" min="100000" max="200000000" value="500" step="100000" oninput="showPriceRange(this.value)">
+					<div id="category__range-value" th:each="list : ${list_Price}"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${list} + '))</script>'"> đ</p></div>
+				
+			</div>
+			<script>
+			    function showPriceRange(value) {
+			        // Chuyển đổi giá trị thành kiểu số và đặt lại giá trị của input
+			        document.getElementById("category__price-range").value = parseFloat(value);
+			    }
+			</script>
+						
+			<div class="category d-grid gap-2 d-md-flex justify-content-md-end">
+			  <button style="margin-top: -20px; margin-bottom: 20px;" class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
+			</div>
+			</form>
+		</div>
+		
+		
+		
+		<div class="c-9">
+
+			<div class="wrapper__product">
+				<div class="grid__item" th:each="row : ${listSearch}">
+					<div class="grid__item-content">
+						<a th:href="@{/home/chitietsanpham/{id}(id=${row.idProduct})}">
+							<div class="wrapper__product-img"><img th:src="@{'/img/'+${row.img}}" class="grid__item-img" alt="img error" srcset=""></div>
+							<div class="grid__item-info">
+								<label class="grid__item-title" ><p th:text="${row.brand.name}"></p></label>
+								<div class="grid__item-name black" ><p th:text="${row.name}"></p></div>
+								<div class="grid__item-price"><strong class="red"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${row.price} + '))</script>'"> đ</p></strong></div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -18,4 +18,7 @@ public interface ProductService {
 	void deleteProduct(Integer id_product);
 	List<Product> getProductsByBrandId(Integer brand_id);
 	List<Product> getProductsByCategoryId(Integer category_id);
+	
+	List<Product> searchNameProduct(String keyName);
+	List<Product> findByCondition(Integer id_category, Integer id_brand, Float price);
 }
