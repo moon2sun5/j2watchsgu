@@ -50,8 +50,14 @@
     <div class="header__col">
 
         <div div class="header__col-item-format">  
-		  <i><input type="text" class="header__item-login header__nav-link searchbtn" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" aria-describedby="button-addon2" data-aos="zoom-in-down" data-aos-duration="2000"></i>
-			<i type="button" class="header__icon-item header__item-login ti-search header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000"></i>	
+			<form th:action="@{/home/timkiem}" method="get">
+				<i>
+					 <input name="keyword" type="text" class="header__item-login header__nav-link searchbtn" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" aria-describedby="button-addon2" data-aos="zoom-in-down" data-aos-duration="2000">
+				</i>
+				<button type="submit" style="border: none; color: white; background-color: black;">
+					<i type="submit" class="header__icon-item header__item-login ti-search header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000"></i>
+				</button>	
+
 	        <a th:href="@{/home/giohang}" style="color: white;">
 				<i type="button" class="header__icon-item header__item-login ti-shopping-cart header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000" ></i>
 			</a>
@@ -83,7 +89,7 @@
                 <li class="user_menu" style="border-bottom: 1px solid gray;"><a class="user_menu_a" th:href="@{/admin/qlthongtin}">Trang quản lý </a></li>
                 <li class="user_menu"><a class="user_menu_a" th:href="@{/dangxuat}">Đăng xuất</a></li>
             </ul>
-
+			</form>
         </div>
      
         

@@ -54,24 +54,24 @@
                 </tr>
             </thead>
             <tbody>
+                <th:block th:each="receipt : ${listReceipt}">
                 <tr>
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td align="center"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button>  <button href="" class="tinhnang2 js-change-donhang" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></td>
+                    <td th:text="${receipt.id_receipt}"></td>
+                    <td th:each="sup : ${listSupplier}" th:if="${sup.id_supplier == receipt.supplier_id}" th:text="${sup.name}"></td>
+                    <td th:each="nhanvien : ${listUser}" th:if="${nhanvien.id_user == receipt.user_id}" th:text="${nhanvien.name}"></td>
+                    <td th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${receipt.total} + '))</script>'"></td>
+                    <th:block th:each="receipt_detail : ${listReceiptDetail}" th:if="${receipt.id_receipt == receipt_detail.receipt_id}">
+						<td th:each="product : ${listProduct}" th:if="${product.idProduct == receipt_detail.product_id}" th:text="${product.name}"></td>
+						<td th:text="${receipt_detail.quantity}"></td>
+						<td th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${receipt_detail.price} + '))</script>'"></td>
+						<td th:text="${receipt_detail.percent}"></td>
+                    </th:block>
+					<td th:text="${receipt.create_date}"></td>
+                    <td align="center"><a th:href="@{'/admin/qlnhaphang/delete/' + ${receipt.id_receipt}}"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a> 
+                    	<a th:href="@{'/admin/qlnhaphang/edit/' + ${receipt.id_receipt}}"><button class="tinhnang2" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a></td>
+                    	
                 </tr>
-                
-                </tr>
-                
-               
+				</th:block>  
             </tbody>
             <script type="text/JavaScript" th:src="@{/js/changeDH.js}"></script>
         </table>
