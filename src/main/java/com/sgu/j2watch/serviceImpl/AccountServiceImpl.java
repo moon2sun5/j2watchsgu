@@ -164,9 +164,9 @@ public class AccountServiceImpl implements AccountService{
 	    }
 	}
 	
-//	@Override
-//	public Account findByUser_name(String user_name) {
-//		
-//		return accountRepositoryJPA.findByUser_name(user_name);
-//	}
+	@Override
+	public List<Account> searchNameLogin(String keyName) {
+		
+		return this.accountRepositoryJPA.searchNameLogin(keyName);
+	}
 }

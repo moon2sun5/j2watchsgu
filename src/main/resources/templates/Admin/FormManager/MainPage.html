@@ -8,6 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
 	<link rel="stylesheet" th:href="@{/css/Sua.css}">
 	<link rel="stylesheet" th:href="@{/css/Donhang.css}">
+	<link rel="stylesheet" th:href="@{/css/load.css}">
 </head>
 <body>
 <div class="sidebar" th:fragment="menu">
@@ -15,6 +16,10 @@
 	<div class="header">
 		<p class="chaomung">Welcome to the admin page. Good luck to you ^^ ( <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.principal.authorities[0].authority}"></span> )</p>
 		<a th:href="@{/home}" class="a" id="back-button" type="button"><i class="logout1 ti-shift-right"></i></a>
+		<!-- Loading Page -->
+	    <div id="loadpage" class="ring"> <b>Đang tải...</b>
+		  	<span class="class_span"></span>
+		</div>
 	</div>
 
 	<div class="sidebar-user">
@@ -34,32 +39,58 @@
 			<a class="a" th:href="@{/admin/qlbaocao}"><li><i class="icon ti-bar-chart"></i>Báo cáo doanh thu</li></a>
 		</ul>
 	</div>
+	
+	
+	
 	<script>
 		const menuLinks = document.querySelectorAll('.menu a');
 
-    // Lấy thông tin về thẻ đang được chọn từ localStorage
-    const selectedLink = localStorage.getItem('selectedLink');
-
-    menuLinks.forEach(link => {
-        link.addEventListener('click', event => {
-            // Xóa lớp 'active' khỏi tất cả các thẻ
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Thêm lớp 'active' vào thẻ được nhấp vào
-            link.classList.add('active');
-
-            // Lưu thông tin về thẻ đang được chọn vào localStorage
-            localStorage.setItem('selectedLink', link.href);
+	    // Lấy thông tin về thẻ đang được chọn từ localStorage
+	    const selectedLink = localStorage.getItem('selectedLink');
+	
+	    menuLinks.forEach(link => {
+	        link.addEventListener('click', event => {
+	            // Xóa lớp 'active' khỏi tất cả các thẻ
+	            menuLinks.forEach(link => {
+	                link.classList.remove('active');
+	            });
+	
+	            // Thêm lớp 'active' vào thẻ được nhấp vào
+	            link.classList.add('active');
+	
+	            // Lưu thông tin về thẻ đang được chọn vào localStorage
+	            localStorage.setItem('selectedLink', link.href);
+	        });
+	
+	        // Kiểm tra nếu đây là thẻ đang được chọn
+	        if (selectedLink === link.href) {
+	            // Thêm lớp 'active' vào thẻ đang được chọn
+	            link.classList.add('active');
+	        }
+	    });
+	    
+	    window.addEventListener('beforeunload', function () {
+            // Hiển thị loading indicator khi chuyển trang
+            showLoadingIndicator();
         });
 
-        // Kiểm tra nếu đây là thẻ đang được chọn
-        if (selectedLink === link.href) {
-            // Thêm lớp 'active' vào thẻ đang được chọn
-            link.classList.add('active');
+        // Sự kiện load sẽ được kích hoạt khi trang mới tải xong
+        window.addEventListener('load', function () {
+            // Ẩn loading indicator sau khi trang tải xong
+            hideLoadingIndicator();
+        });
+
+        function showLoadingIndicator() {
+            var loadingIndicator = document.querySelector('.ring');
+            loadingIndicator.style.display = 'block';
         }
-    });
+
+        function hideLoadingIndicator() {
+            var loadingIndicator = document.querySelector('.ring');
+            loadingIndicator.style.display = 'none';
+        }
+	    
+	    
 	</script>
 
 	<div th:replace="(~{Admin/FormEdit/E_Thongtin :: editthongtin})"></div>
