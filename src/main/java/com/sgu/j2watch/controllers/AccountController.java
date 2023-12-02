@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,10 +49,17 @@ public class AccountController {
     private UserService userService;
 
     @GetMapping("/qltaikhoan")
-    public String qltaikhoan(Model model) {
+    public String qltaikhoan(Model model, @Param("keyword") String keyword) {
         model.addAttribute("listUser", userRepository.findAll());
         model.addAttribute("listType", typeRepository.findAll());
-        model.addAttribute("listAcc", accountRepository.findAll());
+        List<Account> list = new ArrayList();
+        if(keyword != null) {
+			list.addAll(this.accountServiceImpl.searchNameLogin(keyword));
+			model.addAttribute("listAcc", list); 
+		}
+        else {
+        	model.addAttribute("listAcc", accountRepository.findAll());        	
+        }
         return "Admin/FormManager/M_Taikhoan";
     }
 

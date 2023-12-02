@@ -54,7 +54,7 @@
 				<i>
 					 <input name="keyword" type="text" class="header__item-login header__nav-link searchbtn" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm" aria-describedby="button-addon2" data-aos="zoom-in-down" data-aos-duration="2000">
 				</i>
-				<button type="submit" style="border: none; color: white; background-color: black;">
+				<button type="submit" style="border: none; color: white; background-color: transparent;">
 					<i type="submit" class="header__icon-item header__item-login ti-search header__col-res-none" data-aos="zoom-in-down" data-aos-duration="2000"></i>
 				</button>	
 
@@ -94,6 +94,13 @@
      
         
     </div>
+    
+    <!-- Loading Page -->
+    
+	<div id="loadpage" class="ring"> <b>Đang tải...</b>
+	  	<span class="class_span"></span>
+	</div>
+    
     <div th:replace="(~{Home/Log/Login :: login})"></div>
     <div th:replace="(~{Home/Log/Register :: register})"></div>
     <script type="text/JavaScript" th:src="@{/js/login.js}"></script>
@@ -124,6 +131,27 @@
                 }
             });
         });
+        window.addEventListener('beforeunload', function () {
+            // Hiển thị loading indicator khi chuyển trang
+            showLoadingIndicator();
+        });
+
+        // Sự kiện load sẽ được kích hoạt khi trang mới tải xong
+        window.addEventListener('load', function () {
+            // Ẩn loading indicator sau khi trang tải xong
+            hideLoadingIndicator();
+        });
+
+        function showLoadingIndicator() {
+            var loadingIndicator = document.querySelector('.ring');
+            loadingIndicator.style.display = 'block';
+        }
+
+        function hideLoadingIndicator() {
+            var loadingIndicator = document.querySelector('.ring');
+            loadingIndicator.style.display = 'none';
+        }
+
     </script>
 </header>
 </div>

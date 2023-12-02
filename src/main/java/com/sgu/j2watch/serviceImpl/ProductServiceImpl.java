@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sgu.j2watch.entities.Product;
 import com.sgu.j2watch.repositories.ProductRepository;
 import com.sgu.j2watch.repositories.ProductRepositoryJPA;
+import com.sgu.j2watch.repositories.ThongKeTopSPRepository;
 import com.sgu.j2watch.services.ProductService;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
     
     @Autowired
     private ProductRepositoryJPA productRepositoryJPA;
+   
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -109,6 +111,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> findByCondition(Integer id_category, Integer id_brand, Float price){
 		return this.productRepositoryJPA.findByCondition(id_category, id_brand, price);
+	}
+	
+	@Override
+	public List<Product> productBestSeller(){
+		return this.productRepositoryJPA.productBestSeller();
 	}
 	
 }

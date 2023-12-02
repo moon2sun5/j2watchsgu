@@ -28,6 +28,8 @@ public interface AccountService {
 	
 	public boolean checkLogin(int id_user, String password);
 	
+	List<Account> searchNameLogin(String keyName);
+	
 	
 //	Account findByUser_name(String user_name);
 }

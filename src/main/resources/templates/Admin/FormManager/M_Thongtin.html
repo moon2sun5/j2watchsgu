@@ -7,6 +7,7 @@
 	<link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
 	<link rel="stylesheet" th:href="@{/css/Sua.css}">
 	<link rel="stylesheet" th:href="@{/css/Donhang.css}">
+	<link rel="stylesheet" th:href="@{/css/load.css}">
 	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
 	<script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
@@ -31,17 +32,34 @@
 
 	<div class="shadow-inner p-4">
 		<div class="content-mid">
-
+			<form th:action="@{/admin/qlthongtin}" method="get">
 			<a th:href="@{/admin/qlthongtin/addthongtin}" class="add" type="button" title="Thêm" id=""><i class="icon1 ti-plus"></i>Thêm hồ sơ</a>
 			<label class="form-timkiem" for="">Tìm kiếm:
-				<input type="search" id="search_infor" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
+				<input type="text" id="search_infor" name="keyword" class="search"><button class="ti-search" type="submit" title="Tìm kiếm" id="" ></button>
 			</label>
-
+			</form>
 		</div>
 
 		<div class="form-dsnguoidung">
 
 			<h1>Quản lý thông tin</h1>
+			<form th:action="@{/admin/qlthongtin}" method="get">
+	            <div class="form1 formchonloc">
+	                <label class="labelnhanvien">Phân loại: </label>
+		                <select class="cbo chonloc" style="width: 150px;" name="type">
+							<option value=""></option>
+			                <option th:each="type : ${listType}" th:value="${type.id_type}" th:text="${type.name}" th:selected="${#lists.contains(list_Type, type.id_type)}"></option>    
+			               
+		                </select>
+					<label class="labelnhanvien">Phân quyền: </label>
+		                <select class="cbo chonloc" name="role">
+							<option value=""></option>
+			                <option th:each="role : ${listRole}" th:value="${role.id_role}" th:text="${role.name}" th:selected="${#lists.contains(list_Role, role.id_role)}"></option>    
+			                
+		                </select>
+		            <button class="cbo chonloc" style="width: 70px;background-color: white; cursor: pointer;" type="submit">Lọc</button>
+	            </div>
+	        </form>
 
 			<table id="table_data_q"  width="100%" border="3" cellspacing="2px" align="center" bordercolor = "aquamarine">
 				<thead>

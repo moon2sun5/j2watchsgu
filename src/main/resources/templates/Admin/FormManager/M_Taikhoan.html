@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
     <link rel="stylesheet" th:href="@{/css/Sua.css}">
     <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <link rel="stylesheet" th:href="@{/css/load.css}">
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
     <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
@@ -26,12 +27,13 @@
     </div>
     
     <div class="content-mid">
-        
+        <form th:action="@{/admin/qltaikhoan}" method="get">
         <a th:href="@{/admin/qltaikhoan/addtaikhoan}" class="add" type="button" title="Thêm" id="add_nv"><i class="icon1 ti-plus"></i>Cấp tài khoản</a>
-        <label class="form-timkiem" for="">Tìm kiếm: 
-            <input type="search" id="search_tk" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
-        </label> 
-
+        
+	        <label class="form-timkiem" for="">Tìm kiếm: 
+	            <input type="text" id="search_tk" name="keyword" class="search"><button class="ti-search" type="submit" title="Tìm kiếm" ></button>
+	        </label> 
+		</form>
     </div>
 
     <div class="form-dsnguoidung">

@@ -11,6 +11,7 @@ import com.sgu.j2watch.entities.Account;
 import com.sgu.j2watch.entities.User;
 import com.sgu.j2watch.repositories.AccountRepository;
 import com.sgu.j2watch.repositories.UserRepository;
+import com.sgu.j2watch.repositories.UserRepositoryJPA;
 import com.sgu.j2watch.services.UserService;
 
 
@@ -18,6 +19,8 @@ import com.sgu.j2watch.services.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired 
 	private UserRepository userRepository;
+	@Autowired 
+	private UserRepositoryJPA userRepositoryJPA;
 	@Autowired 
 	private AccountRepository accountRepository;
 	
@@ -92,5 +95,14 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public List<User> searchNameOrEmail(String key){
+		return this.userRepositoryJPA.searchNameOrEmail(key);
+	}
+	@Override
+	public List<User> searchTypeAndRole(Integer idType, Integer idRole ){
+		return this.userRepositoryJPA.searchTypeAndRole(idType, idRole);
 	}
 }
