@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sgu.j2watch.DTOs.ThongkeTopSPDTO;
 import com.sgu.j2watch.entities.BillDetail;
+import com.sgu.j2watch.entities.Product;
 
 @Repository
 public interface  ThongKeTopSPRepository  extends JpaRepository<BillDetail, Integer> {

@@ -60,12 +60,12 @@ public class SearchController {
 			if (price == 100000f) {
 				price = 0f;
 			}
-			System.out.println("khác null" + price);
+//			System.out.println("khác null" + price);
 		}
 		else {
-			System.out.println("null" + price);
+//			System.out.println("null" + price);
 		}
-		System.out.println(price);
+//		System.out.println(price);
 		if(keyword != null) {
 			list = this.productService.searchNameProduct(keyword);
 			listAll.addAll(list);
@@ -73,7 +73,7 @@ public class SearchController {
 		}
 		else{
 			if (category != null && !category.isEmpty() && brand != null && !brand.isEmpty() && price > 100000.0) {
-				System.out.println("Trường hợp lọc cả 3");
+//				System.out.println("Trường hợp lọc cả 3");
 	            for (int v_category : category) {
 	            	for (int v_brand : brand) {
 	            		list = this.productService.findByCondition(v_category, v_brand, price);
@@ -83,7 +83,7 @@ public class SearchController {
 	        }
 			
 			else if (brand != null && !brand.isEmpty() && price > 100000.0){
-				System.out.println("Trường hợp lọc brand vs giá");
+//				System.out.println("Trường hợp lọc brand vs giá");
 				if(brand != null && !brand.isEmpty()) {
 					for (int value : brand) {
 						list = this.productService.findByCondition(null, value, price);
@@ -92,7 +92,7 @@ public class SearchController {
 				}
 			}
 			else if (category != null && !category.isEmpty() && price > 100000.0){
-				System.out.println("Trường hợp lọc category vs giá");
+//				System.out.println("Trường hợp lọc category vs giá");
 				if(category != null && !category.isEmpty()) {
 					for (int value : category) {
 						list = this.productService.findByCondition(value, null, price);
@@ -101,7 +101,7 @@ public class SearchController {
 				}
 			}
 			else if (category != null && !category.isEmpty() && brand != null && !brand.isEmpty()){
-				System.out.println("Trường hợp lọc brand vs category");
+//				System.out.println("Trường hợp lọc brand vs category");
 	            for (int v_category : category) {
 	            	for (int v_brand : brand) {
 	            		list = this.productService.findByCondition(v_category, v_brand, null);
@@ -110,7 +110,7 @@ public class SearchController {
 	            }
 			}
 			else if (category != null && !category.isEmpty() || brand != null && !brand.isEmpty() || price > 100000.0){
-				System.out.println("Trường hợp lọc 1 trong 3");
+//				System.out.println("Trường hợp lọc 1 trong 3");
 				if(category != null && !category.isEmpty()) {
 					for (int value : category) {
 						list = this.productService.findByCondition(value, null, null);

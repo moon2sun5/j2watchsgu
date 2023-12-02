@@ -2,50 +2,19 @@
 	<div class="content__male format">
         <h3 class="content__title">ĐỒNG HỒ NAM BÁN CHẠY</h3>
         <div class="wrapper__product">
-            <div class="grid__item">
+            <div class="grid__item" th:each="row : ${proBest}">
                 <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio1</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
+                    <a th:href="@{/home/chitietsanpham/{id}(id=${row.idProduct})}">
+						<div class="wrapper__product-img"><img th:src="@{'/img/'+${row.img}}" class="grid__item-img" alt="img error" srcset=""></div>
+						<div class="grid__item-info">
+							<label class="grid__item-title" ><p th:text="${row.brand.name}"></p></label>
+							<div class="grid__item-name black" ><p th:text="${row.name}"></p></div>
+							<div class="grid__item-price"><strong class="red"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${row.price} + '))</script>'"> đ</p></strong></div>
+						</div>
+					</a>
                 </div>
             </div>
-            
-            <div class="grid__item">
-                <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio12</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="grid__item">
-                <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio123</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+           
 
         </div>
 
@@ -54,48 +23,16 @@
     <div class="content__male format">
         <h3 class="content__title">ĐỒNG HỒ NỮ BÁN CHẠY</h3>
         <div class="wrapper__product">
-            <div class="grid__item">
+            <div class="grid__item" th:each="row : ${proBest}">
                 <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio1</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="grid__item">
-                <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio12</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="grid__item">
-                <div class="grid__item-content">
-                    <a href="">
-                        <div class="wrapper__product-img"><img th:src="@{/img/dongho1.jpg}"
-                                class="grid__item-img" alt="img error" srcset=""></div>
-
-                        <div class="grid__item-info">
-                            <label class="grid__item-title">Casio</label>
-                            <div class="grid__item-name black">Casio123</div>
-                            <div class="grid__item-price"><strong class="red">19.250.000đ</strong></div>
-                        </div>
-                    </a>
+                    <a th:href="@{/home/chitietsanpham/{id}(id=${row.idProduct})}">
+						<div class="wrapper__product-img"><img th:src="@{'/img/'+${row.img}}" class="grid__item-img" alt="img error" srcset=""></div>
+						<div class="grid__item-info">
+							<label class="grid__item-title" ><p th:text="${row.brand.name}"></p></label>
+							<div class="grid__item-name black" ><p th:text="${row.name}"></p></div>
+							<div class="grid__item-price"><strong class="red"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${row.price} + '))</script>'"> đ</p></strong></div>
+						</div>
+					</a>
                 </div>
             </div>
 

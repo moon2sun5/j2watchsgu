@@ -23,4 +23,12 @@ public interface ProductRepositoryJPA extends JpaRepository<Product, Integer>{
 	        @Param("idCategory") Integer id_category,
 	        @Param("idBand") Integer id_brand,
 	        @Param("price") Float price);
+	
+	@Query("SELECT P " +
+	        "FROM BillDetail bd " +
+	        "JOIN Product P ON bd.id_product = P.id_product " +
+	        "GROUP BY bd.id_product, P.name " +
+	        "ORDER BY SUM(bd.quantity) DESC " +
+	        "LIMIT 3")
+	List<Product> productBestSeller();
 }
