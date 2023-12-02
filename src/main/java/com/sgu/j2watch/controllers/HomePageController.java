@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.sgu.j2watch.DTOs.CartProductDTO;
 import com.sgu.j2watch.entities.*;
 import com.sgu.j2watch.repositories.ProductDetailRepository;
+import com.sgu.j2watch.repositories.ProductRepositoryJPA;
 import com.sgu.j2watch.serviceImpl.ProductFSServiceImpl;
 import com.sgu.j2watch.services.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,9 +39,13 @@ public class HomePageController {
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private BrandRepository brandRepository;
+	
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String HomePage() {
+    public String HomePage(Model model) {
+    	List<Product> list = this.productService.productBestSeller();
+    	System.out.println(list);
+    	model.addAttribute("proBest", list);
         return "Home/MainPage/HomePage";
     }
 

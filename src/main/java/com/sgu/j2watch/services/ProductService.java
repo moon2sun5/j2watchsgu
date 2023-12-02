@@ -21,4 +21,5 @@ public interface ProductService {
 	
 	List<Product> searchNameProduct(String keyName);
 	List<Product> findByCondition(Integer id_category, Integer id_brand, Float price);
+	List<Product> productBestSeller();
 }
