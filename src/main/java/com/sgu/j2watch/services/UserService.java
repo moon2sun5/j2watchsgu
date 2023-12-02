@@ -22,5 +22,9 @@ public interface UserService{
 	public User get(String reset_password_token);
 	
 	public void updatePassword(User user, String newPassword);
+	
+	List<User> searchNameOrEmail(String key);
+	
+	List<User> searchTypeAndRole(Integer idType, Integer idRole );
 
 }

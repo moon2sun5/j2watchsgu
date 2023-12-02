@@ -27,12 +27,13 @@
     </div>
     
     <div class="content-mid">
-        
+        <form th:action="@{/admin/qltaikhoan}" method="get">
         <a th:href="@{/admin/qltaikhoan/addtaikhoan}" class="add" type="button" title="Thêm" id="add_nv"><i class="icon1 ti-plus"></i>Cấp tài khoản</a>
-        <label class="form-timkiem" for="">Tìm kiếm: 
-            <input type="search" id="search_tk" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id="" ></button>
-        </label> 
-
+        
+	        <label class="form-timkiem" for="">Tìm kiếm: 
+	            <input type="text" id="search_tk" name="keyword" class="search"><button class="ti-search" type="submit" title="Tìm kiếm" ></button>
+	        </label> 
+		</form>
     </div>
 
     <div class="form-dsnguoidung">
