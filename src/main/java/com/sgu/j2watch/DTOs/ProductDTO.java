@@ -60,7 +60,7 @@ public class ProductDTO {
         return idProduct;
     }
 
-    public void setId_product(int idProduct) {
+    public void setIdproduct(int idProduct) {
         this.idProduct = idProduct;
     }
 

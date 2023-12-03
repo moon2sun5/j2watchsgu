@@ -201,66 +201,96 @@ public class ProductController {
     }
 
     @GetMapping("/qlsanpham/edit/{id}")
-    public String editSanpham(@PathVariable("id") Integer id, Model model,ProDetail prodetail) {
-        Optional<Product> productOptional = productService.getProductById(id);
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
-            model.addAttribute("productDTO", product);
-            model.addAttribute("product", product);
-            model.addAttribute("listBrand", brandService.getAllBrands());
-            model.addAttribute("listCategory", categoryService.getAllCategories());
-            model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
-            model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
-            model.addAttribute("listPin", pinService.getAllPins());
-            
-            return "Admin/FormEdit/E_Sanpham";
-        } else {
-            return "redirect:/admin/qlsanpham";
-        }
-    }
-
-    @PostMapping("/qlsanpham/update/{id}")
-    public String updateSanpham(@PathVariable("id") Integer id, @ModelAttribute("productDTO") ProductDTO dto, @ModelAttribute("prodetail") ProDetail prodetail, BindingResult result, Model model, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            // Thêm thuộc tính và quay lại form nếu có lỗi
-            // Thêm các thuộc tính cần thiết cho form
-            return "Admin/FormEdit/E_Sanpham";
-        }
-
-        // Lấy thông tin Product và ProDetail hiện có
+    public String editSanpham(@PathVariable Integer id, Model model) {
+        // Lấy sản phẩm theo ID
         Optional<Product> optionalProduct = productService.getProductById(id);
-        if (!optionalProduct.isPresent()) {
-            // Xử lý trường hợp không tồn tại sản phẩm
+
+        if (optionalProduct.isPresent()) {
+            // Ánh xạ đối tượng Product sang ProductDTO
+            Product product = optionalProduct.get();
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setIdproduct(product.getIdProduct()); // Chỉnh tên thuộc tính
+            productDTO.setName(product.getName());
+            productDTO.setPrice(product.getPrice());
+            // Ánh xạ các thuộc tính khác khi cần
+
+            // Lấy ProDetail theo ID sản phẩm
+            Optional<ProDetail> optionalProDetail = prodetailRepository.findById(id);
+
+            if (optionalProDetail.isPresent()) {
+                // Ánh xạ đối tượng ProDetail sang ProDetailDTO
+                ProDetail prodetail = optionalProDetail.get();
+                prodetail.setId_product(prodetail.getId_product());
+                prodetail.setDescription(prodetail.getDescription());
+                // Ánh xạ các thuộc tính khác khi cần
+
+                // Thêm các DTO và dữ liệu cần thiết vào model
+                model.addAttribute("productDTO", productDTO);
+                model.addAttribute("prodetail", prodetail);
+                model.addAttribute("listBrand", brandService.getAllBrands());
+                model.addAttribute("listCategory", categoryService.getAllCategories());
+                model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
+                model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
+                model.addAttribute("listPin", pinService.getAllPins());
+
+                return "Admin/FormEdit/E_Sanpham";
+            } else {
+                // Xử lý trường hợp ProDetail không tồn tại cho ID sản phẩm đã cho
+                return "redirect:/admin/error";
+            }
+        } else {
+            // Xử lý trường hợp sản phẩm với ID đã cho không tồn tại
             return "redirect:/admin/error";
         }
-
-        // Bắt đầu quá trình cập nhật
-        Product product = optionalProduct.get();
-        ProDetail prodetail1 = new ProDetail();
-
-        // Ánh xạ ProductDTO sang entity Product
-        product.setName(productDTO.getName());
-        // ... ánh xạ các thuộc tính khác của product ...
-
-        // Ánh xạ ProDetailDTO sang entity ProDetail
-        prodetail1.setDescription(prodetailDTO.getDescription());
-        prodetail1.setColor(prodetailDTO.getColor());
-        // ... ánh xạ các thuộc tính khác của prodetail ...
-
-        // Lưu ProDetail
-        prodetailService.saveProdetail(prodetail1);
-
-//        // Kết hợp ProDetail với Product
-//        product.setProdetail(dto.getProDetail);
-
-        // Lưu Product
-        productService.saveProduct(product);
-
-        return "redirect:/admin/qlsanpham";
     }
 
-    // ... các phương thức khác ...
 
-    // Có thể bạn cần các phương thức tiện ích để chuyển đổi từ entity sang DTO
+    @PostMapping("/qlsanpham/saveSanpham")
+    public String updateSanpham(Model model, @ModelAttribute("productDTO") ProductDTO dto,
+            ProDetail prodetail, HttpServletRequest request) {
+        // Lấy sản phẩm theo ID
+        Optional<Product> optionalProduct = productService.getProductById(dto.getidProduct());
+
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+
+            // Cập nhật các thuộc tính của sản phẩm
+            product.setName(dto.getName());
+            product.setPrice(dto.getPrice());
+            // Cập nhật các thuộc tính khác khi cần
+
+            // Lưu sản phẩm đã cập nhật vào cơ sở dữ liệu
+            productService.saveProduct(product);
+            System.out.println("ID Product: " + dto.getidProduct());
+            System.out.println("Optional Product: " + optionalProduct.isPresent());
+
+            // Lấy ProDetail theo ID sản phẩm
+            Optional<ProDetail> optionalProDetail = prodetailRepository.findById(dto.getidProduct());
+
+            if (optionalProDetail.isPresent()) {
+                ProDetail existingProdetail = optionalProDetail.get();
+
+                // Cập nhật các thuộc tính của ProDetail từ prodetail
+                existingProdetail.setDescription(prodetail.getDescription());
+                // Cập nhật các thuộc tính khác khi cần
+
+                // Lưu ProDetail đã cập nhật vào cơ sở dữ liệu
+                prodetailRepository.save(existingProdetail);
+                System.out.println("ProDetail saved successfully");
+
+                // Chuyển hướng phù hợp sau khi cập nhật sản phẩm
+                return "redirect:/admin/qlsanpham";
+            } else {
+                // Xử lý trường hợp ProDetail không tồn tại cho ID sản phẩm đã cho
+                return "redirect:/admin/error";
+            }
+        } else {
+            // Xử lý trường hợp sản phẩm với ID đã cho không tồn tại
+            return "redirect:/admin/error";
+        }
+    }
+
+    
 }
+
 
