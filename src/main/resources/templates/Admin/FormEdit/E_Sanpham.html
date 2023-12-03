@@ -1,6 +1,6 @@
-<form enctype="multipart/form-data" th:fragment="editsanpham">
-        <div id="my-form" class="modalSP js-modalSP">
-            <div class="modal-containerSP js-containerSP">
+<form th:fragment="editsanpham" th:if="${productDTO != null}" th:action="@{/admin/qlsanpham/saveSanpham}" th:object="${productDTO}" method="post">
+    <div class="modal js-modal" th:classappend="${productDTO ne null} ? 'open' : ''">
+        <div class="modal-container js-container">
 
                 <header class="modal-header">
                     Chỉnh sửa thông tin sản phẩm
@@ -10,12 +10,12 @@
 
                     <div class="form3">
                         <label class="labelnhanvien">Tên sản phẩm: </label>
-                        <input class="form-control" type="text" id="name">
+                        <input class="form-control" type="text" id="name" th:field="*{name}">
                     </div>
 
                     <div class="form3">
                         <label class="labelnhanvien">Mã sản phẩm: </label>
-                        <input class="form-control" type="text" id="code">
+                        <input class="form-control" type="text" id="code" th:field="*{prodetail.code}">
                     </div>
 
                 </div>
@@ -77,7 +77,7 @@
                         <input class="form-control" type="text" id="quantity">
                     </div>
 
-                    <div class="form1">
+                    <!--<div class="form1">
                         <label class="labelnhanvien">Giới tính: </label>
                         <div class="chon">
                             <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label
@@ -85,7 +85,7 @@
                             <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label
                                 class="labeldonhang" for="">Nữ</label>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="modal-bodySP4">

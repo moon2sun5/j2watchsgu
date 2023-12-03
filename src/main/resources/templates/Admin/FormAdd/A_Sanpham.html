@@ -36,7 +36,7 @@
   </script>
 	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 	<div id="form_addsp" class="content-formaddnhanvien">
-   <form th:action="@{/admin/qlsanpham/addsanpham}" th:object="${product}" method="post" enctype="multipart/form-data">     
+   <form th:action="@{/admin/qlsanpham/addsanpham}" th:object="${productDTO}" method="post" enctype="multipart/form-data">     
 
         <div class="row">
 
@@ -48,7 +48,7 @@
             </div>
             <div class="form1">
                 <label class="labelnhanvien">Danh mục: </label>
-                <select class="cbo" name="categoryId" id="categoryId">
+                <select class="cbo" name="categoryId" id="categoryId" th:field="*{category}">
 					<option value="">--- Chọn Danh mục ---</option>
         			<option th:each="category : ${listCategory}" 
                 th:value="${category.idCategory}" 
@@ -71,16 +71,16 @@
             <hr>
             <h1 class="thongso">Chi tiết sản phẩm</h1>
 
-            <!--<div class="form1">
+            <div class="form1">
                 <label class="labelnhanvien">Mã sản phẩm: </label>
-                <input class="form-control" name="code" type="text" pattern="[A-Za-z0-9]+" required
+                <input class="form-control" name="code" type="text"  pattern="[A-Za-z0-9]+" required
   oninvalid="this.setCustomValidity('Vui lòng nhập mã của sản phẩm. Mã chỉ được chứa các chữ cái và số')"
   oninput="setCustomValidity('')">
-            </div>-->
+            </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Bộ máy và năng lượng: </label>
-    			<select class="cbo" name="pinId" id="pinId">
+    			<select class="cbo" name="pinId" id="pinId" th:field="*{pin}" >
                 <option value="">--- Chọn Bộ Máy và Năng Lượng ---</option>
         		<option th:each="pin : ${listPin}" 
                 th:value="${pin.id}" 
@@ -90,7 +90,7 @@
 
             <div class="form1">
                 <label class="labelnhanvien">Chất liệu dây: </label>
-                <select class="cbo" name="materialWireId" id="materialWireId">
+                <select class="cbo" name="materialWireId" id="materialWireId" th:field="*{materialWire}" > 
         		<option value="">--- Chọn Chất Liệu Dây ---</option>
         		<option th:each="materialWire : ${listMaterialWire}" 
                 th:value="${materialWire.id}" 
@@ -101,7 +101,7 @@
 
             <div class="form1">
                 <label class="labelnhanvien">Chất liệu kính: </label>
-                <select class="cbo" name="materialGlass" id="materialGlass" >
+                <select class="cbo" name="materialGlassId" id="materialGlassId" th:field="*{materialGlassId}" > 
         		<option value="">--- Chọn Chất Liệu Kính ---</option>
         		<option th:each="materialGlass : ${listMaterialGlass}" 
                 th:value="${materialGlass.id}" 
@@ -110,7 +110,7 @@
     </select>
             </div>
 
-            <div class="form1">
+            <!--<div class="form1">
                 <label class="labelnhanvien">Giới tính: </label>
                 <div class="chon">
                     <input value="1" id="gtnam" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
@@ -118,42 +118,42 @@
                     <input value="2" id="gtnu" type="radio" name="gioitinh" class="check-type"><label class="labeldonhang"
                         for="">Nữ</label>
                 </div>
-            </div>
-
-            <!--<div class="form1">
-                <label class="labelnhanvien">Hình dạng mặt kính: </label>
-                <input class="form-control" name="shape" type="text" pattern="[a-zA-Z\s]+" required
-  oninvalid="this.setCustomValidity('Vui lòng nhập hình dạng của sản phẩm. Hình dạng chỉ được chứa các chữ cái và khoảng trắng')"
-  oninput="setCustomValidity('')">
             </div>-->
 
-            <!--<div class="form1">
+            <div class="form1">
+                <label class="labelnhanvien">Hình dạng mặt kính: </label>
+                <input class="form-control" name="shape" type="text"   pattern="[a-zA-Z\s]+" required
+  oninvalid="this.setCustomValidity('Vui lòng nhập hình dạng của sản phẩm. Hình dạng chỉ được chứa các chữ cái và khoảng trắng')"
+  oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form1">
                 <label class="labelnhanvien">Size mặt kính: </label>
-                <input class="form-control" name="size" type="text" pattern="(\d+(\.\d+)?|\.\d+)(\s*(>|<)\s*(\d+(\.\d+)?|\.\d+))?mm" required
+                <input class="form-control" name="size" type="text"  pattern="(\d+(\.\d+)?|\.\d+)(\s*(>|<)\s*(\d+(\.\d+)?|\.\d+))?mm" required
   oninvalid="this.setCustomValidity('Vui lòng nhập kích thước của sản phẩm theo định dạng số có đơn vị mm, ví dụ: 10mm hoặc >10mm')"
   oninput="setCustomValidity('')">
 
 
-            </div>-->
+            </div>
 
-            <!--<div class="form1">
+            <div class="form1">
                 <label class="labelnhanvien">Màu: </label>
                 
-<input class="form-control" name="color" type="text" pattern="[a-zA-Z\s]+" required
+<input class="form-control" name="color" type="text"  pattern="[a-zA-Z\s]+" required
   oninvalid="this.setCustomValidity('Vui lòng nhập màu sắc của sản phẩm. Màu sắc chỉ được chứa các chữ cái và khoảng trắng')"
   oninput="setCustomValidity('')">
-            </div>-->
+            </div>
 
-            <!--<div class="form1">
+            <div class="form1">
                 <label class="labelnhanvien">Khả năng chống nước: </label>
-                <input class="form-control" name="water_resistance" type="text" pattern="[0-9]+ATM" required
+                <input class="form-control" name="water_resistance" type="text"  pattern="[0-9]+ATM" required
   oninvalid="this.setCustomValidity('Vui lòng nhập độ chịu nước của sản phẩm theo định dạng Số ATM. Ví dụ: 5ATM')"
   oninput="setCustomValidity('')">
-            </div>-->
+            </div>
 
             <div class="form1">
                 <label class="labelnhanvien">Thương hiệu: </label>
-                <select class="cbo" name="brandId" id="brandId">
+                <select class="cbo" name="brandId" id="brandId" th:field="*{brand}" >
         			<option value="">--- Chọn Thương Hiệu ---</option>
         			<option th:each="brand : ${listBrand}" 
                 	th:value="${brand.idBand}" 
@@ -162,18 +162,18 @@
     			</select>
             </div>
 
-            <!--<div class="form1">
+            <div class="form1">
                 <label class="labelnhanvien">Xuất xứ: </label>
-                <input class="form-control" name="origin" type="text" pattern="[a-zA-Z\s]+" required
+                <input class="form-control" name="origin" type="text"  pattern="[a-zA-Z\s]+" required
   oninvalid="this.setCustomValidity('Vui lòng nhập xuất xứ của sản phẩm. Xuất xứ chỉ được chứa các chữ cái và khoảng trắng')"
   oninput="setCustomValidity('')">
-            </div>-->
+            </div>
 
-            <!--<div class="form1">
+            <div class="form1">
                 <label class="labelnhanvien">Miêu tả sản phẩm: </label> <br>
                 <textarea name="description" id="ghichu" cols="50" rows="10"></textarea>
             </div>
--->
+
             <div class="form1">
                 <button class="add-nhanvien" type="submit" name="submitSP" title="Lưu" id=""><i class="icon1 ti-save"></i>Thêm sản phẩm</button>
                 <button onclick="" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>

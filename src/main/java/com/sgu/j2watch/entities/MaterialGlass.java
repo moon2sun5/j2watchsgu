@@ -29,5 +29,15 @@ public class MaterialGlass {
 		this.name = name;
 	}
 
+	public MaterialGlass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "MaterialGlass [id=" + id + ", name=" + name + "]";
+	}
+
     // Constructors, getters và setters
 }
