@@ -1,0 +1,48 @@
+<form th:fragment="edithoadon" th:if="${bill != null}" th:action="@{/admin/qlhoadon/saveHoadon}" th:object="${bill}" method="post">
+  <div class="modal js-modal open" th:each="listBill : ${listBillEdit}" th:classappend="${bill ne null} ? 'open' : ''">
+    <div class="modal-container js-container">
+
+      <header class="modal-header">
+        Chi tiết hóa đơn
+      </header>
+
+      <div class="modal-body">
+        <div class="form2">
+          <label class="labelnhanvien">ID Bill: </label>
+          <input class="form-control" type="text" th:field="*{listBill.id_bill}"  readonly>
+        </div>
+
+        <div class="form2">
+          <label class="labelnhanvien">Tên khách hàng: </label>
+          <input class="form-control" type="text" th:field="*{listBill.fullname}">
+        </div>
+
+        <div class="form2">
+          <label class="labelnhanvien">Địa chỉ: </label>
+          <input class="form-control" type="text" th:field="*{listBill.deliver_address}">
+        </div>
+
+        <div class="form2">
+          <label class="labelnhanvien">Email: </label>
+          <input class="form-control" type="text" th:field="*{listBill.email}">
+        </div>
+
+        <div class="form2">
+          <label class="labelnhanvien">Số điện thoại: </label>
+          <input class="form-control" type="text" th:field="*{listBill.dienthoai}">
+        </div>
+
+        <footer class="modal-footer">
+          <button type="submit" class="btn_save">Lưu lại</button>
+          <button onclick="cancel()" type="button" class="btn_close js-close">Hủy bỏ</button>
+        </footer>
+      </div>
+
+      <script type="text/javascript">
+        function cancel(){
+          window.location = "/admin/qlhoadon";
+        }
+      </script>
+    </div>
+  </div>
+</form>
