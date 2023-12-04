@@ -15,7 +15,7 @@ public class Bill {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_date")
-	private Date createDate;
+	private Date create_date;
 
 	@Column(name = "total_price")
 	private Float totalPrice;
@@ -47,7 +47,7 @@ public class Bill {
 	public Bill(int id_bill, String deliver_address, Date create_date, Float totalPrice, int user_id, int voucher_id, int status_id, String dienthoai, String fullname, String email, String discription_bill) {
 		this.id = id_bill;
 		this.deliver_address = deliver_address;
-		this.createDate = create_date;
+		this.create_date = create_date;
 		this.totalPrice = totalPrice;
 		this.user_id = user_id;
 		this.voucher_id = voucher_id;
@@ -74,12 +74,12 @@ public class Bill {
 		this.deliver_address = deliver_address;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
+	public Date getCreate_date() {
+		return create_date;
 	}
 
-	public void setCreateDate(Date create_date) {
-		this.createDate = create_date;
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
 	}
 
 	public Float getTotalPrice() {

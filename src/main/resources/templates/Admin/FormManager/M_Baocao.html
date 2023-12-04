@@ -1,56 +1,117 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Revenue Chart</title>
-  <!-- Thêm các thư viện Chart.js -->
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+  <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+  <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+  <link rel="stylesheet" th:href="@{/css/Sua.css}">
+  <link rel="stylesheet" th:href="@{/css/Donhang.css}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+  <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+  <script language="JavaScript" th:src="@{/js/clock.js}"></script>
 </head>
-<body>
-<h2>Revenue Chart</h2>
-<!-- Đồ thị doanh thu theo tháng -->
-<canvas id="monthlyRevenueChart" width="400" height="200"></canvas>
-<br/>
-<!-- Đồ thị doanh thu theo thứ trong tuần -->
-<canvas id="weeklyRevenueChart" width="400" height="200"></canvas>
+<body onload="time()">
 
-<script th:inline="javascript">
-  /*<![CDATA[*/
-      // Dữ liệu doanh thu theo tháng và thứ
-      var monthlyData = /*[[${monthlyData}]]*/ [];
-      var weeklyData = /*[[${weeklyData}]]*/ [];
+<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
 
-      // Vẽ đồ thị doanh thu theo tháng
-      var monthlyCanvas = document.getElementById("monthlyRevenueChart");
-      var monthlyChart = new Chart(monthlyCanvas, {
-          type: 'bar',
-          data: {
-              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-              datasets: [{
-                  label: 'Monthly Revenue',
-                  data: monthlyData,
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                  borderColor: 'rgba(75, 192, 192, 1)',
-                  borderWidth: 1
-              }]
-          }
-      });
+<div class="content">
+  <div class="content-header">
+    <div id="clock">
+    </div>
+  </div>
 
-      // Vẽ đồ thị doanh thu theo thứ trong tuần
-      var weeklyCanvas = document.getElementById("weeklyRevenueChart");
-      var weeklyChart = new Chart(weeklyCanvas, {
-          type: 'bar',
-          data: {
-              labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-              datasets: [{
-                  label: 'Weekly Revenue',
-                  data: weeklyData,
-                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                  borderColor: 'rgba(255, 99, 132, 1)',
-                  borderWidth: 1
-              }]
-          }
-      });
-  /*]]>*/
-</script>
+  <div class="content-mid">
+
+    <a href="" class="add" type="button" title="Thêm" id="add_sp"><i
+            class="icon1 ti-plus"></i>Thêm hóa đơn</a>
+    <label class="form-timkiem" for="">Tìm kiếm:
+      <input type="search" class="search">
+      <button class="ti-search" type="button" title="Tìm kiếm" id=""></button>
+    </label>
+
+  </div>
+
+  <h2>Revenue Chart</h2>
+  <button onclick="showMonthlyChart()">Show Monthly Chart</button>
+  <button onclick="showWeeklyChart()">Show Weekly Chart</button>
+  <!-- Đồ thị doanh thu theo tháng -->
+  <canvas id="monthlyRevenueChart" width="400" height="200"></canvas>
+  <br/>
+  <!-- Đồ thị doanh thu theo thứ trong tuần -->
+  <canvas id="weeklyRevenueChart" width="400" height="200"></canvas>
+
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+      function showMonthlyChart() {
+        hideCurrentChart();
+
+        monthlyChart.canvas.style.display = 'block';
+        monthlyChart.update();
+      }
+
+      function showWeeklyChart() {
+        hideCurrentChart();
+
+        weeklyChart.canvas.style.display = 'block';
+        weeklyChart.update();
+      }
+
+      function hideCurrentChart() {
+        if (monthlyChart) {
+          monthlyChart.canvas.style.display = 'none';
+        }
+
+        if (weeklyChart) {
+          weeklyChart.canvas.style.display = 'none';
+        }
+      }
+
+        // Dữ liệu doanh thu theo tháng và thứ
+        var monthlyData = /*[[${monthlyData}]]*/ [];
+        var weeklyData = /*[[${weeklyData}]]*/ [];
+
+        // Vẽ đồ thị doanh thu theo tháng
+        var monthlyCanvas = document.getElementById("monthlyRevenueChart");
+        var monthlyChart = new Chart(monthlyCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                datasets: [{
+                    label: 'Doanh thu tháng',
+                    data: monthlyData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Vẽ đồ thị doanh thu theo thứ trong tuần
+        var weeklyCanvas = document.getElementById("weeklyRevenueChart");
+        var weeklyChart = new Chart(weeklyCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'],
+                datasets: [{
+                    label: 'Doanh thu tuần',
+                    data: weeklyData,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+        // Ẩn ban đầu
+        hideCurrentChart();
+
+        // Hiển thị biểu đồ tháng
+        showMonthlyChart();
+    /*]]>*/
+  </script>
+</div>
+
 </body>
-</html>
+

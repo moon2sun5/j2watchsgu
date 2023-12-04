@@ -49,10 +49,16 @@ public class AdminPageController {
         return "Admin/FormManager/M_Hoadon";
     }
 
-
-
     @GetMapping("/qlbaocao")
-    public String qlbaocao() {
+    public String qlbaocao(Model model) {
+        // Lấy dữ liệu doanh thu theo tháng và thứ
+        List<Double> monthlyRevenueData = billService.getMonthlyRevenueData();
+        List<Double> weeklyRevenueData = billService.getWeeklyRevenueData();
+
+        // Truyền dữ liệu vào Thymeleaf Template
+        model.addAttribute("monthlyData", monthlyRevenueData);
+        model.addAttribute("weeklyData", weeklyRevenueData);
+
         return "Admin/FormManager/M_Baocao";
     }
 
@@ -65,19 +71,6 @@ public class AdminPageController {
         List<Bill> bills;
         bills = billService.getBillsByMonth(year, month);
         model.addAttribute("bills", bills);
-        return "Admin/FormManager/M_Baocao";
-    }
-
-    @GetMapping("/qlbaocao/revenueChart")
-    public String getRevenueChart(Model model) {
-        // Lấy dữ liệu doanh thu theo tháng và thứ
-        List<Double> monthlyRevenueData = billService.getMonthlyRevenueData();
-        List<Double> weeklyRevenueData = billService.getWeeklyRevenueData();
-
-        // Truyền dữ liệu vào Thymeleaf Template
-        model.addAttribute("monthlyData", monthlyRevenueData);
-        model.addAttribute("weeklyData", weeklyRevenueData);
-
         return "Admin/FormManager/M_Baocao";
     }
 
