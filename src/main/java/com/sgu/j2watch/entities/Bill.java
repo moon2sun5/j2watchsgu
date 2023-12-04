@@ -58,11 +58,11 @@ public class Bill {
 		this.discription_bill = discription_bill;
 	}
 
-	public int getId() {
+	public int getId_bill() {
 		return this.id;
 	}
 
-	public void setId(int id_bill) {
+	public void setId_bill(int id_bill) {
 		this.id = id_bill;
 	}
 

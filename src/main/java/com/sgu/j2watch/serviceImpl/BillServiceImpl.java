@@ -26,7 +26,7 @@ public class BillServiceImpl implements BillService {
         int NextId = (lastEntity != null) ? lastEntity.getId() + (int) 1 : 1;
 
         Bill entity = new Bill();
-        entity.setId(NextId);
+        entity.setId_bill(NextId);
         entity.setDeliver_address(deliver_address);
         entity.setCreate_date(new Date());
         entity.setTotalPrice(totalPrice);
