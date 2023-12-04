@@ -139,4 +139,31 @@ public class Product {
 	public void setMaterialGlassId(MaterialGlass materialGlassId) {
 		this.materialGlassId = materialGlassId;
 	}
+
+	public Product(Integer id_product, String name, String img, Float price, Integer quantity, Category category,
+								 Brand brand, Pin pin, MaterialWire materialWire, MaterialGlass materialGlassId) {
+		super();
+		this.id_product = id_product;
+		this.name = name;
+		this.img = img;
+		this.price = price;
+		this.quantity = quantity;
+		this.category = category;
+		this.brand = brand;
+		this.pin = pin;
+		this.materialWire = materialWire;
+		this.materialGlassId = materialGlassId;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id_product=" + id_product + ", name=" + name + ", img=" + img + ", price=" + price
+				+ ", quantity=" + quantity + ", category=" + category + ", brand=" + brand + ", pin=" + pin
+				+ ", materialWire=" + materialWire + ", materialGlassId=" + materialGlassId + "]";
+	}
+
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

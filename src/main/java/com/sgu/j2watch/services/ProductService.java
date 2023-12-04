@@ -1,6 +1,7 @@
 package com.sgu.j2watch.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.sgu.j2watch.entities.Product;
 
@@ -11,7 +12,7 @@ public interface ProductService {
     Product findById(int id);
     Product save(Product product);
     void deleteById(int id);
-	Product getProductById(Integer id_product);
+	Optional<Product> getProductById(int id_product);
 	List<Product> getAllProducts();
 	void saveProduct(Product product);
 	void updateProduct(Product product);
