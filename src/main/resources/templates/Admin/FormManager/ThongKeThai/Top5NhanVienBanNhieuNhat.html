@@ -53,7 +53,22 @@
                     y: {
                         beginAtZero: true
                     }
-                }
+                },
+                 plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.parsed.y.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            return label;
+                        }
+                    }
+                
+				}
+            }
             }
         });
     </script>
