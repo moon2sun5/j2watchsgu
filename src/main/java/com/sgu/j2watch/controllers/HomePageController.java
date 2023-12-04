@@ -13,10 +13,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.sgu.j2watch.repositories.AccountRepository;
 import com.sgu.j2watch.repositories.BrandRepository;
 import com.sgu.j2watch.repositories.CategoryRepository;
 import com.sgu.j2watch.repositories.UserRepository;
@@ -39,12 +42,18 @@ public class HomePageController {
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private BrandRepository brandRepository;
+	@Autowired
+	private AccountRepository accountRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private AccountService accountService;
 	
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String HomePage(Model model) {
     	List<Product> list = this.productService.productBestSeller();
-    	System.out.println(list);
+//    	System.out.println(list);
     	model.addAttribute("proBest", list);
         return "Home/MainPage/HomePage";
     }
@@ -281,14 +290,27 @@ public class HomePageController {
     @GetMapping("/giohang/thanhtoan")
     public String payment(HttpSession session,
                           Model model) {
-        Map<Integer, Cart> cart = getOrCreateCart(session);
-        List<Cart> cartItems = cart.values().stream().collect(Collectors.toList());
-        List<CartProductDTO> cartProductList = transferMapCart(cartItems);
-        model.addAttribute("totalPrice", totalPrice(cartProductList));
-        model.addAttribute("cartProductList", cartProductList);
-        return "Home/MainPage/Payment";
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		int id_account = accountService.checkAccount(username);
+		if (id_account > 0) {
+			Optional<Account> accountOptional = accountRepository.findById(id_account);
+			Account account = accountOptional.get();
+			int id_user = account.getUser_id();
+			Optional<User> userOptional = userRepository.findById(id_user);
+			User user = userOptional.get();
+	        model.addAttribute("user", user);
+	        Map<Integer, Cart> cart = getOrCreateCart(session);
+	        List<Cart> cartItems = cart.values().stream().collect(Collectors.toList());
+	        List<CartProductDTO> cartProductList = transferMapCart(cartItems);
+	        model.addAttribute("totalPrice", totalPrice(cartProductList));
+	        model.addAttribute("cartProductList", cartProductList);
+	        return "Home/MainPage/Payment";
+		}
+		else {
+			return "redirect:/home/dangnhap";
+		}
     }
-
 
     @PostMapping("/giohang/thanhtoan/ondoing")
     public String paymentProcess(HttpSession session,
@@ -302,6 +324,19 @@ public class HomePageController {
         Map<Integer, Cart> cart = getOrCreateCart(session);
         List<Cart> cartItems = cart.values().stream().collect(Collectors.toList());
         List<CartProductDTO> cartProductList = transferMapCart(cartItems);
+        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		int id_account = accountService.checkAccount(username);
+		int id_user = 0;
+		if (id_account > 0) {
+			Optional<Account> accountOptional = accountRepository.findById(id_account);
+			Account account = accountOptional.get();
+			id_user = account.getUser_id();
+			Optional<User> userOptional = userRepository.findById(id_user);
+			User user = userOptional.get();
+		}
+        
 
         for (CartProductDTO cartItem: cartProductList){
             Product product = productService.findById(cartItem.getId());
@@ -312,10 +347,10 @@ public class HomePageController {
         Bill saveBill;
         if(voucher!=null) {
             Voucher voucherObject = voucherService.getVoucherById(voucher);
-            saveBill = billService.saveData(deliver_address, totalBill(cartProductList)*(100-voucherObject.getValue())/100, 1, voucher, 1, dienthoai, fullname, email, description_bill);
+            saveBill = billService.saveData(deliver_address, totalBill(cartProductList)*(100-voucherObject.getValue())/100, id_user, voucher, 1, dienthoai, fullname, email, description_bill);
         }
         else{
-            saveBill = billService.saveData(deliver_address, totalBill(cartProductList), 1, voucher, 1, dienthoai, fullname, email, description_bill);
+            saveBill = billService.saveData(deliver_address, totalBill(cartProductList), id_user, voucher, 1, dienthoai, fullname, email, description_bill);
         }
         billDetailService.saveData(saveBill,cartProductList);
         cart.clear();

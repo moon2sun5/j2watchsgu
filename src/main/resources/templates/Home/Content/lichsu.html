@@ -1,0 +1,51 @@
+<div style="margin-top: 100px;" th:fragment="lichsu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav style="--bs-breadcrumb-divider: '>'; margin-left: 27rem; font-size: 20px; background: white;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/home}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lịch sử đơn hàng</li>
+        </ol>
+    </nav>
+    <div id="wrapper">
+        <div class="wrapper_child" style="padding-left: 300px; padding-right: 300px;">
+            <h2 class="title">Lịch sử đơn hàng</h2>
+            <div class="no_cart"></div>
+            <th:block th:each="bill : ${listBill}">
+            <div class="input-group mb-3">
+			  	<span class="input-group-text" id="inputGroup-sizing-default">Mã đơn hàng</span>
+			  	<input type="text" th:value="${bill.id_bill}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  	<span class="input-group-text" id="inputGroup-sizing-default">Ngày đặt hàng</span>
+			  	<input type="text" th:value="${bill.create_date}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  	<span class="input-group-text" id="inputGroup-sizing-default">Tổng tiền</span>
+			  	<input type="text" th:value="${bill.total}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			
+            <div class="grid" style="display: block;">
+                <!-- Content -->
+                <div class="card">
+                    <form method="post">
+                        <table class="card__table" id="cart_Table">
+                            <thead>
+                            <tr class="card__table-rows">
+                                <th class="card__table-title"></th>
+                                <th class="card__table-title">Ảnh sản phẩm</th>
+                                <th class="card__table-title">Tên sản phẩm</th>
+                                <th class="card__table-title">Đơn giá</th>
+                                <th class="card__table-title">Số lượng</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+                            </tbody>
+                        </table>
+
+
+                    </form>
+                </div>
+            </div>
+			</th:block>
+        </div>
+
+    </div>
+
+</div>

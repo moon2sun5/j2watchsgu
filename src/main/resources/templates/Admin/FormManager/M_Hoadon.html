@@ -29,8 +29,6 @@
 
 	    <div class="content-mid">
 	
-	        <a href="" class="add" type="button" title="Thêm" id="add_sp"><i
-	                class="icon1 ti-plus"></i>Thêm hóa đơn</a>
 	        <label class="form-timkiem" for="">Tìm kiếm:
 	            <input type="search" class="search"><button class="ti-search" type="button" title="Tìm kiếm" id=""></button>
 	        </label>
@@ -55,47 +53,49 @@
 	                <tr style="height: 60px;">
 	                    <th width="2%">ID</th>
 	                    <th width="10%">Tên khách hàng</th>
-	                    <th width="9%">Tình trạng</th>
+	                    <th width="9%">Email</th>
+	                    <th width="7%">Số điện thoại</th>
 	                    <th width="12%">Địa chỉ giao hàng</th>
+	                    <th width="6%">Tình trạng</th>
 	                    <th width="7%">Ngày tạo</th>
-	                    <th width="14%">Sản phẩm</th>
-	                    <th width="7%">Giá bán</th>
-	                    <th width="6%">Số lượng</th>
+	                    <th width="14%">Ghi chú</th>
 	                    <th width="6%">Voucher</th>
 	                    <th width="14%">Tổng tiền sau khi giảm</th>
 	                    <th width="8%">Tính năng</th>
 	                </tr>
 	            </thead>
 	            <tbody id="table-body">
-	                <tr>
+	                <th:block th:each="bill : ${listBill}">
 	                    
-	                <tr>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td align="center">
-	                        
-	                        <button  type="button" name="btn_delete" data-id=""
-	                            class="tinhnang1 js-change-sanpham-delete" title="Xóa" id="btn_delete">
-	                            <i class="icon1 ti-trash"></i>
-	                        </button>
-	                        <button  value=""
-	                            class="tinhnang2 js-change-hoadon" name="submit_edit" type="submit" title="Sửa"
-	                            id="btn_update">
-	                            <i class="icon1 ti-marker-alt"></i>
-	                        </button>
-		                    </td>
-	
-	
-	                </tr>
-	                </tr>
+		                <tr>
+		                    <td align="center" th:text="${bill.id_bill}"></td>
+		                    <td align="center"  th:text="${bill.fullname}"></td>
+		                    <td align="center"  th:text="${bill.email}"></td>
+		                    <td align="center"  th:text="${bill.dienthoai}"></td>
+	                        <td align="center"  th:text="${bill.deliver_address}"></td>
+		                    <td align="center"  th:if="${bill.status_id == 1}">
+								Đang giao
+								<td align="center"  th:if="${bill.status_id == 0}">
+									Đã hoàn thành
+								</td>
+							</td>
+		                    <td align="center"  th:text="${bill.create_date}"></td>
+		                    <td align="center"  th:text="${bill.discription_bill}"></td>
+		                    <td align="center" th:each="voucher : ${listVoucher}" th:if="${voucher.id_voucher == bill.voucher_id}" th:text="${voucher.code}">
+								<td align="center" th:if="${bill.voucher_id == null}"></td>
+							</td>
+		                    
+		                    <td align="center"  th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${bill.totalPrice} + '))</script>'"></td>
+		                    <td align="center" th:if="${bill.status_id == 1}">
+                        		<a th:href="@{'/admin/qlhoadon/edit/' + ${bill.id_bill}}"><button href="" class="tinhnang2" type="button" title="Sửa" id=""><i class="icon1 ti-marker-alt"></i></button></a>
+                        			 <td align="center" th:if="${bill.status_id == 0}">
+                        				<a th:href="@{'/admin/qlhoadon/delete/' + ${bill.id_bill}}"><button data-id="" href="" class="tinhnang1" type="button" title="Xóa" id=""><i class="icon1 ti-trash"></i></button></a> 
+			                		</td>
+			                </td>
+		
+		
+		                </tr>
+	                </th:block>
 
 	            </tbody>
 	        </table>

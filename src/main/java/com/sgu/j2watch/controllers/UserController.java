@@ -112,6 +112,8 @@ public class UserController {
         model.addAttribute("listType", typeRepository.findAll());
         model.addAttribute("listUser", userRepository.findAll());
         model.addAttribute("listRole", roleRepository.findAll());
+        model.addAttribute("list_Type", 0); 
+    	model.addAttribute("list_Role", 0);
 
         Optional<User> userOptional = userRepository.findById(id);
         User user = userOptional.get();

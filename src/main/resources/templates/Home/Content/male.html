@@ -78,7 +78,7 @@
 							<div class="grid__item-info">
 								<label class="grid__item-title" ><p th:text="${row.product_brandName}"></p></label>
 								<div class="grid__item-name black" ><p th:text="${row.productName}"></p></div>
-								<div class="grid__item-price"><strong class="red"><p th:text="${row.productPrice}+'đ'"></p></strong></div>
+								<div class="grid__item-price"><strong class="red"><p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${row.productPrice} + '))</script>'"> đ</p></strong></div>
 							</div>
 						</a>
 					</div>

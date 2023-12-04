@@ -1,5 +1,7 @@
 package com.sgu.j2watch.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.annotations.Check;
@@ -19,11 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sgu.j2watch.entities.Account;
+import com.sgu.j2watch.entities.Bill;
+import com.sgu.j2watch.entities.BillDetail;
 import com.sgu.j2watch.entities.ChangePassword;
 import com.sgu.j2watch.entities.Register;
 import com.sgu.j2watch.entities.Role;
 import com.sgu.j2watch.entities.User;
 import com.sgu.j2watch.repositories.AccountRepository;
+import com.sgu.j2watch.repositories.BillDetailRepository;
+import com.sgu.j2watch.repositories.BillRepository;
+import com.sgu.j2watch.repositories.ProductRepository;
 import com.sgu.j2watch.repositories.RoleRepository;
 import com.sgu.j2watch.repositories.TypeRepository;
 import com.sgu.j2watch.repositories.UserRepository;
@@ -47,6 +54,12 @@ public class LoginController {
 	private AccountRepository accountRepository;
     @Autowired
 	private AccountService accountService;
+    @Autowired
+	private BillRepository billRepository;
+    @Autowired
+	private BillDetailRepository billDetailRepository;
+    @Autowired
+	private ProductRepository productRepository;
     
     
     @GetMapping("/dangnhap")
@@ -133,6 +146,43 @@ public class LoginController {
     	userRepository.save(user);
     	re.addFlashAttribute("message", "Cập nhật thông tin người dùng thành công");
     	return "redirect:/home/thongtin";
+    }
+    
+    @GetMapping("/lichsudonhang")
+    public String history(Model model){
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String username = authentication.getName();
+    	int id_account = accountService.checkAccount(username);
+    	int id_user = 0;
+    	if (id_account > 0) {
+    		Optional<Account> accountOptional = accountRepository.findById(id_account);
+    		Account account = accountOptional.get();
+    		id_user = account.getUser_id();
+    		
+        }
+    	model.addAttribute("listBillDetail", billRepository.findAll());
+    	model.addAttribute("listBill", billRepository.findAll());
+    	model.addAttribute("product", productRepository.findAll());
+    	Iterable<Bill> billIterable = billRepository.findAll();
+    	Iterable<BillDetail> billDetailIterable = billDetailRepository.findAll();
+    	List<Bill> newList = new ArrayList();
+    	List<BillDetail> newList2 = new ArrayList();
+    	for(Bill bill : billIterable) {
+    		if(bill.getUser_id() == id_user) {
+    			Optional<Bill> billOptional = billRepository.findById(bill.getId_bill());
+    			Bill billUser = billOptional.get();
+    			newList.add(billUser);
+    			for(BillDetail billDetail : billDetailIterable) {
+    	    		if(billDetail.getId_bill() == bill.getId_bill()) {
+    	    			List<BillDetail> billdetail_list = billDetailRepository.findAllById_bill(billDetail.getId_bill());
+    	    			model.addAttribute("listBilldetail", billdetail_list);
+    	    		}
+    	    	}
+    		}
+    	}
+    	model.addAttribute("listBill", newList);
+    	
+    	return "Home/MainPage/History";
     }
         
 }
