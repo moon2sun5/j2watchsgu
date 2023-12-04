@@ -32,12 +32,12 @@
                                 <td>
                                     <p th:text="${cartItem.name}"></p>
                                 </td>
-                                <td> <p th:text="${cartItem.price}"></p></td>
+                                <td> <p th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${cartItem.price} + '))</script>'"></p></td>
                                 <td>
                                     <input type="number" min="1" th:max="${cartItem.quantityRemain}"  name="quantity" th:id="${'quantity_input_'+cartItem.quantity}" th:value="${cartItem.quantity}" th:onchange="changeQuantityCart([[${cartItem.id}]],this.value)" style="width:150px;">
                                 </td>
                                 <td>
-                                    <p th:id="${'price_'+cartItem.id}" th:text="${cartItem.price * cartItem.quantity}" th:attr="data-price=${cartItem.price}"></p>
+                                    <p th:id="${'price_'+cartItem.id}" th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${(cartItem.price * cartItem.quantity)} + '))</script>'" th:attr="data-price=${cartItem.price}"></p>
                                 </td>
                                 <td>
                                     <button type="button"

@@ -1,48 +1,102 @@
-<form th:fragment="edithoadon" th:if="${bill != null}" th:action="@{/admin/qlhoadon/saveHoadon}" th:object="${bill}" method="post">
-  <div class="modal js-modal open" th:each="listBill : ${listBillEdit}" th:classappend="${bill ne null} ? 'open' : ''">
-    <div class="modal-container js-container">
 
-      <header class="modal-header">
-        Chi tiết hóa đơn
-      </header>
-
-      <div class="modal-body">
-        <div class="form2">
-          <label class="labelnhanvien">ID Bill: </label>
-          <input class="form-control" type="text" th:field="*{listBill.id_bill}"  readonly>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
+    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+    <link rel="stylesheet" th:href="@{/css/Sua.css}">
+    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
+    <link rel="stylesheet" th:href="@{/css/load.css}">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+</head>
+<body>
+	
+	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
+<div  class="content-formaddnhanvien">
+   <form th:action="@{/admin/qlhoadon/saveHoadon}" th:object="${listBillEdit}" method="post">     
+    <div class="row">
+		
+        <div class="form1">
+            <label class="labelnhanvien">Id Bill: </label>
+            <input name="name" class="form-control" type="text" th:field="*{id_bill}"  readonly>
+        </div>
+        
+        <div class="form1">
+            <label class="labelnhanvien">Id Tài khoản đặt hàng: </label>
+            <input name="name" class="form-control" type="text" th:field="*{user_id}"  readonly>
+        </div>
+        
+        <input name="name" class="form-control" type="hidden" th:field="*{discription_bill}"  readonly>
+        
+        <div class="form1">
+            <label class="labelnhanvien">Tình trạng đơn hàng: </label>
+            <div class="chon">
+                <input th:checked="*{status_id == 1}" th:field="*{status_id}" type="radio" value="1" name="gioitinh" class="check-type"><label
+                    class="labeldonhang" for="">Đang giao</label>
+                <input th:checked="*{status_id == 0}" th:field="*{status_id}" type="radio" value="0" name="gioitinh" class="check-type"><label
+                    class="labeldonhang" for="">Đã hoàn thành</label>
+            </div>
+        </div>
+        
+        <div class="form1">
+            <label class="labelnhanvien">Tên khách hàng: </label>
+            <input name="address" class="form-control" type="text" th:field="*{fullname}">
         </div>
 
-        <div class="form2">
-          <label class="labelnhanvien">Tên khách hàng: </label>
-          <input class="form-control" type="text" th:field="*{listBill.fullname}">
+        <div class="form1">
+            <label class="labelnhanvien">Địa chỉ giao hàng: </label>
+            <input name="email" class="form-control" type="text" th:field="*{deliver_address}">
         </div>
 
-        <div class="form2">
-          <label class="labelnhanvien">Địa chỉ: </label>
-          <input class="form-control" type="text" th:field="*{listBill.deliver_address}">
+        <div class="form1">
+            <label class="labelnhanvien">Email: </label>
+            <input name="email" class="form-control" type="text"  th:field="*{email}">
         </div>
-
-        <div class="form2">
-          <label class="labelnhanvien">Email: </label>
-          <input class="form-control" type="text" th:field="*{listBill.email}">
+        
+        <div class="form1">
+            <label class="labelnhanvien">Số điện thoại: </label>
+            <input name="phone_number" class="form-control" type="text" th:field="*{dienthoai}">
         </div>
-
-        <div class="form2">
-          <label class="labelnhanvien">Số điện thoại: </label>
-          <input class="form-control" type="text" th:field="*{listBill.dienthoai}">
+        
+        <div class="form1">
+            <label class="labelnhanvien">Tổng tiền: </label>
+            <input name="phone_number" class="form-control" type="text" th:field="*{totalPrice}" readonly>
         </div>
-
-        <footer class="modal-footer">
-          <button type="submit" class="btn_save">Lưu lại</button>
-          <button onclick="cancel()" type="button" class="btn_close js-close">Hủy bỏ</button>
-        </footer>
-      </div>
-
-      <script type="text/javascript">
-        function cancel(){
-          window.location = "/admin/qlhoadon";
-        }
-      </script>
+        
+        <hr>
+        <h1 class="thongso">Chi tiết hóa đơn</h1>
+        <th:block th:each="listdetail : ${listBilldetail}">
+			<div class="form1">
+		      	<label class="labelnhanvien">Sản phẩm: </label>
+		        <input name="phone_number" class="form-control" type="text" th:each="product : ${product}" th:if="${listdetail.id_product == product.idProduct}" th:value="${product.name}" readonly>
+		    </div>
+		    <div class="form1">
+		      	<label class="labelnhanvien">Giá: </label>
+		        <input name="phone_number" class="form-control" type="text" th:value="${listdetail.unit_price}" readonly>
+		    </div>
+		    <div class="form1">
+		      	<label class="labelnhanvien">Số lượng: </label>
+		        <input name="phone_number" class="form-control" type="text" th:value="${listdetail.quantity}" readonly>
+		    </div>
+		    <hr>
+		</th:block>
+		
+        <div class="form1">
+            <button  class="add-nhanvien" type="submit" name="submitNCC" title="Lưu" id=""><i class="icon1 ti-save"></i>Lưu</button>
+            <button onclick="cancel()" class="add-nhanvien" type="button" title="Hủy" id=""><i class="icon1 ti-trash"></i>Hủy bỏ</button>
+        </div>
+		<script type="text/javascript">
+			function cancel(){
+				window.location = "/admin/qlhoadon";
+			}
+		</script>
     </div>
-  </div>
 </form>
+</div>
+
+ </body>
+

@@ -56,7 +56,7 @@
                     <p th:text="'Số lượng còn lại: '+${productDetail.productQuantity}"> </p>
 
                     <p class="content__right-price red" data-price=""><strong
-                            class="red" th:text="${productDetail.productPrice}+'đ'"></strong></p>
+                            class="red" th:utext="'<script>document.write(new Intl.NumberFormat(\'vi-VN\').format(' + ${productDetail.productPrice} + '))</script>'"></strong></p>
                     <p class="content__right-description" th:text="${productDetail.productDescription}"><br></p>
                     <div class="content__right-btn">
                         <div class="content__right-btn-quantity" th:if="${OOS == false}">
