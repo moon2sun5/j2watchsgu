@@ -16,8 +16,8 @@
 
         <h1>Thống kê sản phẩm top 5 khách hàng mua nhiều nhất  </h1>
         
-       <div style="width: 1000px; height: 500px;"> 
-		   <canvas id="myChart" width="1000px" height="500"></canvas>
+        <div style="width: 1220px; height: 620px;"> 
+		   <canvas id="myChart" width="1220px" height="620"></canvas>
 
 	   </div>
 
@@ -53,7 +53,22 @@
                     y: {
                         beginAtZero: true
                     }
-                }
+                },
+                 plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.parsed.y.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            return label;
+                        }
+                    }
+                
+				}
+            }
             }
         });
     </script>
