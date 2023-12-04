@@ -23,7 +23,7 @@ public class BillServiceImpl implements BillService {
     public Bill saveData(String deliver_address, Float totalPrice, int user_id, Integer voucher_id, int status_id, String dienthoai, String fullname, String email, String discription_bill) {
         Bill lastEntity = billRepository.findTopByOrderByIdDesc();
 
-        int NextId = (lastEntity != null) ? lastEntity.getId() + (int) 1 : 1;
+        int NextId = (lastEntity != null) ? lastEntity.getId_bill() + (int) 1 : 1;
 
         Bill entity = new Bill();
         entity.setId_bill(NextId);
