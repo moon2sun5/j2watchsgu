@@ -62,33 +62,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-	public Product getProductById(Integer id_product) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Product> getProductById(int id_product) {
+		return productRepository.findById(id_product);
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Product>) productRepository.findAll();
 	}
 
 	@Override
 	public void saveProduct(Product product) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updateProduct(Product product) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteProduct(Integer id_product) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

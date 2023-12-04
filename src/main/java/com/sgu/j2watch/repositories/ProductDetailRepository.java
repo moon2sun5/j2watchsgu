@@ -15,7 +15,6 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, In
             "INNER JOIN j2watch.pin ON a.pin_id = pin.id_pin\n" +
             "INNER JOIN j2watch.product_detail ON a.id_product = product_detail.id_product;\n", nativeQuery = true)
     public ProductDetail findProductDetailByID  (int id);
-
     @Query(value = "INSERT INTO your_table (column1, column2, column3,)\n" +
             "VALUES (:value1, 'value2', 'value3');", nativeQuery = true)
     public boolean save(int value1);

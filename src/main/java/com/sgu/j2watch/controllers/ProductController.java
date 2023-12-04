@@ -1,57 +1,74 @@
 package com.sgu.j2watch.controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.IOException;
 
+import com.sgu.j2watch.DTOs.ProDetailDTO;
+import com.sgu.j2watch.DTOs.ProductDTO;
+import com.sgu.j2watch.entities.ProDetail;
 import com.sgu.j2watch.entities.Product;
+import com.sgu.j2watch.repositories.ProDetailRepository;
 import com.sgu.j2watch.repositories.ProductRepository;
 import com.sgu.j2watch.services.BrandService;
 import com.sgu.j2watch.services.CategoryService;
 import com.sgu.j2watch.services.MaterialGlassService;
 import com.sgu.j2watch.services.MaterialWireService;
 import com.sgu.j2watch.services.PinService;
+import com.sgu.j2watch.services.ProDetailService;
+import com.sgu.j2watch.services.ProductDetailService;
+import com.sgu.j2watch.services.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(path = "/admin")
 @Validated
 public class ProductController {
-
     private final ProductRepository productRepository;
+    private final ProDetailRepository prodetailRepository;
+    private final ProDetailService prodetailService;
+    private final ProductService productService;
     private final BrandService brandService;
     private final CategoryService categoryService;
     private final MaterialGlassService materialGlassService;
     private final MaterialWireService materialWireService;
     private final PinService pinService;
+    private ProDetail prodetailDTO;
+    private Product productDTO;
 
     @Autowired
     public ProductController(
-        ProductRepository productRepository,
-        BrandService brandService,
-        CategoryService categoryService,
-        MaterialGlassService materialGlassService,
-        MaterialWireService materialWireService,
-        PinService pinService
+            ProDetailService prodetailService,
+            ProDetailRepository prodetailRepository,
+            ProductRepository productRepository,
+            ProductService productService,
+            BrandService brandService,
+            CategoryService categoryService,
+            MaterialGlassService materialGlassService,
+            MaterialWireService materialWireService,
+            PinService pinService
     ) {
         this.productRepository = productRepository;
+        this.prodetailService = prodetailService;
+        this.prodetailRepository = prodetailRepository;
+        this.productService = productService;
         this.brandService = brandService;
         this.categoryService = categoryService;
         this.materialGlassService = materialGlassService;
@@ -61,85 +78,228 @@ public class ProductController {
 
     @GetMapping("/qlsanpham")
     public String qlsanpham(Model model) {
-        Iterable<Product> product = productRepository.findAll();
-        model.addAttribute("listProduct", product);
-        return "Admin/FormManager/M_Sanpham";
-    }
-
-    @GetMapping("/qlsanpham/addsanpham")
-    public String addsanpham(Model model) {
-        Product product = new Product();
-        model.addAttribute("product", product);
+        model.addAttribute("listProduct", productService.getAllProducts());
+        model.addAttribute("listProdetail", prodetailRepository.findAll());
         model.addAttribute("listBrand", brandService.getAllBrands());
         model.addAttribute("listCategory", categoryService.getAllCategories());
         model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
         model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
         model.addAttribute("listPin", pinService.getAllPins());
+        return "Admin/FormManager/M_Sanpham";
+    }
+
+    @GetMapping("/qlsanpham/addsanpham")
+    public String addsanpham(Model model, HttpServletRequest request) {
+        ProductDTO productDTO = new ProductDTO();
+
+//        ProDetailDTO prodetailDTO = new ProDetailDTO();
+//        Newproduct newproduct = new Newproduct();
+        model.addAttribute("prodetailDTO", prodetailDTO);
+        model.addAttribute("productDTO", productDTO);
+        model.addAttribute("listBrand", brandService.getAllBrands());
+        model.addAttribute("listCategory", categoryService.getAllCategories());
+        model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
+        model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
+        model.addAttribute("listPin", pinService.getAllPins());
+//        newproduct.setProduct(new Product());
+//        newproduct.setProdetail(new ProDetail());
+//        model.addAttribute("product",productDTO);
+        ProDetail prodetail = new ProDetail();
         return "Admin/FormAdd/A_Sanpham";
     }
-    public String saveFile(MultipartFile file) throws IOException {
-        // Thư mục lưu trữ - thay đổi đường dẫn theo cấu hình của bạn
-        String uploadDir = "j2watchsgu\\bin\\src\\main\\resources\\static\\img";
-        
-        // Tạo tên file duy nhất để tránh ghi đè
-        String originalFilename = file.getOriginalFilename();
-        String filename = System.currentTimeMillis() + "_" + originalFilename;
-        
-        // Lưu trữ file
-        Path copyLocation = Paths.get(uploadDir + File.separator + filename);
-        Files.copy(file.getInputStream(), copyLocation);
-        
-        return filename; // Trả về tên file để lưu trong cơ sở dữ liệu
-    }
+
     @PostMapping("/qlsanpham/addsanpham")
-    public String saveSanpham(@RequestParam("img") MultipartFile imgFile, @ModelAttribute Product product) {
-        if (!imgFile.isEmpty()) {
+    public String saveSanpham(Model model, @ModelAttribute("productDTO") ProductDTO dto, ProDetail prodetail, HttpServletRequest request) {
+        Product product;
+//        ProDetail prodetail = new ProDetail();
+
+        boolean isNew = dto.getidProduct() == null; // Check if it's a new product
+
+        // If updating an existing product, retrieve it from the database
+        if (!isNew) {
+            Optional<Product> optionalProduct = productService.getProductById(dto.getidProduct());
+            if (optionalProduct.isPresent()) {
+                product = optionalProduct.get();
+            } else {
+                // Handle the case where the ID is not null, but the product does not exist
+                return "redirect:/admin/error";
+            }
+        } else {
+            // If creating a new product, instantiate a new Product object
+            product = new Product();
+//            prodetail = new ProDetail();
+        }
+        System.out.println(product.getIdProduct());
+// Map dto to product entity
+        // Assuming that the dto method names match the entity property names
+        // Replace with actual property names and mapping logic
+        product.setName(dto.getName());
+//        product.setDescription(dto.getDescription());
+        product.setPrice(0f);
+        product.setQuantity(0);
+        // ... map other properties as needed ...
+
+        // Check if the image file is not null and not empty
+        if (dto.getImg() != null && !dto.getImg().isEmpty()) {
             try {
-                // Lưu file và lấy tên file
-                String filename = saveFile(imgFile);
-                // Cập nhật đường dẫn file vào sản phẩm
-                product.setImg(filename); // Đảm bảo rằng bạn lưu đường dẫn tương đối hoặc tuyệt đối phù hợp
+                // Define the path where the image will be saved
+                String uploadDir = "G:\\LUU C\\Documents\\GitHub\\j2watchsgu\\src\\main\\resources\\static\\img";
+                Path uploadPath = Paths.get(uploadDir);
 
-                // Lưu thông tin sản phẩm vào cơ sở dữ liệu
-                productRepository.save(product);
+                // Create directories if they do not exist
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
 
-                return "redirect:/admin/qlsanpham";
+                // Save the image file
+                String fileName = dto.getImg().getOriginalFilename();
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(dto.getImg().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Set the image name to the product
+                product.setImg(fileName);
             } catch (IOException e) {
-                // Xử lý lỗi ở đây, ví dụ: log lỗi hoặc thiết lập một thông báo lỗi trong model
                 e.printStackTrace();
+                // Handle the image upload error
+                return "redirect:/admin/uploadError";
             }
         }
-
-        // Nếu không có file hoặc có lỗi, bạn có thể xử lý tại đây và quay lại trang tương ứng
-        return "redirect:/admin/qlsanpham/addsanpham";
-    }
-
-	@GetMapping("/qlsanpham/delete/{id}")
-    public String deleteSanpham(@PathVariable("id") Integer id) {
-        productRepository.deleteById(id);
+//        product.setColor(dto.getColor());
+        product.setCategory(dto.getCategory());
+        product.setBrand(dto.getBrand());
+        product.setPin(dto.getPin());
+        product.setMaterialWire(dto.getMaterialWire());
+        product.setMaterialGlassId(dto.getMaterialGlassId());
+        // Save the product to the database
+        productService.saveProduct(product);
+        prodetail.setId_product(product.getIdProduct());
+        prodetail.setDescription(request.getParameter("description"));
+        prodetail.setColor(request.getParameter("color"));
+        prodetail.setCode("DONGHOABC");
+        prodetail.setShape(request.getParameter("shape"));
+        prodetail.setSize(request.getParameter("size"));
+        prodetail.setWater_resistance(request.getParameter("water_resistance"));
+        prodetail.setGender("Chung");
+        prodetail.setOrigin(request.getParameter("origin"));
+        prodetailRepository.save(prodetail);
+        // Redirect appropriately after saving the product
         return "redirect:/admin/qlsanpham";
     }
 
-    @GetMapping("/qlsanpham/edit/{id}")
-    public String editSanpham(@PathVariable("id") Integer id, Model model) {
-        Optional<Product> productOptional = productRepository.findById(id);
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
-            model.addAttribute("product", product);
-            model.addAttribute("listBrand", brandService.getAllBrands());
-            model.addAttribute("listCategory", categoryService.getAllCategories());
-            model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
-            model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
-            model.addAttribute("listPin", pinService.getAllPins());
-            return "Admin/FormManager/M_Sanpham";
+    @GetMapping("/qlsanpham/delete/{id}")
+    public String deleteSanpham(@PathVariable("id") Integer id) {
+        if (id != null) {
+            prodetailRepository.deleteById(id);
+            productService.deleteProduct(id);
+            return "redirect:/admin/qlsanpham";
         } else {
+            // Xử lý trường hợp ID là null
             return "redirect:/admin/qlsanpham";
         }
     }
 
-    @PostMapping("/qlsanpham/update/{id}")
-    public String updateSanpham(@PathVariable("id") Integer id, Product product) {
-        productRepository.save(product);
+    @GetMapping("/qlsanpham/edit/{id}")
+    public String editSanpham(@PathVariable Integer id, Model model) {
+        // Lấy sản phẩm theo ID
+        Optional<Product> optionalProduct = productService.getProductById(id);
+
+        if (optionalProduct.isPresent()) {
+            // Ánh xạ đối tượng Product sang ProductDTO
+            Product product = optionalProduct.get();
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setIdproduct(product.getIdProduct()); // Chỉnh tên thuộc tính
+            productDTO.setName(product.getName());
+            productDTO.setPrice(product.getPrice());
+            // Ánh xạ các thuộc tính khác khi cần
+
+            // Lấy ProDetail theo ID sản phẩm
+            Optional<ProDetail> optionalProDetail = prodetailRepository.findById(id);
+
+            if (optionalProDetail.isPresent()) {
+                // Ánh xạ đối tượng ProDetail sang ProDetailDTO
+                ProDetail prodetail = optionalProDetail.get();
+                prodetail.setId_product(prodetail.getId_product());
+                prodetail.setDescription(prodetail.getDescription());
+                // Ánh xạ các thuộc tính khác khi cần
+
+                // Thêm các DTO và dữ liệu cần thiết vào model
+                model.addAttribute("productDTO", productDTO);
+                model.addAttribute("prodetail", prodetail);
+                model.addAttribute("listBrand", brandService.getAllBrands());
+                model.addAttribute("listCategory", categoryService.getAllCategories());
+                model.addAttribute("listMaterialGlass", materialGlassService.getAllMaterialGlasses());
+                model.addAttribute("listMaterialWire", materialWireService.getAllMaterialWires());
+                model.addAttribute("listPin", pinService.getAllPins());
+
+                return "Admin/FormEdit/E_Sanpham";
+            } else {
+                // Xử lý trường hợp ProDetail không tồn tại cho ID sản phẩm đã cho
+                return "redirect:/admin/error";
+            }
+        } else {
+            // Xử lý trường hợp sản phẩm với ID đã cho không tồn tại
+            return "redirect:/admin/error";
+        }
+    }
+
+
+    @PostMapping("/qlsanpham/saveSanpham")
+    public String updateSanpham(Model model, @ModelAttribute("productDTO") ProductDTO dto, ProDetail prodetail, HttpServletRequest request) {
+        Product product;
+
+        boolean isUpdate = dto.getidProduct() != null; // Check if it's an update to an existing product
+
+        // If updating an existing product, retrieve it from the database
+        if (isUpdate) {
+            Optional<Product> optionalProduct = productService.getProductById(dto.getidProduct());
+            if (optionalProduct.isPresent()) {
+                product = optionalProduct.get();
+            } else {
+                // Handle the case where the product does not exist
+                return "redirect:/admin/error";
+            }
+        } else {
+            // If the ID is null, then it's not an edit but an add. Redirect to the add product page.
+            return "redirect:/admin/qlsanpham/addsanpham";
+        }
+
+        // Map dto to product entity
+        // Assuming that the dto method names match the entity property names
+        // Replace with actual property names and mapping logic
+        product.setName(dto.getName());
+        // ... map other properties as needed ...
+
+        // Handle image upload if a new image file is provided
+        if (dto.getImg() != null && !dto.getImg().isEmpty()) {
+            // Image upload logic here, similar to the add product logic
+            // ...
+        }
+
+        // Update product details
+        prodetail.setId_product(product.getIdProduct()); // Set the product for the product detail
+        // Assuming you have setters for the following properties in the ProDetail entity
+        prodetail.setDescription(request.getParameter("description"));
+        // ... set other properties as needed ...
+
+        // Save the product and product details to the database
+        product.setCategory(dto.getCategory());
+        product.setBrand(dto.getBrand());
+        product.setPin(dto.getPin());
+        product.setMaterialWire(dto.getMaterialWire());
+        product.setMaterialGlassId(dto.getMaterialGlassId());
+        productService.saveProduct(product);
+        prodetail.setId_product(product.getIdProduct());
+        prodetail.setDescription(request.getParameter("description"));
+        prodetail.setColor(request.getParameter("color"));
+        prodetail.setCode("DONGHOABC");
+        prodetail.setShape(request.getParameter("shape"));
+        prodetail.setSize(request.getParameter("size"));
+        prodetail.setWater_resistance(request.getParameter("water_resistance"));
+        prodetail.setGender("Chung");
+        prodetail.setOrigin(request.getParameter("origin"));
+        prodetailRepository.save(prodetail);
+
+        // Redirect appropriately after updating the product
         return "redirect:/admin/qlsanpham";
     }
 }
