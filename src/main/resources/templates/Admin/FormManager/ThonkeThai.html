@@ -1,20 +1,19 @@
-
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Admin</title>
-		<script src="https://cdn.tailwindcss.com"></script>
+	<meta charset="UTF-8">
+	<title>Admin</title>
 	<link rel="stylesheet" th:href="@{/css/StyleGiaodien.css}">
-    <link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
-    <link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
-    <link rel="stylesheet" th:href="@{/css/Sua.css}">
-    <link rel="stylesheet" th:href="@{/css/Donhang.css}">
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
-    <script language="JavaScript" th:src="@{/js/clock.js}"></script>
-	
-	<!--thực hiện thống kê-->
+	<link rel="stylesheet" th:href="@{/css/themify-icons/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/css/StyleQuanly.css}">
+	<link rel="stylesheet" th:href="@{/css/Sua.css}">
+	<link rel="stylesheet" th:href="@{/css/Donhang.css}">
+	<link rel="stylesheet" th:href="@{/css/load.css}">
+	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+	<script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
+	<script language="JavaScript" th:src="@{/js/clock.js}"></script>
+
+<!--thực hiện thống kê-->
 	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
 	<script th:src="@{https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js}"></script>
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js}"></script>
@@ -24,30 +23,33 @@
             border: 1px solid #4CAF50; /* Màu xanh */
             padding: 2px; /* Thêm padding để làm đẹp */
             border-radius: 4px; /* Bo tròn các góc */
+            
         }
     </style>
 </head>
 <body onload="time()">
-	
-	<div th:replace="(~{Admin/FormManager/MainPage :: menu})"></div>
-	
-	<div id="" class="content">
 
-    <div class="content-header">
+<div th:replace="(~{Admin/FormManager/MainPage :: menu})">
 
-        <div id="clock">
-        </div>
+</div>
 
-    </div>
+<div class="content">
+
+	<div class="content-header">
+
+		<div id="clock"></div>
+
+	</div>
+
 <div class="content-mid" style="margin-left: 30px;">
     <form action="/admin/qlthongkesp/qlthongkesptungmuc" method="POST" id="thongkeForm">
         <label for="thongkeOption"><b>Chọn số sản phẩm:</b></label>
-        <select id="thongkeOption" name="thongkeOption">
+        <select id="thongkeOption" name="thongkeOption" style="font-size: 20px;">
             <option value="1">Top 5 khách hàng mua nhiều nhất</option>
             <option value="2">Top 10 sản phẩm bán chạy nhất</option>
             <option value="3">Top 5 nhân viên bán hàng xuất sắc nhất </option>
         </select>
-        <button type="submit" id="thongkeButton" style="background-color: yellowgreen;"><b>Lọc</b></button>
+        <button type="submit" id="thongkeButton" style="background-color: yellowgreen; font-size: 20px;"><b>Lọc</b></button>
     </form>
     
     
