@@ -2,6 +2,7 @@ package com.sgu.j2watch.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,8 @@ public class ProductController {
 
     @GetMapping("/qlsanpham")
     public String qlsanpham(Model model) {
-        model.addAttribute("listProduct", productRepository.findAll());
+        Iterable<Product> product = productRepository.findAll();
+        model.addAttribute("listProduct", product);
         return "Admin/FormManager/M_Sanpham";
     }
 

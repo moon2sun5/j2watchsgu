@@ -59,7 +59,7 @@ public class Bill {
 	}
 
 	public int getId_bill() {
-		return id;
+		return this.id;
 	}
 
 	public void setId_bill(int id_bill) {
